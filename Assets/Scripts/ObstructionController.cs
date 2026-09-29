@@ -2,15 +2,26 @@ using UnityEngine;
 
 public class ObstructionController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int hitsToDestroy = 3;
+    private int currentHits = 0;
+
 
     // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("PlayerProjectile") || collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            currentHits++;
+            if (currentHits >= hitsToDestroy)
+            {
+                DestroyObstruction();
+            }
+        }
+    }
+
+
+    private void DestroyObstruction()
+    {
+        Destroy(gameObject);
     }
 }
