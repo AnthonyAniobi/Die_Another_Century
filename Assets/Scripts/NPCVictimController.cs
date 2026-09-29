@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NPCVictimController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 5f;
     private bool isBeingRescued = false;
     private bool isRescued = false;
 
@@ -11,13 +11,7 @@ public class NPCVictimController : MonoBehaviour
 
     private float gravity = -9.81f;
 
-    // manage how the npc moves towards the player when being rescued, and how it behaves when it reaches the safe area. The NPC will move towards the player when the player is nearby and will stop moving once it reaches the safe area.
-    private float safeAreaRadius = 2f; // radius around the player where the NPC will stop moving
-    private float walkRadius = 5f; // radius around the player where the npc walks towards the player
-
-    private float runRadius = 10f; // radius around the player where the npc runs towards the player
-
-    private float lostRadius = 15f; // radius around the player where the npc will stop moving towards the player because the player is too far
+    // private float lostRadius = 15f; // radius around the player where the npc will stop moving towards the player because the player is too far
     
     void Start()
     {
@@ -27,26 +21,33 @@ public class NPCVictimController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 moveDirection = Vector3.zero;
         if(playerTransform != null && isBeingRescued)
         {
             // Move towards the player
-            float step = moveSpeed * Time.deltaTime; // Adjust speed as needed
-
             Vector3 distanceToPlayer = playerTransform.position - transform.position;
-            float distanceMagnitude = distanceToPlayer.magnitude;
+            // float distanceMagnitude = distanceToPlayer.magnitude;           
+
+            float step = moveSpeed * Time.deltaTime;
             
-            Vector3 moveDirection = distanceToPlayer.normalized ;
-            moveDirection.y = gravity;
+            // if(distanceMagnitude < 0.5f){
+            moveDirection = distanceToPlayer.normalized * step;
+            // }
 
-            if(characterController.isGrounded && moveDirection.y < 0)
-            {
-                moveDirection.y = -2f; // small negative value to keep the NPC grounded
-            }
-
-            characterController.Move(moveDirection * step);
+            
+            
         }
+        moveDirection.y = gravity;
+
+        if(characterController.isGrounded && moveDirection.y < 0)
+        {
+            moveDirection.y = -2f; // small negative value to keep the NPC grounded
+        }
+
+        characterController.Move(moveDirection);
     }
 
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !isBeingRescued)
