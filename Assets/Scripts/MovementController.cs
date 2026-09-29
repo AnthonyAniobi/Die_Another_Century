@@ -22,7 +22,10 @@ public class MovementController : MonoBehaviour
 
         Vector2 moveVector = moveInput.ReadValue<Vector2>();
 
-        Vector3 moveDirection = new Vector3(moveVector.x, 0f, moveVector.y).normalized * moveSpeed;
+        Vector3 movement = transform.right * moveVector.x + transform.forward * moveVector.y;
+        movement = movement.normalized * moveSpeed;
+
+        // Vector3 moveDirection = new Vector3(moveVector.x, 0f, moveVector.y).normalized * moveSpeed;
 
         if(jumpAction.triggered && characterController.isGrounded)
         {
@@ -36,8 +39,8 @@ public class MovementController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
 
-        moveDirection.y = velocity.y;
+        movement.y = velocity.y;
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        characterController.Move(movement * Time.deltaTime);
     }
 }
