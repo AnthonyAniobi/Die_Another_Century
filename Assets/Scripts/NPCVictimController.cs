@@ -8,6 +8,14 @@ public class NPCVictimController : MonoBehaviour
 
     private Transform playerTransform;
     private CharacterController characterController;
+
+    // manage how the npc moves towards the player when being rescued, and how it behaves when it reaches the safe area. The NPC will move towards the player when the player is nearby and will stop moving once it reaches the safe area.
+    private float safeAreaRadius = 2f; // radius around the player where the NPC will stop moving
+    private float walkRadius = 5f; // radius around the player where the npc walks towards the player
+
+    private float runRadius = 10f; // radius around the player where the npc runs towards the player
+
+    private float lostRadius = 15f; // radius around the player where the npc will stop moving towards the player because the player is too far
     
     void Start()
     {
@@ -21,7 +29,13 @@ public class NPCVictimController : MonoBehaviour
         {
             // Move towards the player
             float step = moveSpeed * Time.deltaTime; // Adjust speed as needed
-            characterController.Move(transform.position - playerTransform.position);
+
+            Vector3 distanceToPlayer = playerTransform.position - transform.position;
+            float distanceMagnitude = distanceToPlayer.magnitude;
+            
+            Vector3 moveDirection = distanceToPlayer.normalized ;
+            
+            characterController.Move(moveDirection * step);
         }
     }
 
