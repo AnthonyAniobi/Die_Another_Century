@@ -2441,7 +2441,7 @@ GameObject:
   - component: {fileID: 570724826}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2526,7 +2526,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 11.400116, y: 1, z: 10.92371}
   m_Center: {x: -0.051200867, y: 0, z: -0.43940163}
@@ -5491,9 +5491,10 @@ GameObject:
   - component: {fileID: 1451546650}
   - component: {fileID: 1451546649}
   - component: {fileID: 1451546648}
+  - component: {fileID: 1451546651}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5593,6 +5594,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451546646}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1451546651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451546646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14ce7546a55a42e4a4966983687eb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthController
+  maxHealth: 5
+  currentHealth: 0
+  healthType: 0
 --- !u!1001 &1452090033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6210,6 +6226,8 @@ GameObject:
   - component: {fileID: 1601016747}
   - component: {fileID: 1601016746}
   - component: {fileID: 1601016745}
+  - component: {fileID: 1601016749}
+  - component: {fileID: 1601016748}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6290,6 +6308,44 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1601016748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601016743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14ce7546a55a42e4a4966983687eb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthController
+  maxHealth: 3
+  currentHealth: 0
+  healthType: 2
+--- !u!136 &1601016749
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601016743}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 4.4325857
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.13464308, z: 0}
 --- !u!4 &1612449749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1692489648468893346, guid: 345b53e26b42147f6bc58bcb4031ea37, type: 3}
@@ -7326,6 +7382,7 @@ GameObject:
   - component: {fileID: 1868696144}
   - component: {fileID: 1868696143}
   - component: {fileID: 1868696142}
+  - component: {fileID: 1868696145}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -7428,6 +7485,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868696140}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1868696145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868696140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14ce7546a55a42e4a4966983687eb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthController
+  maxHealth: 1
+  currentHealth: 0
+  healthType: 1
 --- !u!1 &1870486322
 GameObject:
   m_ObjectHideFlags: 0
@@ -8295,6 +8367,12 @@ MonoBehaviour:
   playersHealthText: {fileID: 1792481736}
   infoPanel: {fileID: 798983647}
   infoText: {fileID: 861504133}
+  gameOverPanel: {fileID: 0}
+  gameIntroPanel: {fileID: 0}
+  gameEnded: 0
+  gameStarted: 0
+  gameOverTitleText: {fileID: 0}
+  gameOverMessageText: {fileID: 0}
 --- !u!4 &2120969487
 Transform:
   m_ObjectHideFlags: 0

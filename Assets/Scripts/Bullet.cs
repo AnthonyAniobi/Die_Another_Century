@@ -26,7 +26,7 @@ private float bulletLifeTime = 2.0f;
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.TryGetComponent<EnemyHealth>(out var enemy);
+            collision.gameObject.TryGetComponent<HealthController>(out var enemy);
             if (enemy != null)
             {
                 enemy.TakeDamage(1); // Assuming 1 is the damage value for the bullet
@@ -38,10 +38,10 @@ private float bulletLifeTime = 2.0f;
 
         if (collision.gameObject.CompareTag("NPC"))
         {
-            collision.gameObject.TryGetComponent<NPCVictimController>(out var player);
-            if (player != null)
+            collision.gameObject.TryGetComponent<HealthController>(out var npc);
+            if (npc != null)
             {
-                player.TakeDamage(1); // Assuming 1 is the damage value for the bullet
+                npc.TakeDamage(1); // Assuming 1 is the damage value for the bullet
             }
             print($"Hit Target {collision.gameObject.name}");
             CreateBulletImpactEffect(collision);

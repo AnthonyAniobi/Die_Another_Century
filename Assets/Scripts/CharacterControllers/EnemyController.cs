@@ -116,24 +116,15 @@ public class EnemyController : MonoBehaviour
 
     private void CheckIfPlayerIsInView()
     {
-        // Find nearby player colliders first, then use a raycast to verify line of sight.
         if(playerTransform == null)
         {
-            Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, eyeDistance);
-            foreach (Collider nearbyCollider in nearbyColliders)
+            Ray ray = new Ray(playerEyeLevelTransform.position, playerEyeLevelTransform.forward);
+            if (Physics.Raycast(ray, out RaycastHit hit, eyeDistance))
             {
-                if (!nearbyCollider.CompareTag("Player"))
-                {
-                    continue;
-                }
-
-                Vector3 directionToPlayer = nearbyCollider.bounds.center - playerEyeLevelTransform.position;
-                if (Physics.Raycast(playerEyeLevelTransform.position, directionToPlayer.normalized, out RaycastHit hit, directionToPlayer.magnitude)
-                    && hit.collider.CompareTag("Player"))
+                if (hit.collider.CompareTag("Player"))
                 {
                     Debug.Log("Player sighted by enemy!");
-                    playerTransform = nearbyCollider.transform;
-                    break;
+                    playerTransform = hit.transform;
                 }
             }
         }
