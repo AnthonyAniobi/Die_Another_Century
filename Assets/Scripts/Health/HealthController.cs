@@ -60,4 +60,10 @@ public class HealthController : MonoBehaviour
         EnemyController enemyController = GetComponentInParent<EnemyController>();
         enemyController?.StopAttack();
     }
+
+    public void EnemyAttackHit()
+    {
+        EnemyController enemyController = GetComponentInParent<EnemyController>();
+        enemyController?.HitPlayer();
+    }
 }

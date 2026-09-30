@@ -127,12 +127,6 @@ public class EnemyController : MonoBehaviour
 
         animator?.SetBool("Moving", new Vector3(moveDirection.x, 0f, moveDirection.z).sqrMagnitude > 0f);
         animator?.SetBool("Attacking", isAttacking);
-
-        if (isAttacking)
-        {
-            HitPlayer();
-        }
-
         characterController.Move(moveDirection);
     }
 
@@ -178,7 +172,7 @@ public class EnemyController : MonoBehaviour
 
     public void HitPlayer()
     {
-        if (weaponDamagePoint == null || playerTransform == null)
+        if (!isAttacking || weaponDamagePoint == null || playerTransform == null)
         {
             return;
         }
