@@ -84,6 +84,7 @@ public class GameLevelManager : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1f;
         gameIntroPanel.SetActive(true);
         gameOverPanel.SetActive(false);
         removeAllEnemiesAndNPCs();
@@ -92,6 +93,11 @@ public class GameLevelManager : MonoBehaviour
 
     void Update()
     {
+        if (!gameStarted)
+        {
+            return;
+        }
+
         SpawnEnemiesAtIntervals();
     }
 
@@ -180,6 +186,7 @@ public class GameLevelManager : MonoBehaviour
     // call this to start any game afreash
     public void ResetGameLevel()
     {
+        Time.timeScale = 1f;
         // let reset game remove all existing enemies and npcs in the scene
        removeAllEnemiesAndNPCs();
         // show intro panel
@@ -241,7 +248,7 @@ public class GameLevelManager : MonoBehaviour
             gameOverTitleText.text = "Game Over";
             gameOverMessageText.text = message;
         }
-        // stop game loop
+        Time.timeScale = 0f;
         
     }
     
@@ -277,6 +284,7 @@ public class GameLevelManager : MonoBehaviour
 
     public void OnMenuButtonPressed()
     {
+         Time.timeScale = 1f;
        SceneManager.LoadScene("WelcomeScene");
     }
      // call this when player presses the start button in the intro panel
@@ -287,6 +295,7 @@ public class GameLevelManager : MonoBehaviour
             return;
         }
 
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         gameIntroPanel.SetActive(false);
         gameOverPanel.SetActive(false);
