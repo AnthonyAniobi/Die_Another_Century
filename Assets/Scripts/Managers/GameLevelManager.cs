@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameLevelManager : MonoBehaviour
 {
@@ -22,9 +23,14 @@ public class GameLevelManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameIntroPanel;
     [SerializeField] private bool gameEnded = false;
-    [SerializeField] private bool gameStarted = false;
+    public bool gameStarted = false;
     [SerializeField] private TextMeshProUGUI gameOverTitleText;
     [SerializeField] private TextMeshProUGUI gameOverMessageText;
+
+    [Header("UI Buttons")]
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button menuButton;
+    [SerializeField] private Button startButton;
 
     
 
@@ -48,11 +54,34 @@ public class GameLevelManager : MonoBehaviour
         {
             instance = this;
         }
+
+    }
+
+    void OnEnable()
+    {
+        if (restartButton != null)
+            restartButton.onClick.AddListener(OnRestartButtonPressed);
+        if (menuButton != null)
+            menuButton.onClick.AddListener(OnMenuButtonPressed);
+        if (startButton != null)
+            startButton.onClick.AddListener(StartGame);
+    }
+
+    void OnDestroy()
+    {
+        if (restartButton != null)
+            restartButton.onClick.RemoveListener(OnRestartButtonPressed);
+        if (menuButton != null)
+            menuButton.onClick.RemoveListener(OnMenuButtonPressed);
+        if (startButton != null)
+            startButton.onClick.RemoveListener(StartGame);
     }
 
     void Awake()
     {
-        ResetGameLevel();
+        gameIntroPanel.SetActive(true);
+        gameOverPanel.SetActive(false);
+        removeAllEnemiesAndNPCs();
     }
 
     void Update()
@@ -76,8 +105,7 @@ public class GameLevelManager : MonoBehaviour
             currentRescuedNPC = null; // Reset the reference after rescue
             rescuedCount++;
             UpdateUI();
-            ShowInfoPanel("NPC Rescued! Total Rescued: " + rescuedCount + "/" + totalNPCsToRescue);
-
+            
             if (rescuedCount >= totalNPCsToRescue)
             {
                 EndGame(true, "All civilians rescued!");
@@ -146,7 +174,8 @@ public class GameLevelManager : MonoBehaviour
     // call this to start any game afreash
     public void ResetGameLevel()
     {
-
+        // let reset game remove all existing enemies and npcs in the scene
+       removeAllEnemiesAndNPCs();
         // show intro panel
         gameIntroPanel.SetActive(true);
         gameOverPanel.SetActive(false);
@@ -163,9 +192,25 @@ public class GameLevelManager : MonoBehaviour
         UpdateUI();
     }
 
+    private void removeAllEnemiesAndNPCs()
+    {
+        // Remove all enemies
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
+
+        // Remove all NPCs
+        foreach (var npc in GameObject.FindGameObjectsWithTag("NPC"))
+        {
+            Destroy(npc);
+        }
+    }
+
    
     public void EndGame(bool playerWon, string message)
     {
+        Cursor.lockState = CursorLockMode.None;
         ShowInfoPanel(message);
         gameOverPanel.SetActive(true);
         gameEnded = true;
@@ -217,6 +262,7 @@ public class GameLevelManager : MonoBehaviour
      // call this when player presses the start button in the intro panel
     public void StartGame() 
     {
+        Cursor.lockState = CursorLockMode.Locked;
         gameIntroPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         gameEnded = false;

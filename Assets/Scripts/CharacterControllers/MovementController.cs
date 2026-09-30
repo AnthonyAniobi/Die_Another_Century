@@ -17,6 +17,10 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
+        if(GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
+        {
+            return; // Do not process movement if the game hasn't started
+        }
         InputAction moveInput = InputSystem.actions.FindAction("Move");  
         InputAction jumpAction = InputSystem.actions.FindAction("Jump"); 
 

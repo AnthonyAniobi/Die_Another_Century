@@ -33,6 +33,11 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
+        {
+            return; // Do not process movement if the game hasn't started
+        }
+
         InputAction fireBullet = InputSystem.actions.FindAction("Attack");
 
         if (fireBullet.IsPressed() && readyToShoot)

@@ -12,14 +12,15 @@ public class MouseAimController : MonoBehaviour
 
 
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked; // remove cursor from screen
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
+        if(GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
+        {
+            return; // Do not process movement if the game hasn't started
+        }
         InputAction mouseInput = InputSystem.actions.FindAction("Look");
         xRotation += mouseInput.ReadValue<Vector2>().y * mouseSensitivity * Time.deltaTime;
         yRotation += mouseInput.ReadValue<Vector2>().x * mouseSensitivity * Time.deltaTime;
