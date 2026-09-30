@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     
     
     private bool isInPatrolPoint = false; // whether the enemy is currently in a patrol point
-    Transform playerTransform;
+    public Transform playerTransform;
     private CharacterController characterController;
     private float gravity = -9.81f;
     private bool isAttacking;
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
                 moveDirection = distanceToPlayer.normalized * step;
             }
             
-        }else if(!isInPatrolPoint)
+        }else if(!isInPatrolPoint && startingState == EnemyStartingState.Patrol)
         {
                 isAttacking = false;
                 canStartAttack = true;

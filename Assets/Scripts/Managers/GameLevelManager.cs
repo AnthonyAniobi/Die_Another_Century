@@ -172,6 +172,8 @@ public class GameLevelManager : MonoBehaviour
             Vector3 randomPatrolPoint = new Vector3(randomx, randomSpawnPosition.y, randomz);
             enemyPrefab.GetComponent<EnemyController>().patrolCenter = new Vector2(randomPatrolPoint.x, randomPatrolPoint.z);
             enemyPrefab.GetComponent<EnemyController>().startingState = EnemyController.EnemyStartingState.Patrol;
+            // all spawed enemies should pursue the player
+            enemyPrefab.GetComponent<EnemyController>().playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform; // Assign the player transform if it exists
             Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
             canSpawnEnemies = false; // stop from spawning more enemies until the next interval
             Invoke("EnableEnemySpawning", levelData.enemySpawnInterval);
