@@ -4,7 +4,9 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 3; // maximum health of the enemy
     [SerializeField] private HealthType healthType; // type of health (Enemy, NPC, player)
+    private Animator animator;
     private int currentHealth; 
+    private bool isDead;
 
     public enum HealthType
     {
@@ -16,12 +18,21 @@ public class HealthController : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        // Implement your damage logic here
+        if (isDead)
+        {
+            return;
+        }
+
         Debug.Log("Enemy took " + damage + " damage!");
+        animator?.SetTrigger("HIT");
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
@@ -31,7 +42,8 @@ public class HealthController : MonoBehaviour
 
     void Die()
     {
-        // Implement your death logic here
+        isDead = true;
+        animator?.SetBool("DIE", true);
         Debug.Log("NPC died!");
         Destroy(gameObject);
         if(healthType == HealthType.NPC)

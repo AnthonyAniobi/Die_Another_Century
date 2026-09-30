@@ -6,6 +6,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private Animator animator;
     
     private CharacterController characterController;
     private Vector3 velocity = Vector3.zero;
@@ -13,18 +14,24 @@ public class MovementController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
     }
 
     void Update()
     {
         if(GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
         {
+            animator?.SetBool("MOVING", false);
             return; // Do not process movement if the game hasn't started
         }
         InputAction moveInput = InputSystem.actions.FindAction("Move");  
         InputAction jumpAction = InputSystem.actions.FindAction("Jump"); 
 
         Vector2 moveVector = moveInput.ReadValue<Vector2>();
+        animator?.SetBool("MOVING", moveVector.sqrMagnitude > 0f);
 
         Vector3 movement = transform.right * moveVector.x + transform.forward * moveVector.y;
         movement = movement.normalized * moveSpeed;
