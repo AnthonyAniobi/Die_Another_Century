@@ -6,10 +6,10 @@ TagManager:
   tags:
   - Ground
   - Obstruction
-  - EnemyProjectile
-  - PlayerProjectile
   - SafeArea
   - NPC
+  - Enemy
+  - bullet
   layers:
   - Default
   - TransparentFX

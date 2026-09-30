@@ -14,8 +14,8 @@ private float bulletLifeTime = 2.0f;
     {
         if (collision.gameObject.CompareTag("Obstruction"))
         {
-            CreateBulletImpactEffect(collision);
             print("Hit Target ${collision.gameObject.name}");
+            CreateBulletImpactEffect(collision);
             Destroy(gameObject);
         }
     }

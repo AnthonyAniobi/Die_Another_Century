@@ -12,7 +12,7 @@ public class PlayerWeapon : MonoBehaviour
 
     [SerializeField] private float shootResetDelay = 0.12f;
 
-    [SerializeField] private GameObject muzzleFlash;
+    // [SerializeField] private GameObject muzzleFlash;
 
     [SerializeField] private float reloadTime;
     [SerializeField] private bool isReloading = false;
@@ -46,7 +46,7 @@ public class PlayerWeapon : MonoBehaviour
         readyToShoot = false;
         //
         animator.SetTrigger("RECOIL");
-        muzzleFlash.GetComponent<ParticleSystem>().Play();
+        // muzzleFlash.GetComponent<ParticleSystem>().Play();
         SoundManager.instance.PlayShootingSound();
 
         Vector3 shootingDirection = GetBulletDirection().normalized;
