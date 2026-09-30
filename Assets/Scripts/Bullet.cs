@@ -1,16 +1,40 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+private float bulletLifeTime = 2.0f;
+
     void Start()
     {
-        
+        StartCoroutine(RemoveBullet());
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Obstruction"))
+        {
+            CreateBulletImpactEffect(collision);
+            print("Hit Target ${collision.gameObject.name}");
+            Destroy(gameObject);
+        }
+    }
+
+    void CreateBulletImpactEffect(Collision objectHit)
+    {
+        // ContactPoint contact = objectHit.contacts.First();
         
+        // GameObject hole = Instantiate(
+        //     GlobalReferences.Instance.bulletImpactEffectPrefab,
+        //     contact.point,
+        //     Quaternion.LookRotation(contact.normal)
+        // );
+        // hole.transform.SetParent(objectHit.gameObject.transform);
+    }
+
+    private IEnumerator RemoveBullet()
+    {
+        yield return new WaitForSeconds(bulletLifeTime);
+        Destroy(gameObject);
     }
 }
