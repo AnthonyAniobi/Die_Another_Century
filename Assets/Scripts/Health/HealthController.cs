@@ -54,4 +54,10 @@ public class HealthController : MonoBehaviour
             GameLevelManager.instance.EndGame(false, "You were killed!");
         }
     }
+
+    public void EndEnemyAttack()
+    {
+        EnemyController enemyController = GetComponentInParent<EnemyController>();
+        enemyController?.StopAttack();
+    }
 }

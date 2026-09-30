@@ -12,12 +12,19 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackDistance = 40.0f; // distance at which the enemy will attack the player
     [SerializeField] private float turnSpeed = 5f; // speed at which the enemy turns in patrol
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform weaponDamagePoint;
+    [SerializeField] private float weaponDamageRadius = 0.5f;
+    [SerializeField] private int attackDamage = 1;
+    [SerializeField] private float attackDamageInterval = 0.5f;
     
     
     private bool isInPatrolPoint = false; // whether the enemy is currently in a patrol point
     Transform playerTransform;
     private CharacterController characterController;
     private float gravity = -9.81f;
+    private bool isAttacking;
+    private bool canStartAttack = true;
+    private float nextDamageTime;
 
 
     public enum EnemyStartingState
@@ -53,7 +60,6 @@ public class EnemyController : MonoBehaviour
 
         CheckIfPlayerIsInView();
         Vector3 moveDirection = Vector3.zero;
-        bool isAttacking = false;
         
         if(playerTransform != null)
         {
@@ -64,12 +70,17 @@ public class EnemyController : MonoBehaviour
 
             if(distanceMagnitude < attackDistance)
             {
-                // Attack the player
-                // Implement your attack logic here
-                isAttacking = true;
+                if (canStartAttack)
+                {
+                    isAttacking = true;
+                    canStartAttack = false;
+                    nextDamageTime = 0f;
+                }
             }
             else
             {
+                isAttacking = false;
+                canStartAttack = true;
                 // Chase the player
                 float step = chaseSpeed * Time.deltaTime;
                 moveDirection = distanceToPlayer.normalized * step;
@@ -77,6 +88,8 @@ public class EnemyController : MonoBehaviour
             
         }else if(!isInPatrolPoint)
         {
+                isAttacking = false;
+                canStartAttack = true;
             if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), patrolCenter) > 0.5f)
             {
                 // if enemy has not gotten to the patrol point, move towards the patrol point
@@ -92,6 +105,8 @@ public class EnemyController : MonoBehaviour
             
         }else
         {
+            isAttacking = false;
+            canStartAttack = true;
             // if enemy has gotten to the patrol point, go round in a circle arround the patrol point
             float angle = Time.time * walkSpeed; // Adjust the speed of rotation by multiplying with walkSpeed
             float x = Mathf.Cos(angle) * searchAreaRadius;
@@ -112,6 +127,12 @@ public class EnemyController : MonoBehaviour
 
         animator?.SetBool("Moving", new Vector3(moveDirection.x, 0f, moveDirection.z).sqrMagnitude > 0f);
         animator?.SetBool("Attacking", isAttacking);
+
+        if (isAttacking)
+        {
+            HitPlayer();
+        }
+
         characterController.Move(moveDirection);
     }
 
@@ -150,12 +171,38 @@ public class EnemyController : MonoBehaviour
 
     public void StopAttack()
     {
-        
+        isAttacking = false;
+        animator?.SetBool("Attacking", false);
     }
     
 
     public void HitPlayer()
     {
-        
+        if (weaponDamagePoint == null || playerTransform == null)
+        {
+            return;
+        }
+
+        if (Time.time < nextDamageTime)
+        {
+            return;
+        }
+
+        HealthController playerHealth = playerTransform.GetComponentInParent<HealthController>();
+        if (playerHealth == null)
+        {
+            return;
+        }
+
+        Collider[] hitColliders = Physics.OverlapSphere(weaponDamagePoint.position, weaponDamageRadius);
+        foreach (Collider hitCollider in hitColliders)
+        {
+            if (hitCollider.GetComponentInParent<HealthController>() == playerHealth)
+            {
+                playerHealth.TakeDamage(attackDamage);
+                nextDamageTime = Time.time + attackDamageInterval;
+                return;
+            }
+        }
     }
 }
