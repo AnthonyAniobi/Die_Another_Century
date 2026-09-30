@@ -1,13 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    private Transform currentRescuedNPC;
-    private int rescuedCount = 0;
-    
+    [SerializeField] private Button restartButton;
 
 
     void Start()
@@ -22,8 +22,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void StartGame()
+    public void StartGame()
     {
-        // Initialize game
+        SceneManager.LoadScene("GameScene");
     }
+
+    
 }

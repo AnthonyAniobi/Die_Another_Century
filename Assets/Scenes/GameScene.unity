@@ -694,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &92270335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6780,7 +6780,7 @@ GameObject:
   - component: {fileID: 1497083017}
   - component: {fileID: 1497083018}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SavedUsersText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8366,7 +8366,7 @@ GameObject:
   - component: {fileID: 1792481737}
   - component: {fileID: 1792481736}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PlayerLivesCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9689,12 +9689,15 @@ MonoBehaviour:
   playersHealthText: {fileID: 1792481736}
   infoPanel: {fileID: 798983647}
   infoText: {fileID: 861504133}
-  gameOverPanel: {fileID: 0}
-  gameIntroPanel: {fileID: 0}
+  gameOverPanel: {fileID: 868709908}
+  gameIntroPanel: {fileID: 92270334}
   gameEnded: 0
   gameStarted: 0
-  gameOverTitleText: {fileID: 0}
-  gameOverMessageText: {fileID: 0}
+  gameOverTitleText: {fileID: 447986991}
+  gameOverMessageText: {fileID: 56783558}
+  restartButton: {fileID: 1728217694}
+  menuButton: {fileID: 37128163}
+  startButton: {fileID: 964904783}
 --- !u!4 &2120969487
 Transform:
   m_ObjectHideFlags: 0

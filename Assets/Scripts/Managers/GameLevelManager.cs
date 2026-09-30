@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameLevelManager : MonoBehaviour
@@ -82,6 +83,7 @@ public class GameLevelManager : MonoBehaviour
         gameIntroPanel.SetActive(true);
         gameOverPanel.SetActive(false);
         removeAllEnemiesAndNPCs();
+        infoPanel.SetActive(false);
     }
 
     void Update()
@@ -257,7 +259,7 @@ public class GameLevelManager : MonoBehaviour
 
     public void OnMenuButtonPressed()
     {
-        // move to main menu scene
+       SceneManager.LoadScene("MainMenu");
     }
      // call this when player presses the start button in the intro panel
     public void StartGame() 
