@@ -147,5 +147,15 @@ public class EnemyController : MonoBehaviour
 
     
 
+
+    public void StopAttack()
+    {
+        
+    }
     
+
+    public void HitPlayer()
+    {
+        
+    }
 }
