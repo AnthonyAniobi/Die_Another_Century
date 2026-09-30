@@ -21,16 +21,18 @@ public class GameLevelData
             {
                 characterPositions = new List<CharacterPosition>
                 {
-                    new CharacterPosition { position = new Vector3(0f, 0f, 5f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.NPC },
-                    new CharacterPosition { position = new Vector3(10f, 0f, 10f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.Enemy }
+                    new CharacterPosition { position = new Vector3(-16f, 1f, -38f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.NPC },
+                    new CharacterPosition { position = new Vector3(9f, 1f, 28f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.Enemy },
+                    new CharacterPosition { position = new Vector3(11f, 1f, 9f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.Enemy },
+                    new CharacterPosition { position = new Vector3(-11f, 1f, -21f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.Enemy },
+                    new CharacterPosition { position = new Vector3(-0.8f, 1f, -33.9f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.Enemy },
                 },
                 enemySpawnPositions = new List<Vector3>
                 {
-                    new Vector3(-5f, 0f, -5f),
-                    new Vector3(5f, 0f, -5f)
+                    new Vector3(58f, 1f, 26f),
                 },
                 enemySpawnInterval = 2.0f,
-                enemySearchAreaCenter = new Vector3(0f, 0f, 0f),
+                enemySearchAreaCenter = new Vector3(9.6f, 1f, 33.8f),
                 enemySearchAreaRadius = 15.0f
             }
         },

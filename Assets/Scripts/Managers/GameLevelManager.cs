@@ -18,12 +18,15 @@ public class GameLevelManager : MonoBehaviour
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private TextMeshProUGUI infoText;
 
+    // Game Over and Intro Panels
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameIntroPanel;
     [SerializeField] private bool gameEnded = false;
     [SerializeField] private bool gameStarted = false;
     [SerializeField] private TextMeshProUGUI gameOverTitleText;
     [SerializeField] private TextMeshProUGUI gameOverMessageText;
+
+    
 
     
     public bool RescueInProgress {get => currentRescuedNPC != null;}
@@ -33,6 +36,7 @@ public class GameLevelManager : MonoBehaviour
     private int currentHealth;
     private Transform currentRescuedNPC = null;
     private bool canSpawnEnemies = true;
+
 
     void Start()
     {
@@ -73,6 +77,11 @@ public class GameLevelManager : MonoBehaviour
             rescuedCount++;
             UpdateUI();
             ShowInfoPanel("NPC Rescued! Total Rescued: " + rescuedCount + "/" + totalNPCsToRescue);
+
+            if (rescuedCount >= totalNPCsToRescue)
+            {
+                EndGame(true, "All civilians rescued!");
+            }
         }
     }
 
@@ -134,6 +143,7 @@ public class GameLevelManager : MonoBehaviour
         canSpawnEnemies = true;
     }
 
+    // call this to start any game afreash
     public void ResetGameLevel()
     {
 
@@ -149,20 +159,11 @@ public class GameLevelManager : MonoBehaviour
         currentHealth = maxHealth;
         GameLevelData levelData = GameLevelData.levels[currentLevel];
         // Use the levelData to set up the game level
-        // SpawnInitialCharacters(levelData.characterPositions);
+        SpawnInitialCharacters(levelData.characterPositions);
         UpdateUI();
     }
 
-    public void StartGame()
-    {
-        gameIntroPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
-        gameEnded = false;
-        gameStarted = true;
-        GameLevelData levelData = GameLevelData.levels[currentLevel];
-        SpawnInitialCharacters(levelData.characterPositions);
-    }
-
+   
     public void EndGame(bool playerWon, string message)
     {
         ShowInfoPanel(message);
@@ -201,4 +202,27 @@ public class GameLevelManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         infoPanel.SetActive(false);
     }
+
+    /// <summary>
+    /// buttion actions these are actions referenced in the ui button
+    /// </summary>
+    public void OnRestartButtonPressed(){
+        ResetGameLevel();
+    }
+
+    public void OnMenuButtonPressed()
+    {
+        // move to main menu scene
+    }
+     // call this when player presses the start button in the intro panel
+    public void StartGame() 
+    {
+        gameIntroPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        gameEnded = false;
+        gameStarted = true;
+        GameLevelData levelData = GameLevelData.levels[currentLevel];
+        SpawnInitialCharacters(levelData.characterPositions);
+    }
+
 }
