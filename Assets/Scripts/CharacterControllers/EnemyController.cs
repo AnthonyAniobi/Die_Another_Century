@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float eyeDistance = 8f; // distance for the enemy eye (raycast)
     [SerializeField] private float attackDistance = 40.0f; // distance at which the enemy will attack the player
     [SerializeField] private float turnSpeed = 5f; // speed at which the enemy turns in patrol
+    [SerializeField] private Animator animator;
     
     
     private bool isInPatrolPoint = false; // whether the enemy is currently in a patrol point
@@ -29,6 +30,10 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
         
         if(startingState == EnemyStartingState.Patrol)
         {
@@ -48,6 +53,7 @@ public class EnemyController : MonoBehaviour
 
         CheckIfPlayerIsInView();
         Vector3 moveDirection = Vector3.zero;
+        bool isAttacking = false;
         
         if(playerTransform != null)
         {
@@ -60,6 +66,7 @@ public class EnemyController : MonoBehaviour
             {
                 // Attack the player
                 // Implement your attack logic here
+                isAttacking = true;
             }
             else
             {
@@ -103,6 +110,8 @@ public class EnemyController : MonoBehaviour
             moveDirection.y = -2f; // small negative value to keep the NPC grounded
         }
 
+        animator?.SetBool("Moving", new Vector3(moveDirection.x, 0f, moveDirection.z).sqrMagnitude > 0f);
+        animator?.SetBool("Attacking", isAttacking);
         characterController.Move(moveDirection);
     }
 

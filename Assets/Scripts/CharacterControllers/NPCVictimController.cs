@@ -3,6 +3,7 @@ using UnityEngine;
 public class NPCVictimController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private Animator animator;
     private bool isBeingRescued = false;
     private bool isRescued = false;
 
@@ -16,6 +17,10 @@ public class NPCVictimController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
     }
 
     // Update is called once per frame
@@ -44,6 +49,7 @@ public class NPCVictimController : MonoBehaviour
             moveDirection.y = -2f; // small negative value to keep the NPC grounded
         }
 
+        animator?.SetBool("MOVING", new Vector3(moveDirection.x, 0f, moveDirection.z).sqrMagnitude > 0f);
         characterController.Move(moveDirection);
     }
 
