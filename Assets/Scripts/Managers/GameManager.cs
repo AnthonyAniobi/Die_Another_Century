@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private Button restartButton;
+    [SerializeField] private Button startGameButton;
 
 
     void Start()
@@ -21,6 +21,19 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
+
+    void OnEnable()
+    {
+        if (startGameButton != null)
+            startGameButton.onClick.AddListener(StartGame);
+    }
+
+    void OnDestroy()
+    {
+        if (startGameButton != null)
+            startGameButton.onClick.RemoveListener(StartGame);
+    }
+
 
     public void StartGame()
     {

@@ -259,7 +259,7 @@ public class GameLevelManager : MonoBehaviour
 
     public void OnMenuButtonPressed()
     {
-       SceneManager.LoadScene("MainMenu");
+       SceneManager.LoadScene("WelcomeScene");
     }
      // call this when player presses the start button in the intro panel
     public void StartGame() 
