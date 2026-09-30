@@ -13,9 +13,7 @@ public class GameLevelData
 
     public float enemySearchAreaRadius; // radius of the search area
 
-
-
-    static readonly Dictionary<int, GameLevelData> levels = new Dictionary<int, GameLevelData>
+    static public readonly Dictionary<int, GameLevelData> levels = new Dictionary<int, GameLevelData>
     {
         {
             1,
@@ -23,8 +21,8 @@ public class GameLevelData
             {
                 characterPositions = new List<CharacterPosition>
                 {
-                    new CharacterPosition { position = new Vector3(0f, 0f, 5f), characterType = CharacterPosition.CharacterType.NPC },
-                    new CharacterPosition { position = new Vector3(10f, 0f, 10f), characterType = CharacterPosition.CharacterType.Enemy }
+                    new CharacterPosition { position = new Vector3(0f, 0f, 5f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.NPC },
+                    new CharacterPosition { position = new Vector3(10f, 0f, 10f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.Enemy }
                 },
                 enemySpawnPositions = new List<Vector3>
                 {
@@ -42,9 +40,9 @@ public class GameLevelData
             {
                 characterPositions = new List<CharacterPosition>
                 {
-                    new CharacterPosition { position = new Vector3(0f, 0f, 5f), characterType = CharacterPosition.CharacterType.NPC },
-                    new CharacterPosition { position = new Vector3(10f, 0f, 10f), characterType = CharacterPosition.CharacterType.Enemy },
-                    new CharacterPosition { position = new Vector3(-10f, 0f, -10f), characterType = CharacterPosition.CharacterType.Enemy }
+                    new CharacterPosition { position = new Vector3(0f, 0f, 5f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.NPC },
+                    new CharacterPosition { position = new Vector3(10f, 0f, 10f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.Enemy },
+                    new CharacterPosition { position = new Vector3(-10f, 0f, -10f), rotation = Quaternion.identity, characterType = CharacterPosition.CharacterType.Enemy }
                 },
                 enemySpawnPositions = new List<Vector3>
                 {
