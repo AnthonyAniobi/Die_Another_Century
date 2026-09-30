@@ -125,6 +125,11 @@ public class EnemyController : MonoBehaviour
 
     private void CheckIfPlayerIsInView()
     {
+        if (playerEyeLevelTransform == null)
+        {
+            playerEyeLevelTransform = transform;
+        }
+
         if(playerTransform == null)
         {
             Ray ray = new Ray(playerEyeLevelTransform.position, playerEyeLevelTransform.forward);
