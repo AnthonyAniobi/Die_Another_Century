@@ -12,6 +12,7 @@ public class GameLevelManager : MonoBehaviour
     [SerializeField] private int currentLevel = 1; // the current level of the game
     [SerializeField] private List<GameObject> enemyPrefabs; // list of enemy prefabs to spawn
     [SerializeField] private List<GameObject> npcPrefabs; // list of NPC prefabs to spawn
+    [SerializeField] private GameObject playerPrefab; // Reference to the player prefab
 
     [SerializeField] private TextMeshProUGUI rescuedCountText;
     [SerializeField] private GameObject rescueProgressLabel;
@@ -33,6 +34,9 @@ public class GameLevelManager : MonoBehaviour
     [SerializeField] private Button menuButton;
     [SerializeField] private Button startButton;
 
+    private Vector3 playerStartPosition = new Vector3(23.9f, 2.1f, 58.7f); // Set the player's starting position
+
+    
     
 
     
@@ -190,6 +194,11 @@ public class GameLevelManager : MonoBehaviour
         infoPanel.SetActive(false);
         currentHealth = maxHealth;
         UpdateUI();
+        // Spawn the player at the starting position
+        if (playerPrefab != null)
+        {
+            Instantiate(playerPrefab, playerStartPosition, Quaternion.identity);
+        }
     }
 
     private void removeAllEnemiesAndNPCs()
@@ -204,6 +213,13 @@ public class GameLevelManager : MonoBehaviour
         foreach (var npc in GameObject.FindGameObjectsWithTag("NPC"))
         {
             Destroy(npc);
+        }
+
+        // Remove the player if it exists
+        GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (existingPlayer != null)
+        {
+            Destroy(existingPlayer);
         }
     }
 
@@ -225,6 +241,8 @@ public class GameLevelManager : MonoBehaviour
             gameOverTitleText.text = "Game Over";
             gameOverMessageText.text = message;
         }
+        // stop game loop
+        
     }
     
 
@@ -280,6 +298,13 @@ public class GameLevelManager : MonoBehaviour
         currentHealth = maxHealth;
         GameLevelData levelData = GameLevelData.levels[currentLevel];
         SpawnInitialCharacters(levelData.characterPositions);
+
+        // Spawn the player at the starting position
+        if (playerPrefab != null)
+        {
+            Instantiate(playerPrefab, playerStartPosition, Quaternion.identity);
+        }
+
         UpdateUI();
     }
 
