@@ -9,7 +9,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float chaseSpeed = 4f; // speed at which the enemy chases the player
     [SerializeField] private Transform playerEyeLevelTransform; // reference to the player's eye level transform
     [SerializeField] private float eyeDistance = 8f; // distance for the enemy eye (raycast)
-    [SerializeField] private float attackDistance = 1.0f; // distance at which the enemy will attack the player
+    [SerializeField] private float attackDistance = 40.0f; // distance at which the enemy will attack the player
+    [SerializeField] private float turnSpeed = 5f; // speed at which the enemy turns in patrol
     
     private bool isInPatrolPoint = false; // whether the enemy is currently in a patrol point
     Transform playerTransform;
@@ -90,6 +91,7 @@ public class EnemyController : MonoBehaviour
             directionToPatrolPoint = directionToPatrolPoint.normalized;
             float step = walkSpeed * Time.deltaTime;
             moveDirection = directionToPatrolPoint.normalized * step;
+            gameObject.transform.localRotation = Quaternion.Euler(0f, angle * Mathf.Rad2Deg, 0f);
         }
         moveDirection.y = gravity;
 
@@ -121,6 +123,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Player"))
                 {
+                    Debug.Log("Player sighted by enemy!");
                     playerTransform = hit.transform;
                 }
             }
