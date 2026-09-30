@@ -60,6 +60,7 @@ public class NPCVictimController : MonoBehaviour
         {
             isBeingRescued = false;
             isRescued = true;
+            GameLevelManager.instance.SetNPCRescued();
             playerTransform = null;
             // gameObject.SetActive(false);
 

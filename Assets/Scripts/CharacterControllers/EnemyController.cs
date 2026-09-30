@@ -3,13 +3,12 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Vector2 patrolCenter;
-    [SerializeField] private EnemyStartingState startingState = EnemyStartingState.Idle; // the initial state of the enemy
-    [SerializeField] private float searchAreaRadius = 10f; // radius of where the enemy will walk arround to search for the player
+    [SerializeField] public EnemyStartingState startingState = EnemyStartingState.Idle; // the initial state of the enemy
+    [SerializeField] private float searchAreaRadius = 20f; // radius of where the enemy will walk arround to search for the player
     [SerializeField] private float walkSpeed = 2f; // speed at which the enemy walks
     [SerializeField] private float chaseSpeed = 4f; // speed at which the enemy chases the player
-    [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private Transform playerEyeLevelTransform; // reference to the player's eye level transform
-    [SerializeField] private float eyeDistance = 2.5f; // distance for the enemy eye (raycast)
+    [SerializeField] private float eyeDistance = 8f; // distance for the enemy eye (raycast)
     [SerializeField] private float attackDistance = 1.0f; // distance at which the enemy will attack the player
     
     private bool isInPatrolPoint = false; // whether the enemy is currently in a patrol point
@@ -57,7 +56,6 @@ public class EnemyController : MonoBehaviour
             {
                 // Attack the player
                 // Implement your attack logic here
-                
             }
             else
             {
@@ -68,11 +66,19 @@ public class EnemyController : MonoBehaviour
             
         }else if(!isInPatrolPoint)
         {
-            // if enemy has not gotten to the patrol point, move towards the patrol point
-            Vector3 directionToPatrolPoint = new Vector3(patrolCenter.x, transform.position.y, patrolCenter.y) - transform.position;
-            directionToPatrolPoint = directionToPatrolPoint.normalized;
-            float step = walkSpeed * Time.deltaTime;
-            moveDirection = directionToPatrolPoint.normalized * step;
+            if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), patrolCenter) > 0.5f)
+            {
+                // if enemy has not gotten to the patrol point, move towards the patrol point
+                Vector3 directionToPatrolPoint = new Vector3(patrolCenter.x, transform.position.y, patrolCenter.y) - transform.position;
+                directionToPatrolPoint = directionToPatrolPoint.normalized;
+                float step = walkSpeed * Time.deltaTime;
+                moveDirection = directionToPatrolPoint.normalized * step;
+                isInPatrolPoint = false;
+            }else 
+            {
+                isInPatrolPoint = true;
+            }
+            
         }else
         {
             // if enemy has gotten to the patrol point, go round in a circle arround the patrol point
