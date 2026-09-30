@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 124047354967602757}
   m_Layer: 0
   m_Name: Wall 1_New (8)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 258639147376333506}
   m_Layer: 0
   m_Name: Wall 1_New (3)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 275892271915888802}
   m_Layer: 0
   m_Name: Wall 1_New (7)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 1247832727681530156}
   m_Layer: 0
   m_Name: Wall 1_New (9)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 1296418476826533726}
   m_Layer: 0
   m_Name: Wall 1_New (4)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 1306667936123368032}
   m_Layer: 0
   m_Name: Wall 1_New (6)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 1405145562754519036}
   m_Layer: 0
   m_Name: Tower 1_New (2)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1370,7 +1370,7 @@ GameObject:
   - component: {fileID: 2163377224421320023}
   m_Layer: 0
   m_Name: Tower 1_New (4)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1819,7 +1819,7 @@ GameObject:
   - component: {fileID: 9181629848989943086}
   m_Layer: 0
   m_Name: Castle
-  m_TagString: Obstruction
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1983,7 +1983,7 @@ GameObject:
   - component: {fileID: 3077791354179591003}
   m_Layer: 0
   m_Name: Wall 1_New (10)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2157,7 +2157,7 @@ GameObject:
   - component: {fileID: 3487982155886729560}
   m_Layer: 0
   m_Name: Wall 1_New (1)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2724,7 +2724,7 @@ GameObject:
   - component: {fileID: 3435869460546467624}
   m_Layer: 0
   m_Name: Gatehouse_New
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3443,7 +3443,7 @@ GameObject:
   - component: {fileID: 5929535437271933532}
   m_Layer: 0
   m_Name: Wall 1_New (5)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3782,7 +3782,7 @@ GameObject:
   - component: {fileID: 6703636211670869771}
   m_Layer: 0
   m_Name: Tower 1_New (3)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4573,7 +4573,7 @@ GameObject:
   - component: {fileID: 8053621081625090165}
   m_Layer: 0
   m_Name: Wall 1_New
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4686,7 +4686,7 @@ GameObject:
   - component: {fileID: 8154942176450191469}
   m_Layer: 0
   m_Name: Tower 1_New (1)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5025,7 +5025,7 @@ GameObject:
   - component: {fileID: 8930415022141689862}
   m_Layer: 0
   m_Name: Wall 1_New (2)
-  m_TagString: Untagged
+  m_TagString: Obstruction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -71,5 +71,14 @@ public class NPCVictimController : MonoBehaviour
     private void DeactivateNPC()
     {
         Destroy(gameObject);
+        
+    }
+
+    public void TakeDamage(int damage)
+    {
+        // Implement your damage logic here
+        Debug.Log("NPC took " + damage + " damage!");
+        // this should be game over for the player
+        GameLevelManager.instance.EndGame(false, "The civilian was killed!");
     }
 }

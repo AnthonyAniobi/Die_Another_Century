@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackDistance = 40.0f; // distance at which the enemy will attack the player
     [SerializeField] private float turnSpeed = 5f; // speed at which the enemy turns in patrol
     
+    
     private bool isInPatrolPoint = false; // whether the enemy is currently in a patrol point
     Transform playerTransform;
     private CharacterController characterController;
@@ -22,11 +23,13 @@ public class EnemyController : MonoBehaviour
     {
         Idle, Patrol
     }
+    
 
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        
         if(startingState == EnemyStartingState.Patrol)
         {
             isInPatrolPoint = true;
@@ -136,4 +139,8 @@ public class EnemyController : MonoBehaviour
         }
         
     }
+
+    
+
+    
 }

@@ -7,16 +7,24 @@ public class ObstructionController : MonoBehaviour
 
 
     // Update is called once per frame
-    void OnCollisionEnter(Collision collision)
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("bullet"))
+    //     {
+    //         currentHits++;
+    //         if (currentHits >= hitsToDestroy)
+    //         {
+    //             DestroyObstruction();
+    //         }
+    //     }
+    // }
+
+    public void HitObstruction()
     {
-        print("Obstruction hit by: " + collision.gameObject.name);
-        if (collision.gameObject.CompareTag("bullet"))
+        currentHits++;
+        if (currentHits >= hitsToDestroy)
         {
-            currentHits++;
-            if (currentHits >= hitsToDestroy)
-            {
-                DestroyObstruction();
-            }
+            DestroyObstruction();
         }
     }
 

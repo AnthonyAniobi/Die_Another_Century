@@ -18,6 +18,13 @@ public class GameLevelManager : MonoBehaviour
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private TextMeshProUGUI infoText;
 
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameIntroPanel;
+    [SerializeField] private bool gameEnded = false;
+    [SerializeField] private bool gameStarted = false;
+    [SerializeField] private TextMeshProUGUI gameOverTitleText;
+    [SerializeField] private TextMeshProUGUI gameOverMessageText;
+
     
     public bool RescueInProgress {get => currentRescuedNPC != null;}
     private float rescuedCount = 0;
@@ -129,6 +136,12 @@ public class GameLevelManager : MonoBehaviour
 
     public void ResetGameLevel()
     {
+
+        // show intro panel
+        gameIntroPanel.SetActive(true);
+        gameOverPanel.SetActive(false);
+        gameEnded = false;
+        gameStarted = false;
         // Reset the game level to its initial state
         rescuedCount = 0;
         currentRescuedNPC = null;
@@ -139,6 +152,35 @@ public class GameLevelManager : MonoBehaviour
         // SpawnInitialCharacters(levelData.characterPositions);
         UpdateUI();
     }
+
+    public void StartGame()
+    {
+        gameIntroPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        gameEnded = false;
+        gameStarted = true;
+        GameLevelData levelData = GameLevelData.levels[currentLevel];
+        SpawnInitialCharacters(levelData.characterPositions);
+    }
+
+    public void EndGame(bool playerWon, string message)
+    {
+        ShowInfoPanel(message);
+        gameOverPanel.SetActive(true);
+        gameEnded = true;
+        gameStarted = false;
+        if (playerWon)
+        {
+            gameOverTitleText.text = "You Win!";
+            gameOverMessageText.text = message;
+        }
+        else
+        {
+            gameOverTitleText.text = "Game Over";
+            gameOverMessageText.text = message;
+        }
+    }
+    
 
     private void UpdateUI()
     {
