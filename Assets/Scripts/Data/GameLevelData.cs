@@ -31,7 +31,7 @@ public class GameLevelData
                 {
                     new Vector3(58f, 1f, 26f),
                 },
-                enemySpawnInterval = 2.0f,
+                enemySpawnInterval = 8.0f,
                 enemySearchAreaCenter = new Vector3(9.6f, 1f, 33.8f),
                 enemySearchAreaRadius = 15.0f
             }
