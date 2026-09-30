@@ -113,18 +113,24 @@ public class EnemyController : MonoBehaviour
 
     private void CheckIfPlayerIsInView()
     {
-        // use a raycast to check if the player is in view of the enemy
-        // if the player is sighted set the player transform and continue to chase the player until
-        // you catch up to the player
+        // Find nearby player colliders first, then use a raycast to verify line of sight.
         if(playerTransform == null)
         {
-            Ray ray = new Ray(playerEyeLevelTransform.position, playerEyeLevelTransform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, eyeDistance))
+            Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, eyeDistance);
+            foreach (Collider nearbyCollider in nearbyColliders)
             {
-                if (hit.collider.CompareTag("Player"))
+                if (!nearbyCollider.CompareTag("Player"))
+                {
+                    continue;
+                }
+
+                Vector3 directionToPlayer = nearbyCollider.bounds.center - playerEyeLevelTransform.position;
+                if (Physics.Raycast(playerEyeLevelTransform.position, directionToPlayer.normalized, out RaycastHit hit, directionToPlayer.magnitude)
+                    && hit.collider.CompareTag("Player"))
                 {
                     Debug.Log("Player sighted by enemy!");
-                    playerTransform = hit.transform;
+                    playerTransform = nearbyCollider.transform;
+                    break;
                 }
             }
         }
