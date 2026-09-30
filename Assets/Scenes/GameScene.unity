@@ -1402,7 +1402,7 @@ Transform:
   m_GameObject: {fileID: 163763675}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15944996, y: -0, z: -0, w: 0.98720604}
-  m_LocalPosition: {x: 0, y: 3.02, z: -2.1769996}
+  m_LocalPosition: {x: 0, y: 2.72, z: -2.1769996}
   m_LocalScale: {x: 0.33333334, y: 0.33333337, z: 0.33333328}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2398,7 +2398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &319224973
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2912,7 +2912,7 @@ Transform:
   m_GameObject: {fileID: 412363483}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.98720604, z: -0.15944996, w: 0}
-  m_LocalPosition: {x: 23.94, y: 9.566, z: 65.281}
+  m_LocalPosition: {x: 23.94, y: 8.666, z: 65.281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12143,8 +12143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseAimController
   mouseSensitivity: 100
-  minRotation: -10
-  maxRotation: 20
+  minRotation: -5
+  maxRotation: 15
   cinemachineCamera: {fileID: 163763677}
 --- !u!95 &2128031525
 Animator:

@@ -252,7 +252,9 @@ public class GameLevelManager : MonoBehaviour
     /// buttion actions these are actions referenced in the ui button
     /// </summary>
     public void OnRestartButtonPressed(){
+        // remove player and set the player back to the start position
         ResetGameLevel();
+
     }
 
     public void OnMenuButtonPressed()
