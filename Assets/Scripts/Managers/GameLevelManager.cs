@@ -185,12 +185,10 @@ public class GameLevelManager : MonoBehaviour
         gameStarted = false;
         // Reset the game level to its initial state
         rescuedCount = 0;
+        totalNPCsToRescue = 0;
         currentRescuedNPC = null;
         infoPanel.SetActive(false);
         currentHealth = maxHealth;
-        GameLevelData levelData = GameLevelData.levels[currentLevel];
-        // Use the levelData to set up the game level
-        SpawnInitialCharacters(levelData.characterPositions);
         UpdateUI();
     }
 
@@ -264,13 +262,23 @@ public class GameLevelManager : MonoBehaviour
      // call this when player presses the start button in the intro panel
     public void StartGame() 
     {
+        if (gameStarted)
+        {
+            return;
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         gameIntroPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         gameEnded = false;
         gameStarted = true;
+        rescuedCount = 0;
+        totalNPCsToRescue = 0;
+        currentRescuedNPC = null;
+        currentHealth = maxHealth;
         GameLevelData levelData = GameLevelData.levels[currentLevel];
         SpawnInitialCharacters(levelData.characterPositions);
+        UpdateUI();
     }
 
 }

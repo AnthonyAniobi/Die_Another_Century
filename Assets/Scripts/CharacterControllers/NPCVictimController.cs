@@ -60,6 +60,7 @@ public class NPCVictimController : MonoBehaviour
         {
             isBeingRescued = true;
             playerTransform = other.transform;
+            GameLevelManager.instance.SetPlayerIsRescuingNPC(transform);
         }
 
         if(other.CompareTag("SafeArea") && isBeingRescued)
