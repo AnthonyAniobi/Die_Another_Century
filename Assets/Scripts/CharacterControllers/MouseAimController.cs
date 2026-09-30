@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,13 +7,23 @@ public class MouseAimController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField] private float minRotation = -90f;
     [SerializeField] private float maxRotation = 90f;
+    [SerializeField] private CinemachineCamera cinemachineCamera;
 
     private float xRotation = 0f;
     private float yRotation = 0f;
+    private Quaternion initialCameraLocalRotation;
 
 
 
     
+
+    void Start()
+    {
+        if (cinemachineCamera != null)
+        {
+            initialCameraLocalRotation = cinemachineCamera.transform.localRotation;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,7 +38,12 @@ public class MouseAimController : MonoBehaviour
 
         xRotation = Mathf.Clamp(xRotation, minRotation, maxRotation);
 
-        gameObject.transform.localRotation = Quaternion.Euler(-xRotation, yRotation, 0f);
+        transform.localRotation = Quaternion.Euler(0f, yRotation, 0f);
+
+        if (cinemachineCamera != null)
+        {
+            cinemachineCamera.transform.localRotation = initialCameraLocalRotation * Quaternion.Euler(-xRotation, 0f, 0f);
+        }
         
     }
 }

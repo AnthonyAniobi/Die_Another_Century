@@ -12129,7 +12129,7 @@ MonoBehaviour:
   moveSpeed: 8
   jumpHeight: 1.5
   gravity: -9.81
-  animator: {fileID: 0}
+  animator: {fileID: 2128031525}
 --- !u!114 &2128031524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12143,8 +12143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseAimController
   mouseSensitivity: 100
-  minRotation: -20
-  maxRotation: 45
+  minRotation: -10
+  maxRotation: 20
+  cinemachineCamera: {fileID: 163763677}
 --- !u!95 &2128031525
 Animator:
   serializedVersion: 7
@@ -13799,7 +13800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4355234212804570218, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalPosition.x
