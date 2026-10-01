@@ -38,7 +38,10 @@ public class PlayerWeapon : MonoBehaviour
             return; // Do not process movement if the game hasn't started
         }
 
-        InputAction fireBullet = InputSystem.actions.FindAction("Attack");
+        if (GameLevelManager.instance.shootButton != null && GameLevelManager.instance.shootButton.IsPressed())
+
+        
+        // InputAction fireBullet = InputSystem.actions.FindAction("Attack");
 
         if (fireBullet.IsPressed() && readyToShoot)
         {

@@ -34,6 +34,14 @@ public class GameLevelManager : MonoBehaviour
     [SerializeField] private Button menuButton;
     [SerializeField] private Button startButton;
 
+    [Header("UI Controls")]
+    // UI References for Joysticks and Buttons
+    [SerializeField] private GameObject controllerPanel;
+    public Joystick moveJoystick; // Reference to the Joystick component for movement
+    public Joystick lookJoystick; // Reference to the Joystick component for looking around
+    public Button jumpButton; // Reference to the Jump button
+    public Button shootButton; // Reference to the Interact button
+
     private Vector3 playerStartPosition = new Vector3(23.9f, 2.1f, 58.7f); // Set the player's starting position
 
     
@@ -89,6 +97,7 @@ public class GameLevelManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         removeAllEnemiesAndNPCs();
         infoPanel.SetActive(false);
+        controllerPanel.SetActive(false);
     }
 
     void Update()
@@ -235,7 +244,8 @@ public class GameLevelManager : MonoBehaviour
    
     public void EndGame(bool playerWon, string message)
     {
-        Cursor.lockState = CursorLockMode.None;
+        // Cursor.lockState = CursorLockMode.None;
+        controllerPanel.SetActive(false);
         ShowInfoPanel(message);
         gameOverPanel.SetActive(true);
         gameEnded = true;
@@ -298,7 +308,8 @@ public class GameLevelManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
+        controllerPanel.SetActive(true);
         gameIntroPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         gameEnded = false;

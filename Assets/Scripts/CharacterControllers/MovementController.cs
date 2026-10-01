@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MovementController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MovementController : MonoBehaviour
     
     private CharacterController characterController;
     private Vector3 velocity = Vector3.zero;
+    private Button jumpButton; // Reference to the Jump button
 
     void Start()
     {
@@ -27,10 +29,33 @@ public class MovementController : MonoBehaviour
             animator?.SetBool("MOVING", false);
             return; // Do not process movement if the game hasn't started
         }
-        InputAction moveInput = InputSystem.actions.FindAction("Move");  
-        InputAction jumpAction = InputSystem.actions.FindAction("Jump"); 
 
-        Vector2 moveVector = moveInput.ReadValue<Vector2>();
+        Vector2 moveVector = Vector2.zero;
+        bool jumpPressed = false;
+
+        if(GameLevelManager.instance.moveJoystick != null){
+            moveVector = new Vector2(
+                GameLevelManager.instance.moveJoystick.Horizontal, 
+                GameLevelManager.instance.moveJoystick.Vertical
+            );
+        }
+        else
+        {
+            InputAction moveInput = InputSystem.actions.FindAction("Move");  
+            moveVector = moveInput.ReadValue<Vector2>();
+        }
+
+        if (jumpButton != null)
+        {
+            jumpPressed = jumpButton.onClick != null; // Check if the jump button is pressed
+        }
+        else
+        {
+            InputAction jumpAction = InputSystem.actions.FindAction("Jump");
+            jumpPressed = jumpAction.triggered;
+        }
+
+
         animator?.SetBool("MOVING", moveVector.sqrMagnitude > 0f);
 
         Vector3 movement = transform.right * moveVector.x + transform.forward * moveVector.y;
@@ -38,7 +63,7 @@ public class MovementController : MonoBehaviour
 
         // Vector3 moveDirection = new Vector3(moveVector.x, 0f, moveVector.y).normalized * moveSpeed;
 
-        if(jumpAction.triggered && characterController.isGrounded)
+        if(jumpPressed && characterController.isGrounded)
         {
             velocity.y = Mathf.Sqrt(2f * Mathf.Abs(gravity) * jumpHeight); // jump height of 1.5 units
         }
