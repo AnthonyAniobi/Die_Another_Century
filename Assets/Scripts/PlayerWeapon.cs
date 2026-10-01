@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerWeapon : MonoBehaviour
 {
@@ -19,31 +19,68 @@ public class PlayerWeapon : MonoBehaviour
 
 
     private Animator animator;
+    private Button subscribedShootButton;
     
     public bool  readyToShoot = true;
 
     
     
+    void OnEnable()
+    {
+        TrySubscribeToShootButton();
+    }
+
     void Start()
     {
         ResetShooting();
         animator = GetComponent<Animator>();
+        TrySubscribeToShootButton();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
+        TrySubscribeToShootButton();
+    }
+
+    void OnDisable()
+    {
+        if (subscribedShootButton != null)
         {
-            return; // Do not process movement if the game hasn't started
+            subscribedShootButton.onClick.RemoveListener(OnShootButtonClicked);
+            subscribedShootButton = null;
+        }
+    }
+
+    private void TrySubscribeToShootButton()
+    {
+        if (GameLevelManager.instance == null || GameLevelManager.instance.shootButton == null)
+        {
+            return;
         }
 
-        if (GameLevelManager.instance.shootButton != null && GameLevelManager.instance.shootButton.IsPressed())
+        Button shootButton = GameLevelManager.instance.shootButton;
+        if (subscribedShootButton == shootButton)
+        {
+            return;
+        }
 
-        
-        // InputAction fireBullet = InputSystem.actions.FindAction("Attack");
+        if (subscribedShootButton != null)
+        {
+            subscribedShootButton.onClick.RemoveListener(OnShootButtonClicked);
+        }
 
-        if (fireBullet.IsPressed() && readyToShoot)
+        shootButton.onClick.AddListener(OnShootButtonClicked);
+        subscribedShootButton = shootButton;
+    }
+
+    private void OnShootButtonClicked()
+    {
+        if (GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
+        {
+            return;
+        }
+
+        if (readyToShoot)
         {
             FireWeapon();
         }
