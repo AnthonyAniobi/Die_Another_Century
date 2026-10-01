@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Vector2 patrolCenter;
-    [SerializeField] public EnemyStartingState startingState = EnemyStartingState.Idle; // the initial state of the enemy
     [SerializeField] private float searchAreaRadius = 20f; // radius of where the enemy will walk arround to search for the player
     [SerializeField] private Transform playerEyeLevelTransform; // reference to the player's eye level transform
     [SerializeField] private float eyeDistance = 8f; // distance for the enemy eye (raycast)
@@ -11,10 +10,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float weaponDamageRadius = 0.5f;
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackDamageInterval = 0.5f;
+
+    private EnemyState currentState = EnemyState.Idle;
+
+    
     
     private Animator animator;
     
-    private bool isInPatrolPoint = false; // whether the enemy is currently in a patrol point
     public Transform playerTransform;
     private CharacterController characterController;
     private float gravity = -9.81f;
@@ -23,10 +25,7 @@ public class EnemyController : MonoBehaviour
     private float nextDamageTime;
 
 
-    public enum EnemyStartingState
-    {
-        Idle, Patrol
-    }
+    
     
 
 
@@ -110,4 +109,53 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
+
+    public enum EnemyState
+    {
+        Idle,
+        Patrol,
+        Chase,
+        Attack,
+        Hit,
+        Dead
+    }
+
+    private void UpdateEnemyState(EnemyState newState)
+    {
+        switch (newState)
+        {
+            case EnemyState.Idle:
+                animator.SetBool("WALKING", false);
+                animator.SetBool("RUNNING", false);
+                animator.SetBool("ATTACKING", false);
+                animator.SetBool("DEAD", false);
+                break;
+            case EnemyState.Patrol:
+                animator.SetBool("WALKING", true);
+                animator.SetBool("RUNNING", false);
+                animator.SetBool("ATTACKING", false);
+                animator.SetBool("DEAD", false);
+                break;
+            case EnemyState.Chase:
+                animator.SetBool("WALKING", false);
+                animator.SetBool("RUNNING", true);
+                animator.SetBool("ATTACKING", false);
+                animator.SetBool("DEAD", false);
+                break;
+            case EnemyState.Attack:
+                animator.SetBool("WALKING", false);
+                animator.SetBool("RUNNING", false);
+                animator.SetBool("ATTACKING", true);
+                animator.SetBool("DEAD", false);
+                break;
+            case EnemyState.Hit:
+                animator.SetTrigger("Hit");
+                break;
+            case EnemyState.Dead:
+                animator.SetBool("DEAD", true);
+                break;
+        }
+    }
+
 }

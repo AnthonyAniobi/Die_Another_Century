@@ -22,10 +22,11 @@ public class EnemyLookout : MonoBehaviour
             eyeDistance
         ))
         {
-            Debug.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * hit.distance, Color.green);
-        }else
-        {
-            Debug.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * eyeDistance, Color.red);
+            if(hit.collider.CompareTag("Player"))
+            {
+                Debug.Log("Player sighted by enemy lookout!");
+            } 
+            // DebugExtension.DrawSphereCast(playerEyeLevelTransform.position + playerEyeLevelTransform.forward * hit.distance, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.red);
         }
     }
 }

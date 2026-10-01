@@ -4,23 +4,19 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class BotCharacterMove : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float destinationThreshold = 0.1f; // Distance threshold to consider the bot has reached the destination
-    public Vector3 moveDestination = Vector3.zero;
-    private float gravity = -9.81f;
-    [SerializeField] private float width = 0.5f; // Width of the box for obstacle detection
-    [SerializeField] private CharacterController characterController;
+    private float moveSpeed;
+    private float destinationThreshold; // Distance threshold to consider the bot has reached the destination
+    private Vector3 moveDestination;
+    private float objectWidth; // Width of bot for obstacle detection
+    private CharacterController characterController;
     [SerializeField] private List<LayerMask> obstacleLayers;
-    private Animator animator;
+    private float gravity = -9.81f;
+    
     void Start()
     {
         if (characterController == null)
         {
             characterController = GetComponent<CharacterController>();
-        }
-        if (animator == null)
-        {
-            animator = GetComponentInChildren<Animator>();
         }
     }
 
@@ -28,13 +24,31 @@ public class BotCharacterMove : MonoBehaviour
     void Update()
     {
         // Check for obstacles in the move direction
+        Vector3 moveVector = Vector3.zero;
+        if(moveDestination != null)
+        {
+            moveVector = MoveTowardsDestination(
+                moveDestination, 
+                moveSpeed, 
+                destinationThreshold
+            );
+            
+        }
+        moveVector.y = gravity;
+        if(characterController.isGrounded && moveVector.y < 0)
+        {
+            moveVector.y = -2f; // small negative value to keep the NPC grounded
+        }
+        characterController.Move(moveVector);
+
         
+    }
+    private Vector3 MoveTowardsDestination(Vector3 destination, float speed, float treshold)
+    {
         Vector3 moveDirection = Vector3.zero;
         float distanceToDestination = Vector3.Distance(transform.position, moveDestination);
-        if(distanceToDestination > destinationThreshold)
+        if(distanceToDestination > treshold)
         {
-            animator?.SetBool("Moving", true);
-
             // Move towards the player
             Vector3 direction = (moveDestination - transform.position).normalized;
             float step = moveSpeed * Time.deltaTime;
@@ -55,15 +69,26 @@ public class BotCharacterMove : MonoBehaviour
             //     moveDirection = newDirection;
             // }
         }
-        else
-        {
-            animator?.SetBool("Moving", false);
-        }
-        moveDirection.y = gravity;
-        if(characterController.isGrounded && moveDirection.y < 0)
-        {
-            moveDirection.y = -2f; // small negative value to keep the NPC grounded
-        }
-        characterController.Move(moveDirection);
+        return moveDirection;
+        
+    }
+
+    /// <summary>
+    /// This method moves the bot towards a specified destination at the given
+    /// speed, and stops when it is within the specified threshold distance from the destination.
+    /// The width parameter is used for obstacle detection, allowing the bot to navigate around obstacles while
+    /// moving towards its destination.
+    /// </summary>
+    /// <param name="destination"></param>
+    /// <param name="speed"></param>
+    /// <param name="threshold"></param>
+    /// <param name="width"></param>
+    /// <returns></returns>
+    public void SetMoveDestination(Vector3 destination, float speed, float threshold, float width=2f)
+    {
+        moveDestination = destination;
+        moveSpeed = speed;
+        destinationThreshold = threshold;
+        objectWidth = width;
     }
 }

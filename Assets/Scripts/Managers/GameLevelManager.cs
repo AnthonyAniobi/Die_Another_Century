@@ -147,7 +147,7 @@ public class GameLevelManager : MonoBehaviour
                 GameObject enemyPrefab = enemyPrefabs[randomIndex];
                 Vector3 enemyPatrolCenter = characterPosition.position;
                 // all preset enemy prefabs will be idle in a single spot
-                enemyPrefab.GetComponent<EnemyController>().startingState = EnemyController.EnemyStartingState.Idle;
+                // enemyPrefab.GetComponent<EnemyController>().startingState = EnemyController.EnemyStartingState.Idle;
                 enemyPrefab.GetComponent<EnemyController>().patrolCenter = enemyPatrolCenter;
                 Instantiate(enemyPrefab, characterPosition.position, characterPosition.rotation);
             }
@@ -180,7 +180,7 @@ public class GameLevelManager : MonoBehaviour
             float randomz = Random.Range(patrolCenter.z - patrolRadius, patrolCenter.z + patrolRadius);
             Vector3 randomPatrolPoint = new Vector3(randomx, randomSpawnPosition.y, randomz);
             enemyPrefab.GetComponent<EnemyController>().patrolCenter = new Vector2(randomPatrolPoint.x, randomPatrolPoint.z);
-            enemyPrefab.GetComponent<EnemyController>().startingState = EnemyController.EnemyStartingState.Patrol;
+            // enemyPrefab.GetComponent<EnemyController>().startingState = EnemyController.EnemyStartingState.Patrol;
             // all spawed enemies should pursue the player
             // enemyPrefab.GetComponent<EnemyController>().playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform; // Assign the player transform if it exists
             Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
