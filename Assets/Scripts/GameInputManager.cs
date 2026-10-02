@@ -38,7 +38,7 @@ public class GameInputManager : MonoBehaviour
         }
     }
 
-    public Vector2 GetCameraInput()
+    public Vector2 GetLookInput()
     {
         if(screenInputEnabled && cameraJoystick != null)
         {

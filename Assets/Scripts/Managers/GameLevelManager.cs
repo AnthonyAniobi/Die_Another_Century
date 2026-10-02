@@ -37,11 +37,7 @@ public class GameLevelManager : MonoBehaviour
     [Header("UI Controls")]
     // UI References for Joysticks and Buttons
     [SerializeField] private GameObject controllerPanel;
-    public Joystick moveJoystick; // Reference to the Joystick component for movement
-    public Joystick lookJoystick; // Reference to the Joystick component for looking around
-    public Button jumpButton; // Reference to the Jump button
-    public Button shootButton; // Reference to the Interact button
-
+    
     private Vector3 playerStartPosition = new Vector3(23.9f, 2.1f, 58.7f); // Set the player's starting position
 
     

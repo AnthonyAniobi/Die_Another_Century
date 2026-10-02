@@ -30,20 +30,9 @@ public class MovementController : MonoBehaviour
             return; // Do not process movement if the game hasn't started
         }
 
-        Vector2 moveVector = Vector2.zero;
+        
         bool jumpPressed = false;
-
-        if(GameLevelManager.instance.moveJoystick != null){
-            moveVector = new Vector2(
-                GameLevelManager.instance.moveJoystick.Horizontal, 
-                GameLevelManager.instance.moveJoystick.Vertical
-            );
-        }
-        else
-        {
-            InputAction moveInput = InputSystem.actions.FindAction("Move");  
-            moveVector = moveInput.ReadValue<Vector2>();
-        }
+        Vector2 moveVector = GameInputManager.instance.GetMovementInput();
 
         if (jumpButton != null)
         {
