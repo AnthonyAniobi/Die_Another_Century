@@ -18,9 +18,7 @@ public class PlayerCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputAction switchCameraAction = InputSystem.actions.FindAction("SwitchCamera");
-
-        if (switchCameraAction.triggered)
+        if (GameInputManager.instance.IsCameraInvertButtonPressed())
         {
             isFirstPerson = !isFirstPerson;
             firstPersonCamera.gameObject.SetActive(isFirstPerson);

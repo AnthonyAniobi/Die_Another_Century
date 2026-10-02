@@ -3,8 +3,11 @@ using UnityEngine;
 public class NPCVictimController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float eyeDistance = 8f; // distance for the NPC eye (raycast)
     private Animator animator;
     private bool isBeingRescued = false;
+
+    
 
     private Transform playerTransform;
     
@@ -16,16 +19,36 @@ public class NPCVictimController : MonoBehaviour
             animator = GetComponentInChildren<Animator>();
         }
     }
-    
+
     void Update()
     {
+        LookForPlayer();
         if(playerTransform != null && isBeingRescued)
         {
             // Move towards the player
-            Vector3 distanceToPlayer = playerTransform.position - transform.position;
+            // Vector3 distanceToPlayer = playerTransform.position - transform.position;
         }
         
         // animator?.SetBool("MOVING", false);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, eyeDistance);
+    }
+
+    private void LookForPlayer()
+    {
+        if(Physics.SphereCast(transform.position, eyeDistance, Vector3.forward, out RaycastHit hit))
+        {
+            if(hit.collider.CompareTag("Player"))
+            {
+                playerTransform = hit.collider.transform;
+                isBeingRescued = true;
+                GameLevelManager.instance.SetPlayerIsRescuingNPC(transform);
+            }
+        }
     }
 
     

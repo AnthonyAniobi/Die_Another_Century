@@ -72,7 +72,7 @@ public class GameInputManager : MonoBehaviour
         }
         else
         {
-            InputAction invertCamera = InputSystem.actions.FindAction("InvertCamera");
+            InputAction invertCamera = InputSystem.actions.FindAction("SwitchCamera");
             return invertCamera.triggered;
         }
     }
