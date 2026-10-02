@@ -13,7 +13,7 @@ public class GameInputManager : MonoBehaviour
     [SerializeField] private Button attackButton;
     [SerializeField] private Button cameraInvertButton;
 
-    void Start()
+    void Awake()
     {
         if(instance != null && instance != this)
         {
@@ -22,6 +22,24 @@ public class GameInputManager : MonoBehaviour
         else
         {
             instance = this;
+        }
+    }
+
+    void OnEnable()
+    {
+        if (screenInputEnabled)
+        {
+            if(movementJoystick == null || cameraJoystick == null || attackButton == null || cameraInvertButton == null)
+            {
+                Debug.LogError("Screen input is enabled, but one or more UI elements are not assigned in the inspector.");
+                screenInputEnabled = false; // Disable screen input to prevent null reference errors
+            }
+        }
+        if(!screenInputEnabled)
+        {
+            InputSystem.EnableDevice(Keyboard.current);
+            InputSystem.EnableDevice(Mouse.current);
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

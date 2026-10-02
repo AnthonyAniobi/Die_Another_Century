@@ -1941,7 +1941,6 @@ GameObject:
   - component: {fileID: 8719258739704185248}
   - component: {fileID: 1443046754197773618}
   - component: {fileID: 4237976426222125877}
-  - component: {fileID: 4045426520406955428}
   - component: {fileID: 2613609522302198160}
   - component: {fileID: 8138290652552819431}
   m_Layer: 0
@@ -2043,35 +2042,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.23738448
-  m_Height: 1.8309318
-  m_Direction: 1
-  m_Center: {x: -0.17640318, y: 0.8619378, z: -0.08621233}
---- !u!65 &4045426520406955428
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950584494710136227}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 15.0878315, y: 3.9328818, z: 18.36539}
-  m_Center: {x: 0.14341164, y: 0.31714463, z: 1.0500183}
+  serializedVersion: 2
+  m_Radius: 0.510097
+  m_Height: 4.9832287
+  m_Direction: 1
+  m_Center: {x: -0.024877071, y: 0.28462195, z: -0.08621228}
 --- !u!95 &2613609522302198160
 Animator:
   serializedVersion: 7

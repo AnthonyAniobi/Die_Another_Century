@@ -1600,10 +1600,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 1660622321911290417}
   bulletSpeed: 100
   spreadIntensity: 0.1
-  allowResetShooting: 1
-  shootResetDelay: 0.12
-  reloadTime: 0
-  isReloading: 0
+  shotDelay: 0.12
   readyToShoot: 1
 --- !u!95 &748712660805183775
 Animator:
@@ -2775,6 +2772,7 @@ GameObject:
   - component: {fileID: 599188377447401195}
   - component: {fileID: 908972677207006190}
   - component: {fileID: 3822305038344290051}
+  - component: {fileID: 3525185905430201358}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2910,6 +2908,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &3525185905430201358
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477873280294774281}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 5.5758758
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9085009, z: 0}
 --- !u!1 &8522476482269319203
 GameObject:
   m_ObjectHideFlags: 0
