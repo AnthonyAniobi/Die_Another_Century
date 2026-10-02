@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(attackPoint.position, attackRadius);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
      // reference of the attack point
 
