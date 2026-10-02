@@ -46,7 +46,7 @@ public class NPCVictimController : MonoBehaviour
             {
                 playerTransform = hit.collider.transform;
                 isBeingRescued = true;
-                GameLevelManager.instance.SetPlayerIsRescuingNPC(transform);
+                // GameLevelManager.instance.SetPlayerIsRescuingNPC(transform);
             }
         }
     }

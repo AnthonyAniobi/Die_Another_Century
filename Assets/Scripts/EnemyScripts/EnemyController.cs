@@ -10,17 +10,15 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float weaponDamageRadius = 0.5f;
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackDamageInterval = 0.5f;
+    [SerializeField] private float walkSpeed = 3f;
+    [SerializeField] private float runSpeed = 6f;
 
-    private EnemyState currentState = EnemyState.Idle; 
-
-    
-    
     private Animator animator;
     
     public Transform playerTransform;
-    private CharacterController characterController;
     private bool isAttacking;
     private float nextDamageTime;
+    private BotCharacterMove movementController;
 
 
     
@@ -29,8 +27,8 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        movementController = GetComponent<BotCharacterMove>();
     }
     
 
@@ -38,35 +36,14 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        CheckIfPlayerIsInView();
-        Vector3 moveDirection = Vector3.zero;
-        
-    }
-
-    private void CheckIfPlayerIsInView()
-    {
-        if (playerEyeLevelTransform == null)
+        if(playerTransform != null)
         {
-            playerEyeLevelTransform = transform;
-        }
-
-        if(playerTransform == null)
-        {
-            Ray ray = new Ray(playerEyeLevelTransform.position, playerEyeLevelTransform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, eyeDistance))
-            {
-                Debug.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * hit.distance, Color.red);
-                if (hit.collider.CompareTag("Player"))
-                {
-                    Debug.Log("Player sighted by enemy!");
-                    playerTransform = hit.transform;
-                }
-            }
+            movementController.SetMoveDestination(playerTransform.position, runSpeed, 2f);
         }
         
     }
 
+    
     
 
 
@@ -116,6 +93,19 @@ public class EnemyController : MonoBehaviour
         Attack,
         Hit,
         Dead
+    }
+
+    public void PursuePlayer(Transform playerTransform)
+    {
+        // Implement logic to pursue the player
+        // For example, you can set the enemy's destination to the player's position
+        // and change the state to Chase or Attack based on distance.
+        UpdateEnemyState(EnemyState.Chase);
+        if(this.playerTransform == null)
+        {
+            this.playerTransform = playerTransform;
+        }
+        
     }
 
     private void UpdateEnemyState(EnemyState newState)
