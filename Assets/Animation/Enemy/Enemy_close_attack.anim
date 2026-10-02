@@ -133186,28 +133186,28 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1
-    functionName: EnemyAttackHit
+    functionName: AttackPlayer
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5833334
-    functionName: EnemyAttackHit
+    functionName: AttackPlayer
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.8333333
-    functionName: EnemyAttackHit
+    functionName: AttackPlayer
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4.2083335
-    functionName: EndEnemyAttack
+    functionName: StopAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

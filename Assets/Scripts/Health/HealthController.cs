@@ -55,15 +55,5 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    public void EndEnemyAttack()
-    {
-        EnemyController enemyController = GetComponentInParent<EnemyController>();
-        enemyController?.StopAttack();
-    }
 
-    public void EnemyAttackHit()
-    {
-        EnemyController enemyController = GetComponentInParent<EnemyController>();
-        enemyController?.HitPlayer();
-    }
 }

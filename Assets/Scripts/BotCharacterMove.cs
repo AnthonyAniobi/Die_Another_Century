@@ -9,6 +9,7 @@ public class BotCharacterMove : MonoBehaviour
     private Vector3 moveDestination;
     private float objectWidth; // Width of bot for obstacle detection
     private CharacterController characterController;
+    private System.Action onDestinationReached; // Callback when destination is reached
     [SerializeField] private List<LayerMask> obstacleLayers;
     private float gravity = -9.81f;
     
@@ -68,6 +69,9 @@ public class BotCharacterMove : MonoBehaviour
             //     Vector3 newDirection = (rightDirection - hitInfo.point).sqrMagnitude > (leftDirection - hitInfo.point).sqrMagnitude ? rightDirection : leftDirection;
             //     moveDirection = newDirection;
             // }
+        }else
+        {
+            StopMoving();
         }
         return moveDirection;
         
@@ -83,12 +87,22 @@ public class BotCharacterMove : MonoBehaviour
     /// <param name="speed"></param>
     /// <param name="threshold"></param>
     /// <param name="width"></param>
+    /// <param name="onDestinationReachedCallback"></param>
     /// <returns></returns>
-    public void SetMoveDestination(Vector3 destination, float speed, float threshold, float width=2f)
+    public void SetMoveDestination(Vector3 destination, float speed, float threshold, float width=2f, System.Action onDestinationReachedCallback=null)
     {
         moveDestination = destination;
         moveSpeed = speed;
         destinationThreshold = threshold;
         objectWidth = width;
+        onDestinationReached = onDestinationReachedCallback;
     }
+
+
+    private void StopMoving()
+    {
+        moveSpeed = 0f;
+        onDestinationReached?.Invoke();
+    }
+
 }

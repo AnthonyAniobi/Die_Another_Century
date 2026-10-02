@@ -32,6 +32,6 @@ public class EnemyLookout : MonoBehaviour
     void PursuePlayer(Transform playerTransform)
     {
         // Implement logic to pursue the player
-        GetComponent<EnemyController>().PursuePlayer(playerTransform);
+        gameObject.GetComponent<EnemyController>().PursuePlayer(playerTransform);
     }
 }

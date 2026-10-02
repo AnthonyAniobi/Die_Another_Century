@@ -1918,6 +1918,7 @@ GameObject:
   - component: {fileID: 5013304641398213248}
   - component: {fileID: 3709802142612535368}
   - component: {fileID: 555678431919630845}
+  - component: {fileID: 4450238848575457537}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -2072,6 +2073,29 @@ CapsuleCollider:
   m_Height: 4.9320464
   m_Direction: 1
   m_Center: {x: 0.05943668, y: 0.43758464, z: 0}
+--- !u!114 &4450238848575457537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4355234212804570218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0688e4861849a4f26a618643cf2a1edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  patrolCenter: {x: 0, y: 0}
+  searchAreaRadius: 20
+  playerEyeLevelTransform: {fileID: 0}
+  weaponDamagePoint: {fileID: 0}
+  weaponDamageRadius: 0.5
+  attackDamage: 1
+  attackDamageInterval: 0.5
+  walkSpeed: 3
+  runSpeed: 6
+  attackRange: 3
+  playerTransform: {fileID: 0}
 --- !u!1 &4424133997372235589
 GameObject:
   m_ObjectHideFlags: 0

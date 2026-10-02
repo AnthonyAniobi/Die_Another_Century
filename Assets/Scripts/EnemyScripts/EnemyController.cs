@@ -5,13 +5,13 @@ public class EnemyController : MonoBehaviour
     public Vector2 patrolCenter;
     [SerializeField] private float searchAreaRadius = 20f; // radius of where the enemy will walk arround to search for the player
     [SerializeField] private Transform playerEyeLevelTransform; // reference to the player's eye level transform
-    [SerializeField] private float eyeDistance = 8f; // distance for the enemy eye (raycast)
     [SerializeField] private Transform weaponDamagePoint;
     [SerializeField] private float weaponDamageRadius = 0.5f;
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackDamageInterval = 0.5f;
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float runSpeed = 6f;
+    [SerializeField] private float attackRange = 5f;
 
     private Animator animator;
     
@@ -38,19 +38,27 @@ public class EnemyController : MonoBehaviour
     {
         if(playerTransform != null)
         {
-            movementController.SetMoveDestination(playerTransform.position, runSpeed, 2f);
+            movementController.SetMoveDestination(
+                playerTransform.position, 
+                runSpeed, 
+                attackRange,
+                attackRange, // use the same threshold for obstacle maneuvering
+                () => {
+                    UpdateEnemyState(EnemyState.Attack);
+                    isAttacking = true;
+                }
+                );
         }
         
     }
 
-    
-    
 
 
     public void StopAttack()
     {
         isAttacking = false;
-        animator?.SetBool("Attacking", false);
+        UpdateEnemyState(EnemyState.Idle);
+        
     }
     
 
@@ -107,6 +115,8 @@ public class EnemyController : MonoBehaviour
         }
         
     }
+
+    
 
     private void UpdateEnemyState(EnemyState newState)
     {
