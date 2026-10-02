@@ -253,6 +253,81 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &800109578666842594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4358144108712991043}
+  - component: {fileID: 2950430846320314828}
+  m_Layer: 0
+  m_Name: FirstPersonCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4358144108712991043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800109578666842594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.12879558, y: -0.000025853877, z: 0.00019906386, w: 0.99167114}
+  m_LocalPosition: {x: 0.04, y: 3.1, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6779754004755987893}
+  m_LocalEulerAnglesHint: {x: 14.8, y: 0, z: 0.023}
+--- !u!114 &2950430846320314828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800109578666842594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
+  Priority:
+    Enabled: 0
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 0}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 60.000004
+    OrthographicSize: 5
+    NearClipPlane: 0.3
+    FarClipPlane: 1000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
 --- !u!1 &1106852538888311873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,12 +1171,12 @@ GameObject:
   - component: {fileID: 3300968464062820734}
   - component: {fileID: 6174455105581510961}
   m_Layer: 0
-  m_Name: CinemachineCamera
+  m_Name: ThirdPersonCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3300968464062820734
 Transform:
   m_ObjectHideFlags: 0
@@ -2697,6 +2772,7 @@ GameObject:
   - component: {fileID: 5665131658019963427}
   - component: {fileID: 779109519569985090}
   - component: {fileID: 2431727064942633890}
+  - component: {fileID: 599188377447401195}
   - component: {fileID: 908972677207006190}
   - component: {fileID: 3822305038344290051}
   m_Layer: 0
@@ -2723,6 +2799,7 @@ Transform:
   - {fileID: 8141190808043488797}
   - {fileID: 5584465243864346062}
   - {fileID: 3300968464062820734}
+  - {fileID: 4358144108712991043}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5665131658019963427
@@ -2771,6 +2848,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxHealth: 3
   healthType: 2
+--- !u!114 &599188377447401195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477873280294774281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36cca92f9627542078e0cbe1c6c13495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraController
+  firstPersonCamera: {fileID: 2950430846320314828}
+  thirdPersonCamera: {fileID: 6174455105581510961}
 --- !u!143 &908972677207006190
 CharacterController:
   m_ObjectHideFlags: 0

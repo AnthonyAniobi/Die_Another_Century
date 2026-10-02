@@ -23,23 +23,21 @@ public class PlayerWeapon : MonoBehaviour
     
     public bool  readyToShoot = true;
 
-    
-    
-    void OnEnable()
-    {
-        TrySubscribeToShootButton();
-    }
-
     void Start()
     {
         ResetShooting();
         animator = GetComponent<Animator>();
-        TrySubscribeToShootButton();
     }
 
     void Update()
     {
-        TrySubscribeToShootButton();
+        if (GameInputManager.instance.IsAttackButtonPressed())
+        {
+            if (readyToShoot)
+            {
+                FireWeapon();
+            }
+        }
     }
 
     void OnDisable()
@@ -51,27 +49,6 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
-    private void TrySubscribeToShootButton()
-    {
-        if (GameLevelManager.instance == null || GameLevelManager.instance.shootButton == null)
-        {
-            return;
-        }
-
-        Button shootButton = GameLevelManager.instance.shootButton;
-        if (subscribedShootButton == shootButton)
-        {
-            return;
-        }
-
-        if (subscribedShootButton != null)
-        {
-            subscribedShootButton.onClick.RemoveListener(OnShootButtonClicked);
-        }
-
-        shootButton.onClick.AddListener(OnShootButtonClicked);
-        subscribedShootButton = shootButton;
-    }
 
     private void OnShootButtonClicked()
     {

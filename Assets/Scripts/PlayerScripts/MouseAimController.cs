@@ -7,21 +7,23 @@ public class MouseAimController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField] private float minRotation = -90f;
     [SerializeField] private float maxRotation = 90f;
-    [SerializeField] private CinemachineCamera cinemachineCamera;
+    [SerializeField] private CinemachineCamera thirdPersonCamera;
+    [SerializeField] private CinemachineCamera firstPersonCamera;
 
     private float xRotation = 0f;
     private float yRotation = 0f;
-    private Quaternion initialCameraLocalRotation;
-
-
-
-    
+    private Quaternion initialFirstPersonCameraLocalRotation;
+    private Quaternion initialThirdPersonCameraLocalRotation;
 
     void Start()
     {
-        if (cinemachineCamera != null)
+        if (firstPersonCamera != null)
         {
-            initialCameraLocalRotation = cinemachineCamera.transform.localRotation;
+            initialFirstPersonCameraLocalRotation = firstPersonCamera.transform.localRotation;
+        }
+        if (thirdPersonCamera != null)
+        {
+            initialThirdPersonCameraLocalRotation = thirdPersonCamera.transform.localRotation;
         }
     }
 
@@ -40,10 +42,15 @@ public class MouseAimController : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(0f, yRotation, 0f);
 
-        if (cinemachineCamera != null)
+        if (firstPersonCamera != null)
         {
-            cinemachineCamera.transform.localRotation = initialCameraLocalRotation * Quaternion.Euler(-xRotation, 0f, 0f);
+            firstPersonCamera.transform.localRotation = initialFirstPersonCameraLocalRotation * Quaternion.Euler(-xRotation, 0f, 0f);
         }
-        
+
+        if (thirdPersonCamera != null)
+        {
+            thirdPersonCamera.transform.localRotation = initialThirdPersonCameraLocalRotation * Quaternion.Euler(-xRotation, 0f, 0f);
+        }
+
     }
 }

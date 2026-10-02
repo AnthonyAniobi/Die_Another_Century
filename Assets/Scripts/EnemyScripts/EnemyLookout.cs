@@ -8,12 +8,6 @@ public class EnemyLookout : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(Physics.Raycast(
-        //     playerEyeLevelTransform.position, 
-        //     playerEyeLevelTransform.forward,
-        //     out RaycastHit hit,
-        //     eyeDistance
-        // ))
         if(Physics.SphereCast(
             playerEyeLevelTransform.position, 
             viewRadius,
@@ -30,7 +24,7 @@ public class EnemyLookout : MonoBehaviour
         }
         else
         {
-            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position + playerEyeLevelTransform.forward * hit.distance, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.red);
+            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position + playerEyeLevelTransform.forward * hit.distance, viewRadius, playerEyeLevelTransform.forward, eyeDistance, Color.red);
         }
     }
 }

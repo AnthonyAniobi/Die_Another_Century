@@ -41,7 +41,6 @@ public class GameLevelManager : MonoBehaviour
     private Vector3 playerStartPosition = new Vector3(23.9f, 2.1f, 58.7f); // Set the player's starting position
 
     
-    
 
     
     public bool RescueInProgress {get => currentRescuedNPC != null;}

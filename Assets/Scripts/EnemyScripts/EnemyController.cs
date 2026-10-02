@@ -19,9 +19,7 @@ public class EnemyController : MonoBehaviour
     
     public Transform playerTransform;
     private CharacterController characterController;
-    private float gravity = -9.81f;
     private bool isAttacking;
-    private bool canStartAttack = true;
     private float nextDamageTime;
 
 
