@@ -20,11 +20,11 @@ public class EnemyLookout : MonoBehaviour
             {
                 Debug.Log("Player sighted by enemy lookout!");
             } 
-            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position + playerEyeLevelTransform.forward * hit.distance, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.green);
+            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.green);
         }
         else
         {
-            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position + playerEyeLevelTransform.forward * hit.distance, viewRadius, playerEyeLevelTransform.forward, eyeDistance, Color.red);
+            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, eyeDistance, Color.red);
         }
     }
 }

@@ -23,14 +23,7 @@ public class MovementController : MonoBehaviour
     }
 
     void Update()
-    {
-        if(GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
-        {
-            animator?.SetBool("MOVING", false);
-            return; // Do not process movement if the game hasn't started
-        }
-
-        
+    {   
         bool jumpPressed = false;
         Vector2 moveVector = GameInputManager.instance.GetMovementInput();
 

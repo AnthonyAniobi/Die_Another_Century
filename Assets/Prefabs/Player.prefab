@@ -269,7 +269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4358144108712991043
 Transform:
   m_ObjectHideFlags: 0
@@ -2831,9 +2831,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseAimController
   mouseSensitivity: 100
-  minRotation: -5
-  maxRotation: 15
-  cinemachineCamera: {fileID: 6174455105581510961}
+  minRotation: -10
+  maxRotation: 20
+  thirdPersonCamera: {fileID: 6174455105581510961}
+  firstPersonCamera: {fileID: 2950430846320314828}
 --- !u!114 &2431727064942633890
 MonoBehaviour:
   m_ObjectHideFlags: 0

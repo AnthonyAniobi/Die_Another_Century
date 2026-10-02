@@ -1988,7 +1988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCVictimController
   moveSpeed: 3
-  eyeDistance: 8
+  eyeDistance: 6
 --- !u!114 &8719258739704185248
 MonoBehaviour:
   m_ObjectHideFlags: 0
