@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackDamageInterval = 0.5f;
 
-    private EnemyState currentState = EnemyState.Idle;
+    private EnemyState currentState = EnemyState.Idle; 
 
     
     
@@ -33,7 +33,6 @@ public class EnemyController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
-        
     }
     
 

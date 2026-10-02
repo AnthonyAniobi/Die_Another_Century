@@ -2,15 +2,28 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private int damage = 1; // Damage dealt to the player
+    [SerializeField] private float attackRadius = 2f; // Range within which the enemy can attack
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private LayerMask enemyAttackVictim;
+
+    void OnDrawGizmos()
     {
-        
+        Gizmos.DrawSphere(attackPoint.position, attackRadius);
+    }
+     // reference of the attack point
+
+    public void AttackPlayer()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyAttackVictim);
+        foreach(var collider in hitColliders)
+        {
+            if (collider.CompareTag("NPC") || collider.CompareTag("Player"))
+            {
+                collider.GetComponent<HealthController>()?.TakeDamage(damage);
+                break;
+            }
+        } 
     }
 }

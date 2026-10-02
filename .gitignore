@@ -119,6 +119,7 @@ InitTestScene*.unity*
 # Windows
 Thumbs.db
 Desktop.ini
+*/_Recovery
 
 .idea/
 
