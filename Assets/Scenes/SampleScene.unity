@@ -781,7 +781,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6779754004755987893, guid: 90967a1e0f10e4f5f809e73a1111c600, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.86452
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 6779754004755987893, guid: 90967a1e0f10e4f5f809e73a1111c600, type: 3}
       propertyPath: m_LocalPosition.y
@@ -822,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 8477873280294774281, guid: 90967a1e0f10e4f5f809e73a1111c600, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477873280294774281, guid: 90967a1e0f10e4f5f809e73a1111c600, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4418,6 +4422,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4450238848575457537, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: currentState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450238848575457537, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: attackInterval
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.17
@@ -4428,7 +4440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.4
+      value: -9.51
       objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalRotation.w

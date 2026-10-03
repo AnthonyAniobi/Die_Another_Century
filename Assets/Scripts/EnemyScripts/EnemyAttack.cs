@@ -16,11 +16,13 @@ public class EnemyAttack : MonoBehaviour
 
     public void AttackPlayer()
     {
+        print("Enemy is attacking the player!");
         Collider[] hitColliders = Physics.OverlapSphere(attackPoint.position, attackRadius, enemyAttackVictim);
         foreach(var collider in hitColliders)
         {
             if (collider.CompareTag("NPC") || collider.CompareTag("Player"))
             {
+                print("Enemy hit a target!");
                 collider.GetComponent<HealthController>()?.TakeDamage(damage);
                 break;
             }

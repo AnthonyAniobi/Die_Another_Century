@@ -89,13 +89,20 @@ public class BotCharacterMove : MonoBehaviour
     /// <param name="width"></param>
     /// <param name="onDestinationReachedCallback"></param>
     /// <returns></returns>
-    public void SetMoveDestination(Vector3 destination, float speed, float threshold, float width=2f, System.Action onDestinationReachedCallback=null)
+    internal void SetMoveDestination(Vector3 destination, float speed, float threshold, float width=2f, System.Action onDestinationReachedCallback=null)
     {
         moveDestination = destination;
         moveSpeed = speed;
         destinationThreshold = threshold;
         objectWidth = width;
         onDestinationReached = onDestinationReachedCallback;
+    }
+
+    internal void StopMovement()
+    {
+        moveDestination = transform.position; // Set the destination to the current position to stop moving
+        moveSpeed = 0f; // Set speed to zero to stop movement
+        // onDestinationReached?.Invoke(); // Invoke the callback if provided
     }
 
 
