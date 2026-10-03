@@ -2050,8 +2050,8 @@ MonoBehaviour:
   attackPoint: {fileID: 8003284909839659498}
   enemyAttackVictim:
     serializedVersion: 2
-    m_Bits: 0
-  damageInterval: 3.5
+    m_Bits: 64
+  damageInterval: 1
   canDamage: 1
 --- !u!136 &555678431919630845
 CapsuleCollider:
@@ -2095,7 +2095,7 @@ MonoBehaviour:
   runSpeed: 6
   attackRange: 3
   playerTransform: {fileID: 0}
-  currentState: 0
+  currentState: 1
 --- !u!1 &4424133997372235589
 GameObject:
   m_ObjectHideFlags: 0
