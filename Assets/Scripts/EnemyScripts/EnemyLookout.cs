@@ -18,7 +18,7 @@ public class EnemyLookout : MonoBehaviour
         {
             if(hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Player sighted by enemy lookout!");
+                // Debug.Log("Player sighted by enemy lookout!");
                 gameObject.GetComponent<EnemyController>().PursuePlayer(hit.transform);
             } 
             DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.green);

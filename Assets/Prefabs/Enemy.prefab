@@ -1158,13 +1158,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2408201074574135023}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.11074609, y: -0.021006998, z: -0.033943012, w: 0.99304676}
+  m_LocalRotation: {x: -0.0070176926, y: -0.004441791, z: -0.08833684, w: 0.9960561}
   m_LocalPosition: {x: -0.02, y: 0.17, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1700229108520615539}
-  m_LocalEulerAnglesHint: {x: -12.79, y: -2.01, z: -3.69}
+  m_LocalEulerAnglesHint: {x: -0.846, y: -0.436, z: -10.133}
 --- !u!1 &2562531414113510579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,6 +1982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxHealth: 5
   healthType: 0
+  currentHealth: 0
 --- !u!114 &6469658237785930621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,6 +2051,8 @@ MonoBehaviour:
   enemyAttackVictim:
     serializedVersion: 2
     m_Bits: 0
+  damageInterval: 3.5
+  canDamage: 1
 --- !u!136 &555678431919630845
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2086,16 +2089,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   patrolCenter: {x: 0, y: 0}
-  searchAreaRadius: 20
+  patrolLength: 20
   playerEyeLevelTransform: {fileID: 0}
-  weaponDamagePoint: {fileID: 0}
-  weaponDamageRadius: 0.5
-  attackDamage: 1
-  attackDamageInterval: 0.5
   walkSpeed: 3
   runSpeed: 6
   attackRange: 3
   playerTransform: {fileID: 0}
+  currentState: 0
 --- !u!1 &4424133997372235589
 GameObject:
   m_ObjectHideFlags: 0
