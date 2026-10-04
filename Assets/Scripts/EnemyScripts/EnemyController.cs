@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
         Dead
     }
 
-    public void PursuePlayer(Transform playerTransform)
+    internal void PursuePlayer(Transform playerTransform)
     {
         if(currentState == EnemyState.Chase){
             /// if player is sighted rotate to face the player
@@ -82,8 +82,6 @@ public class EnemyController : MonoBehaviour
                 }
             );
         }
-        
-        
     }
 
     private bool IsPlayerInAttackRange(Transform playerTransform)

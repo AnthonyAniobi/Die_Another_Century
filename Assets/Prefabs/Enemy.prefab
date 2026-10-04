@@ -2090,14 +2090,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0688e4861849a4f26a618643cf2a1edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  patrolCenter: {x: 0, y: 0}
+  patrolCenter: {x: -2, y: 12.76}
   patrolLength: 20
   playerEyeLevelTransform: {fileID: 0}
   walkSpeed: 3
   runSpeed: 6
   attackRange: 3
   playerTransform: {fileID: 0}
-  currentState: 1
+  currentState: 0
 --- !u!1 &4424133997372235589
 GameObject:
   m_ObjectHideFlags: 0

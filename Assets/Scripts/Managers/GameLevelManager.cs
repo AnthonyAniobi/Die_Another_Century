@@ -40,7 +40,7 @@ public class GameLevelManager : MonoBehaviour
     
     private Vector3 playerStartPosition = new Vector3(23.9f, 2.1f, 58.7f); // Set the player's starting position
 
-    
+    private GameObject currentPlayer = null;
 
     
     public bool RescueInProgress {get => currentRescuedNPC != null;}
@@ -142,8 +142,9 @@ public class GameLevelManager : MonoBehaviour
                 GameObject enemyPrefab = enemyPrefabs[randomIndex];
                 Vector3 enemyPatrolCenter = characterPosition.position;
                 // all preset enemy prefabs will be idle in a single spot
-                // enemyPrefab.GetComponent<EnemyController>().startingState = EnemyController.EnemyStartingState.Idle;
                 enemyPrefab.GetComponent<EnemyController>().patrolCenter = enemyPatrolCenter;
+                enemyPrefab.GetComponent<EnemyController>().currentState = 
+                characterPosition.isOnPatrol?  EnemyController.EnemyState.Patrol : EnemyController.EnemyState.Idle;
                 Instantiate(enemyPrefab, characterPosition.position, characterPosition.rotation);
             }
             else if (characterPosition.characterType == CharacterPosition.CharacterType.NPC)
@@ -167,18 +168,13 @@ public class GameLevelManager : MonoBehaviour
             Vector3 randomSpawnPosition = levelData.enemySpawnPositions[Random.Range(0, levelData.enemySpawnPositions.Count)];
             int randomIndex = Random.Range(0, enemyPrefabs.Count);
             GameObject enemyPrefab = enemyPrefabs[randomIndex];
-            // set the center where the enemy will get to before they start patrolling
-            Vector3 patrolCenter = levelData.enemySearchAreaCenter;
-            float patrolRadius = levelData.enemySearchAreaRadius;
-            // get a random point within the patrol radius for the enemy to patrol to
-            float randomx = Random.Range(patrolCenter.x - patrolRadius, patrolCenter.x + patrolRadius);
-            float randomz = Random.Range(patrolCenter.z - patrolRadius, patrolCenter.z + patrolRadius);
-            Vector3 randomPatrolPoint = new Vector3(randomx, randomSpawnPosition.y, randomz);
-            enemyPrefab.GetComponent<EnemyController>().patrolCenter = new Vector2(randomPatrolPoint.x, randomPatrolPoint.z);
-            // enemyPrefab.GetComponent<EnemyController>().startingState = EnemyController.EnemyStartingState.Patrol;
-            // all spawed enemies should pursue the player
-            // enemyPrefab.GetComponent<EnemyController>().playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform; // Assign the player transform if it exists
-            Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
+            // find the player in the scene
+            if (currentPlayer != null)
+            {
+                enemyPrefab.GetComponent<EnemyController>().PursuePlayer(currentPlayer.transform);
+                // all spawed enemies should pursue the player
+                Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
+            }
             canSpawnEnemies = false; // stop from spawning more enemies until the next interval
             Invoke("EnableEnemySpawning", levelData.enemySpawnInterval);
         }
@@ -210,7 +206,7 @@ public class GameLevelManager : MonoBehaviour
         // Spawn the player at the starting position
         if (playerPrefab != null)
         {
-            Instantiate(playerPrefab, playerStartPosition, Quaternion.identity);
+            currentPlayer = Instantiate(playerPrefab, playerStartPosition, Quaternion.identity);
         }
     }
 
