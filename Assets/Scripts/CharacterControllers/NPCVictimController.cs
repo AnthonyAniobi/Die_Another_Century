@@ -82,14 +82,13 @@ public class NPCVictimController : MonoBehaviour
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, eyeDistance, LayerMask.GetMask("Player"));
             if(hitColliders.Length > 0)
             {
-                playerTransform = hitColliders[0].transform;
-                isBeingRescued = true;
+                StartRescue(hitColliders[0].transform);
             }
         }else
         {
             if(isBeingRescued)
             {
-                // GameLevelManager.ShowInfoPanel("You have stopped rescuing the NPC. Move closer to continue rescuing.");
+                GameLevelManager.instance.ShowInfoPanel("You have stopped rescuing the NPC. Move closer to continue rescuing.");
             }
             playerTransform = null;
             isBeingRescued = false;
@@ -128,5 +127,32 @@ public class NPCVictimController : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
         return distanceToPlayer <= distanceFromPlayer;
+    }
+
+    void StartRescue(Transform player)
+    {
+        if(GameLevelManager.instance.currentRescuedNPC == null)
+        {
+            GameLevelManager.instance.ShowInfoPanel("You have found a civilian to rescue!");
+            GameLevelManager.instance.SetPlayerIsRescuingNPC(this.transform);
+        }
+        else if(GameLevelManager.instance.currentRescuedNPC != null && GameLevelManager.instance.currentRescuedNPC != this.transform)
+        {
+            GameLevelManager.instance.ShowInfoPanel("You are already rescuing a civilian!");
+            return;
+        }
+        isBeingRescued = true;
+        playerTransform = player;
+        
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SafeArea"))
+        {
+            GameLevelManager.instance.SetNPCRescued();
+            DeactivateNPC();
+        }
     }
 }

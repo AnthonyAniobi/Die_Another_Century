@@ -48,7 +48,7 @@ public class GameLevelManager : MonoBehaviour
     private float totalNPCsToRescue = 0;
     private int maxHealth = 3;
     private int currentHealth;
-    private Transform currentRescuedNPC = null;
+    internal Transform currentRescuedNPC = null;
     private bool canSpawnEnemies = true;
 
 

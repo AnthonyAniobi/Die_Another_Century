@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b80d1c20d1fa248f4b91607f3fe5e8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCVictimController
-  moveSpeed: 3
+  moveSpeed: 5
   eyeDistance: 8
   distanceFromPlayer: 3
   currentState: 0
