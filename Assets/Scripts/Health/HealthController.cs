@@ -18,22 +18,42 @@ public class HealthController : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        if (animator == null)
-        {
-            animator = GetComponentInChildren<Animator>();
-        }
+        
+        animator = GetComponent<Animator>();
+        
     }
 
-    public void TakeDamage(int damage)
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("bullet"))
+        {
+            TakeDamage(1, other.transform.forward); // Assuming 1 is the damage value for the bullet
+            Destroy(other.gameObject); // Destroy the bullet after it hits
+            Debug.Log($"{healthType} took damage from bullet!");
+        }
+        
+    }
+
+    public void TakeDamage(int damage, Vector3 hitDirection = default)
     {
         if (isDead)
         {
             return;
         }
-
-        Debug.Log($"{healthType} took " + damage + " damage!");
-        animator?.SetTrigger("HIT");
         currentHealth -= damage;
+
+        if(healthType == HealthType.Enemy)
+        {
+            GetComponentInParent<EnemyController>().EnemyHit(hitDirection);
+        }
+        else if(healthType == HealthType.NPC)
+        {
+            animator.SetTrigger("HIT");
+        }
+        else if(healthType == HealthType.player)
+        {
+            animator.SetTrigger("HIT");
+        }
         if (currentHealth <= 0)
         {
             Die();
@@ -52,6 +72,9 @@ public class HealthController : MonoBehaviour
         }else if(healthType == HealthType.player)
         {
             GameLevelManager.instance.EndGame(false, "You were killed!");
+        }else if(healthType == HealthType.Enemy)
+        {
+            // GameLevelManager.instance.UpdateEnemyCount();
         }
     }
 

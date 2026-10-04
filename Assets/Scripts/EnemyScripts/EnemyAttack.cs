@@ -6,7 +6,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private int damage = 1; // Damage dealt to the player
     [SerializeField] private float attackRadius = 2f; // Range within which the enemy can attack
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private LayerMask enemyAttackVictim;
+    [SerializeField] private LayerMask[] enemyAttackVictim = new LayerMask[2]; // Layer mask to filter the player layer
     [SerializeField] private float damageInterval = 1.5f; // Time between attacks to prevent continuous damage
     [SerializeField] private bool canDamage = true; // Flag to control attack timing
 
@@ -39,10 +39,10 @@ public class EnemyAttack : MonoBehaviour
 
     private void CheckForPlayerInDamageRange()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(attackPoint.position, attackRadius);//, enemyAttackVictim);
+        Collider[] hitColliders = Physics.OverlapSphere(attackPoint.position, attackRadius, LayerMask.GetMask("Player", "NPC"));
         foreach(var collider in hitColliders)
         {
-            if (collider.CompareTag("Player"))
+            if (collider.CompareTag("Player") || collider.CompareTag("NPC"))
             {
                 print("Enemy hit a target!");
                 collider.GetComponent<HealthController>()?.TakeDamage(damage);

@@ -2049,8 +2049,10 @@ MonoBehaviour:
   attackRadius: 0.6
   attackPoint: {fileID: 8003284909839659498}
   enemyAttackVictim:
-    serializedVersion: 2
-    m_Bits: 64
+  - serializedVersion: 2
+    m_Bits: 0
+  - serializedVersion: 2
+    m_Bits: 0
   damageInterval: 1
   canDamage: 1
 --- !u!136 &555678431919630845
@@ -2073,9 +2075,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.63852835
-  m_Height: 4.9320464
+  m_Height: 5.735445
   m_Direction: 1
-  m_Center: {x: 0.05943668, y: 0.43758464, z: 0}
+  m_Center: {x: 0.05943668, y: 0.62053776, z: 0}
 --- !u!114 &4450238848575457537
 MonoBehaviour:
   m_ObjectHideFlags: 0

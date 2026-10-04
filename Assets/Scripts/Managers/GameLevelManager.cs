@@ -267,7 +267,7 @@ public class GameLevelManager : MonoBehaviour
         rescueProgressLabel.SetActive(RescueInProgress);
     }
 
-    public void ShowInfoPanel(string message)
+    internal void ShowInfoPanel(string message)
     {
         infoText.text = message;
         infoPanel.SetActive(true);

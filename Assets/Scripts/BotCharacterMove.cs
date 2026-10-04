@@ -102,6 +102,7 @@ public class BotCharacterMove : MonoBehaviour
     {
         moveDestination = transform.position; // Set the destination to the current position to stop moving
         moveSpeed = 0f; // Set speed to zero to stop movement
+        onDestinationReached = null;
         // onDestinationReached?.Invoke(); // Invoke the callback if provided
     }
 

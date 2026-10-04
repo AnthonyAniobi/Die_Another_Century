@@ -4,6 +4,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 private float bulletLifeTime = 2.0f;
+private int damage = 1; // Damage dealt by the bullet
 
     void Start()
     {
@@ -24,30 +25,9 @@ private float bulletLifeTime = 2.0f;
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            collision.gameObject.TryGetComponent<HealthController>(out var enemy);
-            if (enemy != null)
-            {
-                enemy.TakeDamage(1); // Assuming 1 is the damage value for the bullet
-            }
-            print($"Hit Target {collision.gameObject.name}");
-            CreateBulletImpactEffect(collision);
-            Destroy(gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("NPC"))
-        {
-            collision.gameObject.TryGetComponent<HealthController>(out var npc);
-            if (npc != null)
-            {
-                npc.TakeDamage(1); // Assuming 1 is the damage value for the bullet
-            }
-            print($"Hit Target {collision.gameObject.name}");
-            CreateBulletImpactEffect(collision);
-            Destroy(gameObject);
-        }
+        
     }
+    
 
     void CreateBulletImpactEffect(Collision objectHit)
     {

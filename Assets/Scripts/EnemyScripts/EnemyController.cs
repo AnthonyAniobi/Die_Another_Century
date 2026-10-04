@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -58,7 +59,7 @@ public class EnemyController : MonoBehaviour
             movementController.StopMovement();
             PerformAttack();
         }
-        else
+        else if(currentState != EnemyState.Attack)
         {
             UpdateEnemyState(EnemyState.Chase);
             movementController.SetMoveDestination(
@@ -100,7 +101,24 @@ public class EnemyController : MonoBehaviour
         // }
     }
 
-    private void UpdateEnemyState(EnemyState newState)
+    internal void EnemyHit(Vector3 hitDirection)
+    {
+        movementController.StopMovement();
+        UpdateEnemyState(EnemyState.Hit);
+        // rotate the enemy to face the hit direction
+        StartCoroutine(EndHit(hitDirection));
+
+    }
+
+    IEnumerator EndHit(Vector3 hitDirection)
+    {
+        yield return new WaitForSeconds(1.5f); // Wait for the hit animation to finish
+        // Quaternion lookRotation = Quaternion.LookRotation(hitDirection);
+        // transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 1);
+        UpdateEnemyState(EnemyState.Idle);
+    }
+
+    internal void UpdateEnemyState(EnemyState newState)
     {
 
         switch (newState)
@@ -134,6 +152,10 @@ public class EnemyController : MonoBehaviour
                 currentState = EnemyState.Attack;
                 break;
             case EnemyState.Hit:
+                animator.SetBool("WALKING", false);
+                animator.SetBool("RUNNING", false);
+                animator.SetBool("ATTACKING", false);
+                animator.SetBool("DIE", false);
                 animator.SetTrigger("Hit");
                 currentState = EnemyState.Hit;
                 break;
