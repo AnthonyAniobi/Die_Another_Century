@@ -9,7 +9,7 @@ public class GameLevelManager : MonoBehaviour
 {
     static public GameLevelManager instance { get; private set; }
 
-    [SerializeField] private int currentLevel = 1; // the current level of the game
+    [SerializeField] internal int currentLevel = 1; // the current level of the game
     [SerializeField] private List<GameObject> enemyPrefabs; // list of enemy prefabs to spawn
     [SerializeField] private List<GameObject> npcPrefabs; // list of NPC prefabs to spawn
     [SerializeField] private GameObject playerPrefab; // Reference to the player prefab
@@ -52,7 +52,7 @@ public class GameLevelManager : MonoBehaviour
     private bool canSpawnEnemies = true;
 
 
-    void Start()
+    void Awake()
     {
         if(instance != null && instance != this)
         {
@@ -85,7 +85,7 @@ public class GameLevelManager : MonoBehaviour
             startButton.onClick.RemoveListener(StartGame);
     }
 
-    void Awake()
+    void Start()
     {
         Time.timeScale = 1f;
         gameIntroPanel.SetActive(true);

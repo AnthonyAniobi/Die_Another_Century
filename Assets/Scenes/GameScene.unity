@@ -2337,7 +2337,7 @@ MonoBehaviour:
     Enabled: 0
     DefaultMode: 2
   DefaultBlend:
-    Style: 1
+    Style: 0
     Time: 2
     CustomCurve:
       serializedVersion: 2
@@ -6416,7 +6416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c18f3e8ce8740ac80438362345d9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInputManager
-  screenInputEnabled: 0
+  screenInputEnabled: 1
   movementJoystick: {fileID: 9002834598510143219}
   cameraJoystick: {fileID: 1027320670}
   attackButton: {fileID: 1454149797}
@@ -7016,7 +7016,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 746, y: 515.1111}
+  m_AnchoredPosition: {x: 732, y: 515.1111}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1458610293 stripped
@@ -8462,7 +8462,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

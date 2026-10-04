@@ -13,6 +13,9 @@ public class GameInputManager : MonoBehaviour
     [SerializeField] private Button attackButton;
     [SerializeField] private Button cameraInvertButton;
 
+    private bool attackButtonPressed;
+    private bool cameraInvertButtonPressed;
+
     void Awake()
     {
         if(instance != null && instance != this)
@@ -41,6 +44,37 @@ public class GameInputManager : MonoBehaviour
             InputSystem.EnableDevice(Mouse.current);
             Cursor.lockState = CursorLockMode.Locked;
         }
+        else
+        {
+            attackButton.onClick.AddListener(OnAttackButtonClicked);
+            cameraInvertButton.onClick.AddListener(OnCameraInvertButtonClicked);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (attackButton != null)
+        {
+            attackButton.onClick.RemoveListener(OnAttackButtonClicked);
+        }
+
+        if (cameraInvertButton != null)
+        {
+            cameraInvertButton.onClick.RemoveListener(OnCameraInvertButtonClicked);
+        }
+
+        attackButtonPressed = false;
+        cameraInvertButtonPressed = false;
+    }
+
+    private void OnAttackButtonClicked()
+    {
+        attackButtonPressed = true;
+    }
+
+    private void OnCameraInvertButtonClicked()
+    {
+        cameraInvertButtonPressed = true;
     }
 
     public Vector2 GetMovementInput()
@@ -73,7 +107,9 @@ public class GameInputManager : MonoBehaviour
     {
         if(screenInputEnabled && attackButton != null)
         {
-            return attackButton.onClick != null; // Check if the attack button is pressed
+            bool pressed = attackButtonPressed;
+            attackButtonPressed = false;
+            return pressed;
         }
         else
         {
@@ -86,7 +122,9 @@ public class GameInputManager : MonoBehaviour
     {
         if(screenInputEnabled && cameraInvertButton != null)
         {
-            return cameraInvertButton.onClick != null; // Check if the camera invert button is pressed
+            bool pressed = cameraInvertButtonPressed;
+            cameraInvertButtonPressed = false;
+            return pressed;
         }
         else
         {
