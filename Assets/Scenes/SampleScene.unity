@@ -3105,6 +3105,7 @@ GameObject:
   - component: {fileID: 5866666020988157596}
   - component: {fileID: 5866666020988157598}
   - component: {fileID: 5866666020988157597}
+  - component: {fileID: 5866666020988157599}
   m_Layer: 0
   m_Name: SwatSoldier
   m_TagString: Untagged
@@ -6314,6 +6315,7 @@ GameObject:
   - component: {fileID: 8957688968855676551}
   - component: {fileID: 8957688968855676553}
   - component: {fileID: 8957688968855676552}
+  - component: {fileID: 8957688968855676554}
   m_Layer: 0
   m_Name: SoldierGasMask
   m_TagString: Untagged
@@ -11394,6 +11396,7 @@ GameObject:
   - component: {fileID: 2125672494831700652}
   - component: {fileID: 5449297325170020568}
   - component: {fileID: 5449297325170020567}
+  - component: {fileID: 5449297325170020569}
   m_Layer: 0
   m_Name: Swat
   m_TagString: Untagged
@@ -13094,6 +13097,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.94, z: 0}
+--- !u!136 &5449297325170020569
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4671389118445292140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.22275262
+  m_Height: 1.8132938
+  m_Direction: 1
+  m_Center: {x: 0.02, y: 0.88848585, z: -0.01}
 --- !u!1 &5459250729678290958
 GameObject:
   m_ObjectHideFlags: 0
@@ -14219,6 +14245,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!136 &5866666020988157599
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149005155932}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1875732
+  m_Height: 1.812553
+  m_Direction: 1
+  m_Center: {x: -0.019880878, y: 0.87958735, z: 0.015795434}
 --- !u!1 &5870558413004621202
 GameObject:
   m_ObjectHideFlags: 0
@@ -14727,6 +14776,7 @@ GameObject:
   - component: {fileID: 637432870117694397}
   - component: {fileID: 6789371077236097481}
   - component: {fileID: 6789371077236097480}
+  - component: {fileID: 6789371077236097482}
   m_Layer: 0
   m_Name: OldSoldier
   m_TagString: Untagged
@@ -16294,6 +16344,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.93, z: 0}
+--- !u!136 &6789371077236097482
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6157372495906757501}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2242588
+  m_Height: 1.7755016
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9370319, z: 0}
 --- !u!4 &6801202131062750417
 Transform:
   m_ObjectHideFlags: 0
@@ -17178,6 +17251,7 @@ GameObject:
   - component: {fileID: 4114077171388440090}
   - component: {fileID: 8068216012670698593}
   - component: {fileID: 8068216012670698594}
+  - component: {fileID: 8068216012670698595}
   m_Layer: 0
   m_Name: Trooper
   m_TagString: Untagged
@@ -18942,6 +19016,29 @@ MonoBehaviour:
   maxRotation: 90
   thirdPersonCamera: {fileID: 0}
   firstPersonCamera: {fileID: 0}
+--- !u!136 &8068216012670698595
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256388734984871642}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.24
+  m_Height: 1.813371
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9605224, z: -0.09}
 --- !u!1 &8098008204045902715
 GameObject:
   m_ObjectHideFlags: 0
@@ -21771,6 +21868,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.95, z: 0}
+--- !u!136 &8957688968855676554
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448804604958107207}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.20956737
+  m_Height: 1.7762235
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.92, z: 0}
 --- !u!1 &8959326234598342740
 GameObject:
   m_ObjectHideFlags: 0

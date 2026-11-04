@@ -12,9 +12,13 @@ public class GameInputManager : MonoBehaviour
     [SerializeField] private Joystick cameraJoystick;
     [SerializeField] private Button attackButton;
     [SerializeField] private Button cameraInvertButton;
+    [SerializeField] private Button sprintButton;
 
     private bool attackButtonPressed;
     private bool cameraInvertButtonPressed;
+    private bool sprintButtonPressed;
+
+    private InputActionMap inputActions;
 
     void Awake()
     {
@@ -25,6 +29,9 @@ public class GameInputManager : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            inputActions = InputSystem.actions.FindActionMap("Player");
+            inputActions.Enable();
         }
     }
 
@@ -48,6 +55,7 @@ public class GameInputManager : MonoBehaviour
         {
             attackButton.onClick.AddListener(OnAttackButtonClicked);
             cameraInvertButton.onClick.AddListener(OnCameraInvertButtonClicked);
+            sprintButton.onClick.AddListener(OnSprintButtonClicked);
         }
     }
 
@@ -63,8 +71,14 @@ public class GameInputManager : MonoBehaviour
             cameraInvertButton.onClick.RemoveListener(OnCameraInvertButtonClicked);
         }
 
+        if (sprintButton != null)
+        {
+            sprintButton.onClick.RemoveListener(OnSprintButtonClicked);
+        }
+
         attackButtonPressed = false;
         cameraInvertButtonPressed = false;
+        sprintButtonPressed = false;
     }
 
     private void OnAttackButtonClicked()
@@ -77,6 +91,11 @@ public class GameInputManager : MonoBehaviour
         cameraInvertButtonPressed = true;
     }
 
+    private void OnSprintButtonClicked()
+    {
+        sprintButtonPressed = true;
+    }
+
     public Vector2 GetMovementInput()
     {
         if(screenInputEnabled && movementJoystick != null)
@@ -85,10 +104,11 @@ public class GameInputManager : MonoBehaviour
         }
         else
         {
-            InputAction move = InputSystem.actions.FindAction("Move");
-            return move.ReadValue<Vector2>();
+            return inputActions.FindAction("Move").ReadValue<Vector2>();
         }
     }
+
+    
 
     public Vector2 GetLookInput()
     {
@@ -98,8 +118,20 @@ public class GameInputManager : MonoBehaviour
         }
         else
         {
-            InputAction look = InputSystem.actions.FindAction("Look");
-            return look.ReadValue<Vector2>();
+            return inputActions.FindAction("Look").ReadValue<Vector2>();
+        }
+    }
+
+    public bool IsSprinting()
+    {
+        if(screenInputEnabled)
+        {
+            return false; // Sprinting is not supported on screen input
+        }
+        else
+        {
+            InputAction sprint = InputSystem.actions.FindAction("Sprint");
+            return sprint.ReadValue<float>() > 0.5f;
         }
     }
 
@@ -113,8 +145,21 @@ public class GameInputManager : MonoBehaviour
         }
         else
         {
-            InputAction attack = InputSystem.actions.FindAction("Attack");
-            return attack.triggered;
+            return inputActions.FindAction("Attack").triggered;
+        }
+    }
+
+    public bool IsSprintButtonPressed()
+    {
+        if(screenInputEnabled && sprintButton != null)
+        {
+            bool pressed = sprintButtonPressed;
+            sprintButtonPressed = false;
+            return pressed;
+        }
+        else
+        {
+            return inputActions.FindAction("Sprint").IsPressed();
         }
     }
 
@@ -128,8 +173,19 @@ public class GameInputManager : MonoBehaviour
         }
         else
         {
-            InputAction invertCamera = InputSystem.actions.FindAction("SwitchCamera");
-            return invertCamera.triggered;
+            return inputActions.FindAction("SwitchCamera").triggered;
+        }
+    }
+
+    public bool IsJumpButtonPressed()
+    {
+        if(screenInputEnabled)
+        {
+            return false; // Jumping is not supported on screen input
+        }
+        else
+        {
+            return inputActions.FindAction("Jump").triggered;
         }
     }
 }
