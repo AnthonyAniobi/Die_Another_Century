@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 7814582880356961982}
   - component: {fileID: 6951406033331832739}
   - component: {fileID: 8179883153669245843}
-  - component: {fileID: 911138077400899625}
   - component: {fileID: 5998855180007250472}
   m_Layer: 0
   m_Name: Trooper
@@ -149,23 +148,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.97, z: 0}
---- !u!114 &911138077400899625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527348347787973402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1a60822a6cc4005801539811ed6c31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MouseAimController
-  mouseSensitivity: 100
-  minRotation: -90
-  maxRotation: 90
-  thirdPersonCamera: {fileID: 0}
-  firstPersonCamera: {fileID: 0}
 --- !u!136 &5998855180007250472
 CapsuleCollider:
   m_ObjectHideFlags: 0

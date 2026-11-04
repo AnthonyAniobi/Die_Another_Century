@@ -1708,7 +1708,6 @@ GameObject:
   - component: {fileID: 824184320376195233}
   - component: {fileID: 2178329074390559671}
   - component: {fileID: 8193615161887027780}
-  - component: {fileID: 4009043347062818622}
   - component: {fileID: 3726353201757322142}
   m_Layer: 0
   m_Name: SoldierGasMask
@@ -1781,23 +1780,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.95, z: 0}
---- !u!114 &4009043347062818622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7441805807432136840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1a60822a6cc4005801539811ed6c31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MouseAimController
-  mouseSensitivity: 100
-  minRotation: -90
-  maxRotation: 90
-  thirdPersonCamera: {fileID: 0}
-  firstPersonCamera: {fileID: 0}
 --- !u!136 &3726353201757322142
 CapsuleCollider:
   m_ObjectHideFlags: 0

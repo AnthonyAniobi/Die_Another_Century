@@ -706,7 +706,6 @@ GameObject:
   - component: {fileID: 2231529740472261691}
   - component: {fileID: 873829480739484255}
   - component: {fileID: 5803059802908828235}
-  - component: {fileID: 2138943066895842243}
   - component: {fileID: 1540695555323131500}
   m_Layer: 0
   m_Name: OldSoldier
@@ -780,23 +779,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.93, z: 0}
---- !u!114 &2138943066895842243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3674376136730709031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1a60822a6cc4005801539811ed6c31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MouseAimController
-  mouseSensitivity: 100
-  minRotation: -90
-  maxRotation: 90
-  thirdPersonCamera: {fileID: 0}
-  firstPersonCamera: {fileID: 0}
 --- !u!136 &1540695555323131500
 CapsuleCollider:
   m_ObjectHideFlags: 0
