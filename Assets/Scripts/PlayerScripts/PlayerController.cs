@@ -1,8 +1,12 @@
 using UnityEngine;
+using PlayerData;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
+    [Tooltip("Select the type of player character")]
+    public PlayerType PlayerType;
+
     [Tooltip("Move speed of the character in m/s")]
     public float MoveSpeed = 2.0f;
 
@@ -98,11 +102,6 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-// #if ENABLE_INPUT_SYSTEM
-//             return _playerInput.currentControlScheme == "KeyboardMouse";
-// #else
-//             return false;
-// #endif
             return true;
         }
     }
@@ -120,9 +119,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+        GameObject gameObject = Instantiate(PlayerType.GetGameObject(), transform.position, transform.rotation);
+        _controller = gameObject.GetComponent<CharacterController>();
+        _hasAnimator = gameObject.TryGetComponent(out _animator);
         
-        _hasAnimator = TryGetComponent(out _animator);
-        _controller = GetComponent<CharacterController>();
         AssignAnimationIDs();
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;

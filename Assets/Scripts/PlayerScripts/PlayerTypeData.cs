@@ -25,15 +25,15 @@ namespace PlayerData
             switch (playerType)
             {
                 case PlayerType.WarSoldier:
-                    return Resources.Load<GameObject>("PlayerPrefabs/WarSoldier");
+                    return Resources.Load<GameObject>("Prefabs/Players/OldSoldier");
                 case PlayerType.Swat:
-                    return Resources.Load<GameObject>("PlayerPrefabs/Swat");
+                    return Resources.Load<GameObject>("Prefabs/Players/Swat");
                 case PlayerType.GasMaskSoldier:
-                    return Resources.Load<GameObject>("PlayerPrefabs/GasMaskSoldier");
+                    return Resources.Load<GameObject>("Prefabs/Players/SoldierGasMask");
                 case PlayerType.SpecialForces:
-                    return Resources.Load<GameObject>("PlayerPrefabs/SpecialForces");
+                    return Resources.Load<GameObject>("Prefabs/Players/SwatSoldier");
                 case PlayerType.FuturisticSoldier:
-                    return Resources.Load<GameObject>("PlayerPrefabs/FuturisticSoldier");
+                    return Resources.Load<GameObject>("Prefabs/Players/Trooper");
                 default:
                     return null;
             }
