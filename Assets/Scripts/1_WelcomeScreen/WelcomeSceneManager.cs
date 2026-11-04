@@ -2,15 +2,31 @@ using UnityEngine;
 
 public class WelcomeSceneManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void StartGame()
+    {
+    }
+
+    public void PlayerOptions()
+    {
+    }
+
+    public void Settings()
+    {
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
