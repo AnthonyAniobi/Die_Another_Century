@@ -341,8 +341,6 @@ public class PlayerController : MonoBehaviour
 
         if (Grounded) Gizmos.color = transparentGreen;
         else Gizmos.color = transparentRed;
-
-        
     }
 
     private void OnFootstep(AnimationEvent animationEvent)

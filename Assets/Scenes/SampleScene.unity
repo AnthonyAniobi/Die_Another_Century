@@ -576,7 +576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &592382437
 Transform:
   m_ObjectHideFlags: 0
@@ -958,6 +958,7 @@ MonoBehaviour:
   cameraJoystick: {fileID: 0}
   attackButton: {fileID: 0}
   cameraInvertButton: {fileID: 0}
+  sprintButton: {fileID: 0}
 --- !u!4 &1331997726
 Transform:
   m_ObjectHideFlags: 0
@@ -15179,6 +15180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4355234212804570218, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.17
@@ -21021,6 +21026,10 @@ PrefabInstance:
     - target: {fileID: 5950584494710136227, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
       propertyPath: m_Name
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950584494710136227, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
