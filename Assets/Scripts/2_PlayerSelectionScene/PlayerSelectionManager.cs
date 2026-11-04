@@ -2,6 +2,7 @@ using UnityEngine;
 using PlayerData;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class PlayerSelectionManager : MonoBehaviour
 {
@@ -15,9 +16,17 @@ public class PlayerSelectionManager : MonoBehaviour
     [Min(0f)]
     public float cameraRotationDuration = 0.35f;
 
+    [Header("Selected Player Info")]
+    public TextMeshProUGUI playerNameText;
+    public TextMeshProUGUI playerHealthText;
+    public TextMeshProUGUI playerSpeedText;
+    public TextMeshProUGUI playerResistanceText;
+
     private readonly List<Transform> playerInstances = new List<Transform>();
     private int selectedPlayerIndex;
     private Coroutine cameraRotation;
+
+
 
     private void Start()
     {
@@ -81,6 +90,21 @@ public class PlayerSelectionManager : MonoBehaviour
         if (selectedPlayerIndex < 0)
             selectedPlayerIndex = playerInstances.Count - 1;
         FocusOnPlayer(true);
+    }
+
+    public void SelectPlayer()
+    {
+        PlayerType selectedPlayerType = (PlayerType)selectedPlayerIndex;
+        GameManager.Instance.SetSelectedPlayer(selectedPlayerType);
+    }
+
+    private void UpdateInfoPanel()
+    {
+        PlayerType selectedPlayerType = (PlayerType)selectedPlayerIndex;
+        playerNameText.text = selectedPlayerType.ToString();
+        playerHealthText.text = $"Health: {selectedPlayerType.GetHealth()}";
+        playerSpeedText.text = $"Speed: {selectedPlayerType.GetSpeed()}";
+        playerResistanceText.text = $"Resistance: {selectedPlayerType.GetResistance()}";
     }
 
     private void FocusOnPlayer(bool animate)
