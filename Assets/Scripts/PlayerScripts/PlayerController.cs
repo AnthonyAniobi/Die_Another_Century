@@ -5,10 +5,6 @@ using Unity.Cinemachine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
-    [Tooltip("Select the type of player character")]
-    public PlayerType PlayerType;
-    public GameObject PlayerGameObject;
-
     [Tooltip("Move speed of the character in m/s")]
     public float MoveSpeed = 2.0f;
 
@@ -44,14 +40,14 @@ public class PlayerController : MonoBehaviour
     [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
     public bool Grounded = true;
 
-    // [Tooltip("Useful for rough ground")]
-    // public float GroundedOffset = -0.14f;
+    [Tooltip("Useful for rough ground")]
+    public float GroundedOffset = -0.14f;
 
-    // [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
-    // public float GroundedRadius = 0.28f;
+    [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
+    public float GroundedRadius = 0.28f;
 
-    // [Tooltip("What layers the character uses as ground")]
-    // public LayerMask GroundLayers;
+    [Tooltip("What layers the character uses as ground")]
+    public LayerMask GroundLayers;
 
     [Header("Cinemachine")]
     [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -93,7 +89,6 @@ public class PlayerController : MonoBehaviour
     private int _animIDMotionSpeed;
     private Animator _animator;
     private CharacterController _controller;
-    
     private GameObject _mainCamera;
 
     private const float _threshold = 0.01f;
@@ -120,28 +115,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        if(PlayerGameObject == null)
-        {
-            GameObject gameObject = PlayerType.GetGameObject();
-            PlayerGameObject = Instantiate(PlayerType.GetGameObject(), transform.position, transform.rotation);
-        }
-        if (CinemachineCameraTarget == null)
-        {
-            Debug.LogError("PlayerController requires a Cinemachine camera assigned to CinemachineCameraTarget.", this);
-        }
-        else if (!CinemachineCameraTarget.TryGetComponent(out CinemachineCamera cinemachineCamera))
-        {
-            Debug.LogError("CinemachineCameraTarget must reference a GameObject with a CinemachineCamera component.", this);
-        }
-        else
-        {
-            cinemachineCamera.Follow = transform;
-            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-        }
-        _controller = gameObject.GetComponent<CharacterController>();
-        _hasAnimator = gameObject.TryGetComponent(out _animator);
+        _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
         
+        _hasAnimator = TryGetComponent(out _animator);
+        _controller = GetComponent<CharacterController>();
         AssignAnimationIDs();
+
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
         _fallTimeoutDelta = FallTimeout;
@@ -173,11 +152,10 @@ public class PlayerController : MonoBehaviour
     private void GroundedCheck()
     {
         // set sphere position, with offset
-        // Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
-        //     transform.position.z);
-        // Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
-        //     QueryTriggerInteraction.Ignore);
-        Grounded = _controller.isGrounded;
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+            transform.position.z);
+        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
+            QueryTriggerInteraction.Ignore);
 
         // update animator if using character
         if (_hasAnimator)
@@ -189,13 +167,13 @@ public class PlayerController : MonoBehaviour
     private void CameraRotation()
     {
         // if there is an input and camera position is not fixed
-        if (GameInputManager.Instance.lookInput.sqrMagnitude >= _threshold && !LockCameraPosition)
+        if (CustomInput.Instance.look.sqrMagnitude >= _threshold && !LockCameraPosition)
         {
             //Don't multiply mouse input by Time.deltaTime;
             float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-            _cinemachineTargetYaw += GameInputManager.Instance.lookInput.x * deltaTimeMultiplier;
-            _cinemachineTargetPitch += GameInputManager.Instance.lookInput.y * deltaTimeMultiplier;
+            _cinemachineTargetYaw += CustomInput.Instance.look.x * deltaTimeMultiplier;
+            _cinemachineTargetPitch += CustomInput.Instance.look.y * deltaTimeMultiplier;
         }
 
         // clamp our rotations so our values are limited 360 degrees
@@ -210,20 +188,20 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
-        float targetSpeed = GameInputManager.Instance.sprint ? SprintSpeed : MoveSpeed;
+        float targetSpeed = CustomInput.Instance.sprint ? SprintSpeed : MoveSpeed;
 
         // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
         // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is no input, set the target speed to 0
-        if (GameInputManager.Instance.movementInput == Vector2.zero) targetSpeed = 0.0f;
+        if (CustomInput.Instance.move == Vector2.zero) targetSpeed = 0.0f;
 
         // a reference to the players current horizontal velocity
         float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
         float speedOffset = 0.1f;
-        float inputMagnitude = GameInputManager.Instance.movementInput.magnitude;
-        //_input.analogMovement ? _input.move.magnitude : 1f;
+        float inputMagnitude = CustomInput.Instance.move.magnitude;
+        // _input.analogMovement ? _input.move.magnitude : 1f;
 
         // accelerate or decelerate to target speed
         if (currentHorizontalSpeed < targetSpeed - speedOffset ||
@@ -246,11 +224,11 @@ public class PlayerController : MonoBehaviour
         if (_animationBlend < 0.01f) _animationBlend = 0f;
 
         // normalise input direction
-        Vector3 inputDirection = new Vector3(GameInputManager.Instance.movementInput.x, 0.0f, GameInputManager.Instance.movementInput.y).normalized;
+        Vector3 inputDirection = new Vector3(CustomInput.Instance.move.x, 0.0f, CustomInput.Instance.move.y).normalized;
 
         // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is a move input rotate player when the player is moving
-        if (GameInputManager.Instance.movementInput != Vector2.zero)
+        if (CustomInput.Instance.move != Vector2.zero)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                 _mainCamera.transform.eulerAngles.y;
@@ -297,7 +275,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Jump
-            if (GameInputManager.Instance.jump && _jumpTimeoutDelta <= 0.0f)
+            if (CustomInput.Instance.jump && _jumpTimeoutDelta <= 0.0f)
             {
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
                 _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -335,7 +313,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // if we are not grounded, do not jump
-            // _input.jump = false;
+            CustomInput.Instance.jump = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -359,6 +337,11 @@ public class PlayerController : MonoBehaviour
 
         if (Grounded) Gizmos.color = transparentGreen;
         else Gizmos.color = transparentRed;
+
+        // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
+        Gizmos.DrawSphere(
+            new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
+            GroundedRadius);
     }
 
     private void OnFootstep(AnimationEvent animationEvent)

@@ -43,7 +43,7 @@ public class GameInputManager : MonoBehaviour
             lookInput = inputActions.FindAction("Look").ReadValue<Vector2>();
             attackSingle = inputActions.FindAction("Attack").WasPerformedThisFrame();
             attackContinuous = inputActions.FindAction("Attack").IsPressed();
-            reload = inputActions.FindAction("Reload").WasPerformedThisFrame();
+            // reload = inputActions.FindAction("Reload").WasPerformedThisFrame();
             cameraInvert = inputActions.FindAction("SwitchCamera").WasPerformedThisFrame();
             sprint = inputActions.FindAction("Sprint").IsPressed();
             jump = inputActions.FindAction("Jump").WasPerformedThisFrame();
