@@ -81,7 +81,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
         playerSelectionCamera.transform.position = centerPoint.position + Vector3.up * cameraHeight;
         FocusOnPlayer(false);
-        popupPanel.SetActive(true);
+        popupPanel.SetActive(false);
         UpdateInfoPanel();
     }
 
@@ -116,7 +116,7 @@ public class PlayerSelectionManager : MonoBehaviour
     private void UpdateInfoPanel()
     {
         PlayerType selectedPlayerType = (PlayerType)selectedPlayerIndex;
-        playerNameText.text = selectedPlayerType.ToString();
+        playerNameText.text = selectedPlayerType.GetDisplayName();
         playerHealthText.text = $"{selectedPlayerType.GetHealth()} HP";
         playerSpeedText.text = $"{selectedPlayerType.GetSpeed()}";
         playerResistanceText.text = $"{selectedPlayerType.GetResistance()}";
