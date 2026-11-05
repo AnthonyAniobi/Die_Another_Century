@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     internal PlayerType selectedPlayerType;
-    internal GameWorld selectedGameWorld;
+    internal GameWorld selectedGameWorld = 0;
     internal int currentLevelIndex = 0;
 
 
@@ -41,8 +41,9 @@ public class GameManager : MonoBehaviour
 
 public enum GameWorld
 {
-    Village,
-    Forest,
-    Desert,
-    Mountain,
+    AbandonedCastle= 0,
+    Village = 1,
+    Forest = 2,
+    Desert = 3,
+    Mountain = 4,
 }

@@ -36,9 +36,9 @@ public class WelcomeSceneManager : MonoBehaviour
             gameStartPanel.SetActive(false);}
     }
 
-    public void StartGameWorld(GameWorld world)
+    public void StartGameWorld(int world)
     {
-        GameManager.Instance.SetSelectedGameWorld(world);
+        GameManager.Instance.SetSelectedGameWorld((GameWorld)world);
         NavigationManager.Instance.NavigateToScene(GameScene.GameScene);
     }
 
