@@ -8,14 +8,20 @@ public class WelcomeSceneManager : MonoBehaviour
 
     void Start()
     {
-        if (settingsPanel != null)
+        if (settingsPanel != null){
             settingsPanel.SetActive(false);
+        }
+        if (gameStartPanel != null){
+            gameStartPanel.SetActive(false);
+        }
     }
 
     public void StartGame()
     {
-        if (gameStartPanel != null)
+        if (gameStartPanel != null){
             gameStartPanel.SetActive(true);
+            settingsPanel.SetActive(false);
+        }
     }
 
     public void PlayerOptions()
@@ -25,8 +31,9 @@ public class WelcomeSceneManager : MonoBehaviour
 
     public void Settings()
     {
-        if (settingsPanel != null)
+        if (settingsPanel != null){
             settingsPanel.SetActive(true);
+            gameStartPanel.SetActive(false);}
     }
 
     public void StartGameWorld(GameWorld world)

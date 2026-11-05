@@ -66,16 +66,16 @@ public class HealthController : MonoBehaviour
         animator.SetBool("DIE", true);
         Debug.Log($"{healthType} has died!");
         Destroy(gameObject);
-        if(healthType == HealthType.NPC)
-        {
-            GameLevelManager.instance.EndGame(false, "The civilian was killed!");
-        }else if(healthType == HealthType.player)
-        {
-            GameLevelManager.instance.EndGame(false, "You were killed!");
-        }else if(healthType == HealthType.Enemy)
-        {
-            // GameLevelManager.instance.UpdateEnemyCount();
-        }
+        // if(healthType == HealthType.NPC)
+        // {
+        //     GameLevelManager.instance.EndGame(false, "The civilian was killed!");
+        // }else if(healthType == HealthType.player)
+        // {
+        //     GameLevelManager.instance.EndGame(false, "You were killed!");
+        // }else if(healthType == HealthType.Enemy)
+        // {
+        //     // GameLevelManager.instance.UpdateEnemyCount();
+        // }
     }
 
 

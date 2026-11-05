@@ -76,6 +76,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
         playerSelectionCamera.transform.position = centerPoint.position + Vector3.up * cameraHeight;
         FocusOnPlayer(false);
+        UpdateInfoPanel();
     }
 
     public void NextPlayer()
@@ -141,5 +142,6 @@ public class PlayerSelectionManager : MonoBehaviour
 
         playerSelectionCamera.transform.rotation = targetRotation;
         cameraRotation = null;
+        UpdateInfoPanel();
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameLevelManager : MonoBehaviour
 {
-    static public GameLevelManager instance { get; private set; }
+    // static public GameLevelManager instance { get; private set; }
 
     [SerializeField] internal int currentLevel = 1; // the current level of the game
     [SerializeField] private List<GameObject> enemyPrefabs; // list of enemy prefabs to spawn
@@ -51,19 +51,17 @@ public class GameLevelManager : MonoBehaviour
     internal Transform currentRescuedNPC = null;
     private bool canSpawnEnemies = true;
 
-
-    void Awake()
-    {
-        if(instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
-
-    }
+    // void Awake()
+    // {
+    //     if(instance != null && instance != this)
+    //     {
+    //         Destroy(this.gameObject);
+    //     }
+    //     else
+    //     {
+    //         instance = this;
+    //     }
+    // }
 
     void OnEnable()
     {

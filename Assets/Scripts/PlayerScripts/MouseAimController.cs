@@ -30,10 +30,10 @@ public class MouseAimController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
-        {
-            return; // Do not process movement if the game hasn't started
-        }
+        // if(GameLevelManager.instance != null && !GameLevelManager.instance.gameStarted)
+        // {
+        //     return; // Do not process movement if the game hasn't started
+        // }
         Vector2 lookVector = GameInputManager.instance.GetLookInput();
         xRotation += lookVector.y * mouseSensitivity * Time.deltaTime;
         yRotation += lookVector.x * mouseSensitivity * Time.deltaTime;

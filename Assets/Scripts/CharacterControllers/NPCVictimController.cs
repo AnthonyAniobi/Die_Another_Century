@@ -88,7 +88,7 @@ public class NPCVictimController : MonoBehaviour
         {
             if(isBeingRescued)
             {
-                GameLevelManager.instance.ShowInfoPanel("You have stopped rescuing the NPC. Move closer to continue rescuing.");
+                // GameLevelManager.instance.ShowInfoPanel("You have stopped rescuing the NPC. Move closer to continue rescuing.");
             }
             playerTransform = null;
             isBeingRescued = false;
@@ -131,18 +131,18 @@ public class NPCVictimController : MonoBehaviour
 
     void StartRescue(Transform player)
     {
-        if(GameLevelManager.instance.currentRescuedNPC == null)
-        {
-            GameLevelManager.instance.ShowInfoPanel("You have found a civilian to rescue!");
-            GameLevelManager.instance.SetPlayerIsRescuingNPC(this.transform);
-        }
-        else if(GameLevelManager.instance.currentRescuedNPC != null && GameLevelManager.instance.currentRescuedNPC != this.transform)
-        {
-            GameLevelManager.instance.ShowInfoPanel("You are already rescuing a civilian!");
-            return;
-        }
-        isBeingRescued = true;
-        playerTransform = player;
+        // if(GameLevelManager.instance.currentRescuedNPC == null)
+        // {
+        //     GameLevelManager.instance.ShowInfoPanel("You have found a civilian to rescue!");
+        //     GameLevelManager.instance.SetPlayerIsRescuingNPC(this.transform);
+        // }
+        // else if(GameLevelManager.instance.currentRescuedNPC != null && GameLevelManager.instance.currentRescuedNPC != this.transform)
+        // {
+        //     GameLevelManager.instance.ShowInfoPanel("You are already rescuing a civilian!");
+        //     return;
+        // }
+        // isBeingRescued = true;
+        // playerTransform = player;
         
 
     }
@@ -151,7 +151,7 @@ public class NPCVictimController : MonoBehaviour
     {
         if (other.CompareTag("SafeArea"))
         {
-            GameLevelManager.instance.SetNPCRescued();
+            // GameLevelManager.instance.SetNPCRescued();
             DeactivateNPC();
         }
     }
