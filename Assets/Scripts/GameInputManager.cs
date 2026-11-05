@@ -18,7 +18,6 @@ public class GameInputManager : MonoBehaviour
     internal bool sprint;
     internal bool jump;
     
-
     private InputActionMap inputActions;
 
     void Awake()

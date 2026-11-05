@@ -1,11 +1,13 @@
 using UnityEngine;
 using PlayerData;
+using Unity.Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
     [Tooltip("Select the type of player character")]
     public PlayerType PlayerType;
+    public GameObject PlayerGameObject;
 
     [Tooltip("Move speed of the character in m/s")]
     public float MoveSpeed = 2.0f;
@@ -118,8 +120,24 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-        GameObject gameObject = Instantiate(PlayerType.GetGameObject(), transform.position, transform.rotation);
+        if(PlayerGameObject == null)
+        {
+            GameObject gameObject = PlayerType.GetGameObject();
+            PlayerGameObject = Instantiate(PlayerType.GetGameObject(), transform.position, transform.rotation);
+        }
+        if (CinemachineCameraTarget == null)
+        {
+            Debug.LogError("PlayerController requires a Cinemachine camera assigned to CinemachineCameraTarget.", this);
+        }
+        else if (!CinemachineCameraTarget.TryGetComponent(out CinemachineCamera cinemachineCamera))
+        {
+            Debug.LogError("CinemachineCameraTarget must reference a GameObject with a CinemachineCamera component.", this);
+        }
+        else
+        {
+            cinemachineCamera.Follow = transform;
+            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+        }
         _controller = gameObject.GetComponent<CharacterController>();
         _hasAnimator = gameObject.TryGetComponent(out _animator);
         
