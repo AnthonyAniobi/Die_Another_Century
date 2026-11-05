@@ -49,3 +49,11 @@ public class GameManager : MonoBehaviour
 
     
 }
+
+enum GameWorld
+{
+    Village,
+    Forest,
+    Desert,
+    Mountain,
+}
