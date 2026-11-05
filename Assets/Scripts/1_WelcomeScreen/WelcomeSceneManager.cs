@@ -25,6 +25,8 @@ public class WelcomeSceneManager : MonoBehaviour
                 1.0f;
             volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
         }
+        
+        SetControlScheme(true); // Default to keyboard control scheme
     }
 
     void OnDestroy()
@@ -64,6 +66,21 @@ public class WelcomeSceneManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    // settings panel methods
+    public void SetControlScheme(bool isKeyboard)
+    {
+        if (isKeyboard)
+        {
+            keyboardControlCheckbox.SetActive(true);
+            touchpadControlCheckbox.SetActive(false);
+        }
+        else
+        {
+            keyboardControlCheckbox.SetActive(false);
+            touchpadControlCheckbox.SetActive(true);
+        }
     }
 
     private void OnVolumeChanged(float value)

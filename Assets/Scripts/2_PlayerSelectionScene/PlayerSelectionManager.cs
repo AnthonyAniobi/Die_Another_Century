@@ -117,9 +117,9 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         PlayerType selectedPlayerType = (PlayerType)selectedPlayerIndex;
         playerNameText.text = selectedPlayerType.ToString();
-        playerHealthText.text = $"Health: {selectedPlayerType.GetHealth()}";
-        playerSpeedText.text = $"Speed: {selectedPlayerType.GetSpeed()}";
-        playerResistanceText.text = $"Resistance: {selectedPlayerType.GetResistance()}";
+        playerHealthText.text = $"{selectedPlayerType.GetHealth()} HP";
+        playerSpeedText.text = $"{selectedPlayerType.GetSpeed()}";
+        playerResistanceText.text = $"{selectedPlayerType.GetResistance()}";
     }
 
     private void FocusOnPlayer(bool animate)
