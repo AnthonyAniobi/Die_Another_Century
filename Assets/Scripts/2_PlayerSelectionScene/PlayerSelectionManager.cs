@@ -81,6 +81,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
         playerSelectionCamera.transform.position = centerPoint.position + Vector3.up * cameraHeight;
         FocusOnPlayer(false);
+        popupPanel.SetActive(true);
         UpdateInfoPanel();
     }
 
