@@ -22,6 +22,11 @@ public class PlayerSelectionManager : MonoBehaviour
     public TextMeshProUGUI playerSpeedText;
     public TextMeshProUGUI playerResistanceText;
 
+    [Header("Popup Panel")]
+    public GameObject popupPanel;
+    public TextMeshProUGUI popupText;
+
+    //
     private readonly List<Transform> playerInstances = new List<Transform>();
     private int selectedPlayerIndex;
     private Coroutine cameraRotation;
@@ -97,6 +102,14 @@ public class PlayerSelectionManager : MonoBehaviour
     {
         PlayerType selectedPlayerType = (PlayerType)selectedPlayerIndex;
         GameManager.Instance.SetSelectedPlayer(selectedPlayerType);
+        StartCoroutine(
+            ShowPopup($"Selected Player: {selectedPlayerType}", 2f)
+        );
+    }
+
+    public void CloseSelection()
+    {
+        NavigationManager.Instance.NavigateToScene(GameScene.WelcomeScene);
     }
 
     private void UpdateInfoPanel()
@@ -143,5 +156,13 @@ public class PlayerSelectionManager : MonoBehaviour
         playerSelectionCamera.transform.rotation = targetRotation;
         cameraRotation = null;
         UpdateInfoPanel();
+    }
+
+    private IEnumerator ShowPopup(string message, float duration)
+    {
+        popupText.text = message;
+        popupPanel.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        popupPanel.SetActive(false);
     }
 }
