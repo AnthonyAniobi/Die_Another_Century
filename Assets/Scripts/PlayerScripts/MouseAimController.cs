@@ -34,7 +34,7 @@ public class MouseAimController : MonoBehaviour
         // {
         //     return; // Do not process movement if the game hasn't started
         // }
-        Vector2 lookVector = GameInputManager.instance.GetLookInput();
+        Vector2 lookVector = Vector2.zero; // = GameInputManager.instance.GetLookInput();
         xRotation += lookVector.y * mouseSensitivity * Time.deltaTime;
         yRotation += lookVector.x * mouseSensitivity * Time.deltaTime;
 

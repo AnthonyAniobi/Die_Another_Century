@@ -22,7 +22,7 @@ public class PlayerWeapon : MonoBehaviour
 
     void Update()
     {
-        if (GameInputManager.instance.IsAttackButtonPressed() && readyToShoot)
+        if (GameInputManager.Instance.attackSingle && readyToShoot)
         {
             FireWeapon();
         }

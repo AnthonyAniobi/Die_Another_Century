@@ -18,11 +18,11 @@ public class PlayerCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameInputManager.instance.IsCameraInvertButtonPressed())
-        {
-            isFirstPerson = !isFirstPerson;
-            firstPersonCamera.gameObject.SetActive(isFirstPerson);
-            thirdPersonCamera.gameObject.SetActive(!isFirstPerson);
-        }
+        // if (GameInputManager.instance.IsCameraInvertButtonPressed())
+        // {
+        //     isFirstPerson = !isFirstPerson;
+        //     firstPersonCamera.gameObject.SetActive(isFirstPerson);
+        //     thirdPersonCamera.gameObject.SetActive(!isFirstPerson);
+        // }
     }
 }

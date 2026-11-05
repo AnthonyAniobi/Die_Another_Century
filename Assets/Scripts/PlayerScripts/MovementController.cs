@@ -25,7 +25,7 @@ public class MovementController : MonoBehaviour
     void Update()
     {   
         bool jumpPressed = false;
-        Vector2 moveVector = GameInputManager.instance.GetMovementInput();
+        Vector2 moveVector = Vector2.zero; // GameInputManager.instance.GetMovementInput();
 
         if (jumpButton != null)
         {
