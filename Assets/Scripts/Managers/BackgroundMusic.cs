@@ -6,6 +6,7 @@ public class BackgroundMusic : MonoBehaviour
     private AudioClip menuMusic;
     private AudioClip gameMusic;
     private AudioSource audioSource;
+    private float volume = 1.0f; // Default volume
 
     void Awake()
     {
@@ -18,6 +19,7 @@ public class BackgroundMusic : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             audioSource = GetComponent<AudioSource>();
+            audioSource.volume = volume;
             LoadAudioClips();
         }
     }
@@ -47,6 +49,13 @@ public class BackgroundMusic : MonoBehaviour
         audioSource.clip = gameMusic;
         audioSource.loop = true;
         audioSource.Play();
+    }
+
+
+    public void SetVolume(float newVolume)
+    {
+        volume = Mathf.Clamp01(newVolume); // Ensure volume is between 0 and 1
+        audioSource.volume = volume;
     }
 
 

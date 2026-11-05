@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WelcomeSceneManager : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject gameStartPanel;
+    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private GameObject keyboardControlCheckbox;
+    [SerializeField] private GameObject touchpadControlCheckbox;
 
     void Start()
     {
@@ -13,6 +17,21 @@ public class WelcomeSceneManager : MonoBehaviour
         }
         if (gameStartPanel != null){
             gameStartPanel.SetActive(false);
+        }
+        if (volumeSlider != null)
+        {
+            volumeSlider.value = BackgroundMusic.Instance != null ? 
+                BackgroundMusic.Instance.GetComponent<AudioSource>().volume : 
+                1.0f;
+            volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (volumeSlider != null)
+        {
+            volumeSlider.onValueChanged.RemoveListener(OnVolumeChanged);
         }
     }
 
@@ -45,5 +64,13 @@ public class WelcomeSceneManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    private void OnVolumeChanged(float value)
+    {
+        if (BackgroundMusic.Instance != null)
+        {
+            BackgroundMusic.Instance.SetVolume(value);
+        }
     }
 }
