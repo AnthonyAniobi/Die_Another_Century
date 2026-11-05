@@ -31,6 +31,7 @@ public class WelcomeSceneManager : MonoBehaviour
 
     public void StartGameWorld(GameWorld world)
     {
+        GameManager.Instance.SetSelectedGameWorld(world);
         NavigationManager.Instance.NavigateToScene(GameScene.GameScene);
     }
 

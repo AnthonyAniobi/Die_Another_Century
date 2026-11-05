@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private Button startGameButton;
-    private PlayerType selectedPlayerType;
+    internal PlayerType selectedPlayerType;
+    internal GameWorld selectedGameWorld;
+    internal int currentLevelIndex = 0;
 
 
     void Start()
@@ -47,10 +49,16 @@ public class GameManager : MonoBehaviour
         selectedPlayerType = playerType;
     }
 
+    public void SetSelectedGameWorld(GameWorld world)
+    {
+        selectedGameWorld = world;
+        currentLevelIndex = 0; // Reset level index when changing game world
+    }
+
     
 }
 
-enum GameWorld
+public enum GameWorld
 {
     Village,
     Forest,
