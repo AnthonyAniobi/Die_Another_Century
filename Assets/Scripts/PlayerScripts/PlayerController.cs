@@ -40,14 +40,14 @@ public class PlayerController : MonoBehaviour
     [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
     public bool Grounded = true;
 
-    [Tooltip("Useful for rough ground")]
-    public float GroundedOffset = -0.14f;
+    // [Tooltip("Useful for rough ground")]
+    // public float GroundedOffset = -0.14f;
 
-    [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
-    public float GroundedRadius = 0.28f;
+    // [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
+    // public float GroundedRadius = 0.28f;
 
-    [Tooltip("What layers the character uses as ground")]
-    public LayerMask GroundLayers;
+    // [Tooltip("What layers the character uses as ground")]
+    // public LayerMask GroundLayers;
 
     [Header("Cinemachine")]
     [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -152,10 +152,7 @@ public class PlayerController : MonoBehaviour
     private void GroundedCheck()
     {
         // set sphere position, with offset
-        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
-            transform.position.z);
-        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
-            QueryTriggerInteraction.Ignore);
+        Grounded = _controller.isGrounded;
 
         // update animator if using character
         if (_hasAnimator)
@@ -337,11 +334,6 @@ public class PlayerController : MonoBehaviour
 
         if (Grounded) Gizmos.color = transparentGreen;
         else Gizmos.color = transparentRed;
-
-        // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
-        Gizmos.DrawSphere(
-            new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
-            GroundedRadius);
     }
 
     private void OnFootstep(AnimationEvent animationEvent)
