@@ -2,13 +2,26 @@ using UnityEngine;
 
 public class WeaponData
 {
-    enum WeaponType
+    
+
+    
+
+    public WeaponType type;
+    public int totalAmmo;
+
+
+    public WeaponData(WeaponType type, int totalAmmo)
     {
-        dagger,
-        Pistol,
-        Rifle,
-        Shotgun,
-        Sniper,
-        SMG
-    }    
+        this.type = type;
+        this.totalAmmo = totalAmmo;
+    }
+}
+public enum WeaponType
+{
+    dagger,
+    Pistol,
+    Rifle,
+    Shotgun,
+    Sniper,
+    SMG
 }

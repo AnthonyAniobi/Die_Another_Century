@@ -1,13 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlayerData
 {
-    public class PlayerTypeData
-    {
-        
-    }
-
-
 
     public enum PlayerTypeEnum
     {
@@ -112,6 +107,45 @@ namespace PlayerData
                     return 0.95f;
                 default:
                     return 0.8f;
+            }
+        }
+    
+        public static List<WeaponData> GetWeapons(this PlayerTypeEnum playerType)
+        {
+            switch (playerType)
+            {
+                case PlayerTypeEnum.WarSoldier:
+                    return new List<WeaponData>
+                    {
+                        new WeaponData(WeaponType.Rifle, 120),
+                        new WeaponData(WeaponType.Pistol, 48)
+                    };
+                case PlayerTypeEnum.Swat:
+                    return new List<WeaponData>
+                    {
+                        new WeaponData(WeaponType.Shotgun, 32),
+                        new WeaponData(WeaponType.Pistol, 48)
+                    };
+                case PlayerTypeEnum.GasMaskSoldier:
+                    return new List<WeaponData>
+                    {
+                        new WeaponData(WeaponType.SMG, 150),
+                        new WeaponData(WeaponType.dagger, 2)
+                    };
+                case PlayerTypeEnum.SpecialForces:
+                    return new List<WeaponData>
+                    {
+                        new WeaponData(WeaponType.Sniper, 30),
+                        new WeaponData(WeaponType.Pistol, 48)
+                    };
+                case PlayerTypeEnum.FuturisticSoldier:
+                    return new List<WeaponData>
+                    {
+                        new WeaponData(WeaponType.Rifle, 120),
+                        new WeaponData(WeaponType.SMG, 150)
+                    };
+                default:
+                    return new List<WeaponData>();
             }
         }
     }
