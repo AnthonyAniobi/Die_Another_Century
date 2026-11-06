@@ -14,7 +14,7 @@ public class CustomInput : MonoBehaviour
     internal bool attackSingle;
     internal bool attackContinuous;
     internal bool reload;
-    internal bool cameraInvert;
+    internal bool cameraSwitch;
     internal bool sprint;
     internal bool jump;
     
@@ -44,7 +44,7 @@ public class CustomInput : MonoBehaviour
             attackSingle = inputActions.FindAction("Attack").WasPerformedThisFrame();
             attackContinuous = inputActions.FindAction("Attack").IsPressed();
             // reload = inputActions.FindAction("Reload").WasPerformedThisFrame();
-            cameraInvert = inputActions.FindAction("SwitchCamera").WasPerformedThisFrame();
+            cameraSwitch = inputActions.FindAction("SwitchCamera").WasPerformedThisFrame();
             sprint = inputActions.FindAction("Sprint").IsPressed();
             jump = inputActions.FindAction("Jump").WasPerformedThisFrame();
         }
