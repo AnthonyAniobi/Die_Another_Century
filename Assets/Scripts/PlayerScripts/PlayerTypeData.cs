@@ -9,7 +9,7 @@ namespace PlayerData
 
 
 
-    public enum PlayerType
+    public enum PlayerTypeEnum
     {
         WarSoldier,
         Swat,
@@ -20,95 +20,95 @@ namespace PlayerData
 
     public static class PlayerTypeDataExtensions
     {
-        public static GameObject GetGameObject(this PlayerType playerType)
+        public static GameObject GetGameObject(this PlayerTypeEnum playerType)
         {
             switch (playerType)
             {
-                case PlayerType.WarSoldier:
+                case PlayerTypeEnum.WarSoldier:
                     return Resources.Load<GameObject>("Prefabs/Players/OldSoldier");
-                case PlayerType.Swat:
+                case PlayerTypeEnum.Swat:
                     return Resources.Load<GameObject>("Prefabs/Players/Swat");
-                case PlayerType.GasMaskSoldier:
+                case PlayerTypeEnum.GasMaskSoldier:
                     return Resources.Load<GameObject>("Prefabs/Players/SoldierGasMask");
-                case PlayerType.SpecialForces:
+                case PlayerTypeEnum.SpecialForces:
                     return Resources.Load<GameObject>("Prefabs/Players/SwatSoldier");
-                case PlayerType.FuturisticSoldier:
+                case PlayerTypeEnum.FuturisticSoldier:
                     return Resources.Load<GameObject>("Prefabs/Players/Trooper");
                 default:
                     return null;
             }
         }
 
-        public static string GetDisplayName(this PlayerType playerType)
+        public static string GetDisplayName(this PlayerTypeEnum playerType)
         {
             switch (playerType)
             {
-                case PlayerType.WarSoldier:
+                case PlayerTypeEnum.WarSoldier:
                     return "War Soldier";
-                case PlayerType.Swat:
+                case PlayerTypeEnum.Swat:
                     return "SWAT";
-                case PlayerType.GasMaskSoldier:
+                case PlayerTypeEnum.GasMaskSoldier:
                     return "Gas Mask Soldier";
-                case PlayerType.SpecialForces:
+                case PlayerTypeEnum.SpecialForces:
                     return "Special Forces";
-                case PlayerType.FuturisticSoldier:
+                case PlayerTypeEnum.FuturisticSoldier:
                     return "Futuristic Soldier";
                 default:
                     return "Unknown";
             }
         }
 
-        public static int GetHealth(this PlayerType playerType)
+        public static int GetHealth(this PlayerTypeEnum playerType)
         {
             switch (playerType)
             {
-                case PlayerType.WarSoldier:
+                case PlayerTypeEnum.WarSoldier:
                     return 100;
-                case PlayerType.Swat:
+                case PlayerTypeEnum.Swat:
                     return 120;
-                case PlayerType.GasMaskSoldier:
+                case PlayerTypeEnum.GasMaskSoldier:
                     return 90;
-                case PlayerType.SpecialForces:
+                case PlayerTypeEnum.SpecialForces:
                     return 110;
-                case PlayerType.FuturisticSoldier:
+                case PlayerTypeEnum.FuturisticSoldier:
                     return 130;
                 default:
                     return 100;
             }
         }
 
-        public static float GetSpeed(this PlayerType playerType)
+        public static float GetSpeed(this PlayerTypeEnum playerType)
         {
             switch (playerType)
             {
-                case PlayerType.WarSoldier:
+                case PlayerTypeEnum.WarSoldier:
                     return 5f;
-                case PlayerType.Swat:
+                case PlayerTypeEnum.Swat:
                     return 4.5f;
-                case PlayerType.GasMaskSoldier:
+                case PlayerTypeEnum.GasMaskSoldier:
                     return 5.5f;
-                case PlayerType.SpecialForces:
+                case PlayerTypeEnum.SpecialForces:
                     return 6f;
-                case PlayerType.FuturisticSoldier:
+                case PlayerTypeEnum.FuturisticSoldier:
                     return 6.5f;
                 default:
                     return 5f;
             }
         }
 
-        public static float GetResistance(this PlayerType playerType)
+        public static float GetResistance(this PlayerTypeEnum playerType)
         {
             switch (playerType)
             {
-                case PlayerType.WarSoldier:
+                case PlayerTypeEnum.WarSoldier:
                     return 0.8f;
-                case PlayerType.Swat:
+                case PlayerTypeEnum.Swat:
                     return 0.9f;
-                case PlayerType.GasMaskSoldier:
+                case PlayerTypeEnum.GasMaskSoldier:
                     return 0.7f;
-                case PlayerType.SpecialForces:
+                case PlayerTypeEnum.SpecialForces:
                     return 0.85f;
-                case PlayerType.FuturisticSoldier:
+                case PlayerTypeEnum.FuturisticSoldier:
                     return 0.95f;
                 default:
                     return 0.8f;

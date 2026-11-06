@@ -51,7 +51,7 @@ public class PlayerSelectionManager : MonoBehaviour
             return;
         }
 
-        PlayerType[] playerTypes = (PlayerType[])System.Enum.GetValues(typeof(PlayerType));
+        PlayerTypeEnum[] playerTypes = (PlayerTypeEnum[])System.Enum.GetValues(typeof(PlayerTypeEnum));
         List<GameObject> playerPrefabs = new List<GameObject>();
         for (int i = 0; i < playerTypes.Length; i++)
         {
@@ -101,7 +101,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
     public void SelectPlayer()
     {
-        PlayerType selectedPlayerType = (PlayerType)selectedPlayerIndex;
+        PlayerTypeEnum selectedPlayerType = (PlayerTypeEnum)selectedPlayerIndex;
         GameManager.Instance.SetSelectedPlayer(selectedPlayerType);
         StartCoroutine(
             ShowPopup($"Selected Player: {selectedPlayerType}", 2f)
@@ -115,7 +115,7 @@ public class PlayerSelectionManager : MonoBehaviour
 
     private void UpdateInfoPanel()
     {
-        PlayerType selectedPlayerType = (PlayerType)selectedPlayerIndex;
+        PlayerTypeEnum selectedPlayerType = (PlayerTypeEnum)selectedPlayerIndex;
         playerNameText.text = selectedPlayerType.GetDisplayName();
         playerHealthText.text = $"{selectedPlayerType.GetHealth()} HP";
         playerSpeedText.text = $"{selectedPlayerType.GetSpeed()}";

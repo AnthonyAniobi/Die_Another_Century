@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    internal PlayerType selectedPlayerType;
+    internal PlayerTypeEnum selectedPlayerType;
     internal GameWorld selectedGameWorld = 0;
     internal int currentLevelIndex = 0;
 
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetSelectedPlayer(PlayerType playerType)
+    public void SetSelectedPlayer(PlayerTypeEnum playerType)
     {
         selectedPlayerType = playerType;
     }
