@@ -7,16 +7,16 @@ public class PlayerType : MonoBehaviour
     public GameObject sampleObject;
     public GameObject spawnPoint;
 
-    [Header("Player Type Prefabs")]
-    public GameObject swatPrefab;
-    public GameObject specialForcesPrefab;
-    public GameObject warSoldierPrefab;
-    public GameObject gasMaskSoldierPrefab;
-    public GameObject futuristicTrooperPrefab;
+    [Header("Player Type Objects")]
+    public GameObject swat;
+    public GameObject specialForces;
+    public GameObject warSoldier;
+    public GameObject gasMaskSoldier;
+    public GameObject futuristicTrooper;
     
     void Start()
     {
-        // InitializePlayerType(playerType);
+        InitializePlayerType(playerType);
     }
     void InitializePlayerType(PlayerTypeEnum type)
     {
@@ -33,22 +33,30 @@ public class PlayerType : MonoBehaviour
         }
     }
 
-    GameObject GetPlayerPrefabByType(PlayerTypeEnum type)
+    void ActivatePlayerType(PlayerTypeEnum type)
     {
         switch (type)
         {
             case PlayerTypeEnum.Swat:
-                return swatPrefab;
+                swat.SetActive(true);
+                specialForces.SetActive(false);
+                
+                break;
             case PlayerTypeEnum.SpecialForces:
-                return specialForcesPrefab;
+                specialForces.SetActive(true);
+                break;
             case PlayerTypeEnum.WarSoldier:
-                return warSoldierPrefab;
+                warSoldier.SetActive(true);
+                break;
             case PlayerTypeEnum.GasMaskSoldier:
-                return gasMaskSoldierPrefab;
-            case PlayerTypeEnum.FuturisticSoldier:
-                return futuristicTrooperPrefab;
+                gasMaskSoldier.SetActive(true);
+                break;
+            case PlayerTypeEnum.FuturisticTrooper:
+                futuristicTrooper.SetActive(true);
+                break;
             default:
-                return null;
+                Debug.LogError("Unknown player type: " + type);
+                break;
         }
     }
 }
