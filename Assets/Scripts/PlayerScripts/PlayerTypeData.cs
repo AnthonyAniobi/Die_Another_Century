@@ -130,12 +130,12 @@ namespace PlayerData
                     return new List<WeaponData>
                     {
                         new WeaponData(WeaponType.SMG, 150),
-                        new WeaponData(WeaponType.dagger, 2)
+                        new WeaponData(WeaponType.knife, 1)
                     };
                 case PlayerTypeEnum.SpecialForces:
                     return new List<WeaponData>
                     {
-                        new WeaponData(WeaponType.Sniper, 30),
+                        new WeaponData(WeaponType.SMG, 1),
                         new WeaponData(WeaponType.Pistol, 48)
                     };
                 case PlayerTypeEnum.FuturisticSoldier:
