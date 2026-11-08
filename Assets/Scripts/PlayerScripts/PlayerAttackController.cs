@@ -3,10 +3,18 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
+    [Header("Player Right Arm")]
+    [SerializeField] private GameObject rightArmSwat;
+    [SerializeField] private GameObject rightArmSpecialForces;
+    [SerializeField] private GameObject rightArmWarSoldier;
+    [SerializeField] private GameObject rightArmGasMaskSoldier;
+    [SerializeField] private GameObject rightArmFuturistic;
+    
+    //
     private Animator animator;
     public WeaponType currentWeaponType;
 
-    public List<int> weaponTypes = new List<int> { 0, 1, 2}; // List of weapon types as integers
+    public List<int> weaponTypes = new List<int> { 0, 1, 2, 3, 4, 5, 6 }; // List of weapon types as integers
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -46,5 +54,6 @@ public class PlayerAttackController : MonoBehaviour
     private void SetWeaponAnimation(WeaponType weaponType)
     {
         animator.SetInteger("WeaponType", (int)weaponType);
+        animator.SetTrigger("Equip");
     }
 }
