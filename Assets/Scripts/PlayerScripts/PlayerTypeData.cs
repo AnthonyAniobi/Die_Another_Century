@@ -110,39 +110,39 @@ namespace PlayerData
             }
         }
     
-        public static int GetPlayerWeaponCapacity(this PlayerTypeEnum playerType, WeaponType weaponType)
-        {
-            switch (playerType)
-            {
-                case PlayerTypeEnum.WarSoldier:
-                    ;
-                case PlayerTypeEnum.Swat:
-                    return new List<WeaponData>
-                    {
-                        new WeaponData(WeaponType.Shotgun, 32),
-                        new WeaponData(WeaponType.Pistol, 48)
-                    };
-                case PlayerTypeEnum.GasMaskSoldier:
-                    return new List<WeaponData>
-                    {
-                        new WeaponData(WeaponType.RPG, 150),
-                        new WeaponData(WeaponType.knife, 1)
-                    };
-                case PlayerTypeEnum.SpecialForces:
-                    return new List<WeaponData>
-                    {
-                        new WeaponData(WeaponType.RPG, 1),
-                        new WeaponData(WeaponType.Pistol, 48)
-                    };
-                case PlayerTypeEnum.FuturisticSoldier:
-                    return new List<WeaponData>
-                    {
-                        new WeaponData(WeaponType.Rifle, 120),
-                        new WeaponData(WeaponType.RPG, 150)
-                    };
-                default:
-                    return new List<WeaponData>();
-            }
-        }
+        // public static int GetPlayerWeaponCapacity(this PlayerTypeEnum playerType, WeaponType weaponType)
+        // {
+        //     switch (playerType)
+        //     {
+        //         case PlayerTypeEnum.WarSoldier:
+        //             ;
+        //         case PlayerTypeEnum.Swat:
+        //             return new List<WeaponData>
+        //             {
+        //                 new WeaponData(WeaponType.Shotgun, 32),
+        //                 new WeaponData(WeaponType.Pistol, 48)
+        //             };
+        //         case PlayerTypeEnum.GasMaskSoldier:
+        //             return new List<WeaponData>
+        //             {
+        //                 new WeaponData(WeaponType.RPG, 150),
+        //                 new WeaponData(WeaponType.knife, 1)
+        //             };
+        //         case PlayerTypeEnum.SpecialForces:
+        //             return new List<WeaponData>
+        //             {
+        //                 new WeaponData(WeaponType.RPG, 1),
+        //                 new WeaponData(WeaponType.Pistol, 48)
+        //             };
+        //         case PlayerTypeEnum.FuturisticSoldier:
+        //             return new List<WeaponData>
+        //             {
+        //                 new WeaponData(WeaponType.Rifle, 120),
+        //                 new WeaponData(WeaponType.RPG, 150)
+        //             };
+        //         default:
+        //             return new List<WeaponData>();
+        //     }
+        // }
     }
 }

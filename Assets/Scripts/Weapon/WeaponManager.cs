@@ -35,4 +35,27 @@ public class WeaponManager : MonoBehaviour
         ammoCounts[WeaponType.Grenade] = 5; // Example initial ammo count for Grenade
         ammoCounts[WeaponType.RPG] = 3; // Example initial ammo count for RPG
     }
+
+    public GameObject GetWeaponPrefab(WeaponType weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponType.punch:
+                return null; // Punch doesn't have a prefab
+            case WeaponType.knife:
+                return knifePrefab;
+            case WeaponType.Pistol:
+                return pistolPrefab;
+            case WeaponType.Rifle:
+                return riflePrefab;
+            case WeaponType.Shotgun:
+                return shotgunPrefab;
+            case WeaponType.Grenade:
+                return grenadePrefab;
+            case WeaponType.RPG:
+                return rpgLauncherPrefab;
+            default:
+                return null;
+        }
+    }
 }

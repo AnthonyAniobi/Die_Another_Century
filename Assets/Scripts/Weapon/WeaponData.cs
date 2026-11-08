@@ -2,15 +2,7 @@ using UnityEngine;
 
 public class WeaponData
 {
-    public WeaponType type;
-    public int totalAmmo;
-
-
-    public WeaponData(WeaponType type, int totalAmmo)
-    {
-        this.type = type;
-        this.totalAmmo = totalAmmo;
-    }
+    
 }
 public enum WeaponType
 {
@@ -70,4 +62,11 @@ public static class WeaponDataExtensions
                 return 0;
         }
     }
+
+
+    public static bool isGrenade(this WeaponType weaponType)
+    {
+        return weaponType == WeaponType.Grenade;
+    }
+
 }
