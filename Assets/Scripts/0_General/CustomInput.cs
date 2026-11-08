@@ -17,6 +17,8 @@ public class CustomInput : MonoBehaviour
     internal bool cameraSwitch;
     internal bool sprint;
     internal bool jump;
+    internal bool nextWeapon;
+    internal bool prevWeapon;
     
     private InputActionMap inputActions;
 
@@ -43,10 +45,12 @@ public class CustomInput : MonoBehaviour
             look = inputActions.FindAction("Look").ReadValue<Vector2>();
             attackSingle = inputActions.FindAction("Attack").WasPerformedThisFrame();
             attackContinuous = inputActions.FindAction("Attack").IsPressed();
-            // reload = inputActions.FindAction("Reload").WasPerformedThisFrame();
+            reload = inputActions.FindAction("Reload").WasPerformedThisFrame();
             cameraSwitch = inputActions.FindAction("SwitchCamera").WasPerformedThisFrame();
             sprint = inputActions.FindAction("Sprint").IsPressed();
             jump = inputActions.FindAction("Jump").WasPerformedThisFrame();
+            nextWeapon = inputActions.FindAction("Next").WasPerformedThisFrame();
+            prevWeapon = inputActions.FindAction("Previous").WasPerformedThisFrame();
         }
     }
 
