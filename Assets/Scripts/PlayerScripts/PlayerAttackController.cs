@@ -9,7 +9,14 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] private GameObject rightArmWarSoldier;
     [SerializeField] private GameObject rightArmGasMaskSoldier;
     [SerializeField] private GameObject rightArmFuturistic;
-    
+
+    [Header("Player Left Arm")]
+    [SerializeField] private GameObject leftArmSwat;
+    [SerializeField] private GameObject leftArmSpecialForces;
+    [SerializeField] private GameObject leftArmWarSoldier;
+    [SerializeField] private GameObject leftArmGasMaskSoldier;
+    [SerializeField] private GameObject leftArmFuturistic;
+
     //
     private Animator animator;
     public WeaponType currentWeaponType;
