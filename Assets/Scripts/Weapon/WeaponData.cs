@@ -47,4 +47,27 @@ public static class WeaponDataExtensions
                 return "Unknown Weapon";
         }
     }
+
+    public static int GetWeaponDamage(this WeaponType weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponType.punch:
+                return 10;
+            case WeaponType.knife:
+                return 25;
+            case WeaponType.Pistol:
+                return 15;
+            case WeaponType.Rifle:
+                return 20;
+            case WeaponType.Shotgun:
+                return 30;
+            case WeaponType.Grenade:
+                return 50;
+            case WeaponType.RPG:
+                return 100;
+            default:
+                return 0;
+        }
+    }
 }
