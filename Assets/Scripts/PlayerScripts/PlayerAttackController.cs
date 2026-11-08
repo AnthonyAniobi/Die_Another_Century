@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using PlayerData;
 public class PlayerAttackController : MonoBehaviour
 {
     [Header("Player Right Arm")]
@@ -20,6 +20,7 @@ public class PlayerAttackController : MonoBehaviour
     //
     private Animator animator;
     public WeaponType currentWeaponType;
+    private PlayerTypeEnum currentPlayerType;
 
     public List<int> weaponTypes = new List<int> { 0, 1, 2, 3, 4, 5, 6 }; // List of weapon types as integers
     void Start()
