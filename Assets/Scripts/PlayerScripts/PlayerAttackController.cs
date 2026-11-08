@@ -36,19 +36,25 @@ public class PlayerAttackController : MonoBehaviour
             int currentIndex = weaponTypes.IndexOf((int)currentWeaponType);
             int nextIndex = (currentIndex + 1) % weaponTypes.Count;
             ChangeWeapon((WeaponType)weaponTypes[nextIndex]);
-            Debug.Log("Next Weapon: " + ((WeaponType)weaponTypes[nextIndex]).GetWeaponName());
         }else if (CustomInput.Instance.prevWeapon)
         {
             int currentIndex = weaponTypes.IndexOf((int)currentWeaponType);
             int prevIndex = (currentIndex - 1 + weaponTypes.Count) % weaponTypes.Count;
             ChangeWeapon((WeaponType)weaponTypes[prevIndex]);
-            Debug.Log("Previous Weapon: " + ((WeaponType)weaponTypes[prevIndex]).GetWeaponName());
         }
         //attack
         if (CustomInput.Instance.attackSingle)
         {
             animator.SetTrigger("Attack");
         }
+    }
+
+    public void Initialize(PlayerTypeEnum playerType, WeaponType startingWeapon = WeaponType.punch)
+    {
+        currentPlayerType = playerType;
+        currentWeaponType = startingWeapon;
+        SetWeaponAnimation(startingWeapon);
+        EquipWeapon(startingWeapon);
     }
 
     
@@ -84,6 +90,7 @@ public class PlayerAttackController : MonoBehaviour
         WeaponController weaponController;
         if (weaponPrefab != null && weaponPrefab.TryGetComponent<WeaponController>(out weaponController))
         {
+            Debug.Log("Weapon Controller found for: " + weaponType.GetWeaponName());
             Transform parentTransform;
             switch (currentPlayerType)
             {

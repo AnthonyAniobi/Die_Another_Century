@@ -32,6 +32,7 @@ public class PlayerType : MonoBehaviour
         playerType = type;
         ActivatePlayerType(type);
         animator.avatar = GetAvatarForPlayerType(type);
+        GetComponent<PlayerAttackController>().Initialize(type);
     }
 
     void ActivatePlayerType(PlayerTypeEnum type)
