@@ -15525,7 +15525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0ba592a606e4ab7b9d34e26b1dbaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerType
-  playerType: 4
+  playerType: 3
   swat: {fileID: 591452117605662672}
   specialForces: {fileID: 1078611701069839583}
   warSoldier: {fileID: 291058270918914121}
