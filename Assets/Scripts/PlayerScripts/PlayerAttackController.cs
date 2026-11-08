@@ -87,67 +87,79 @@ public class PlayerAttackController : MonoBehaviour
         leftArmFuturistic.RemoveAllChildren();
         // then add the new weapon to the correct arm based on the player type
         GameObject weaponPrefab = WeaponManager.Instance.GetWeaponPrefab(weaponType);
-        WeaponController weaponController;
-        if (weaponPrefab != null && weaponPrefab.TryGetComponent<WeaponController>(out weaponController))
+        if (weaponPrefab != null)
         {
             Debug.Log("Weapon Controller found for: " + weaponType.GetWeaponName());
             Transform parentTransform;
+            GameObject weapon;
+            Vector3 weaponOffset =  weaponType.GetWeaponOffset(currentPlayerType);
+            Vector3 weaponRotation =  weaponType.GetWeaponRotation(currentPlayerType);
             switch (currentPlayerType)
             {
                 case PlayerTypeEnum.WarSoldier:
                     parentTransform = weaponType.isGrenade()? 
                         leftArmWarSoldier.transform : 
                         rightArmWarSoldier.transform;
-                    Instantiate(
+                    weapon = Instantiate(
                         weaponPrefab,
-                        weaponController.weaponPosition,
-                        Quaternion.Euler(weaponController.weaponRotation),
+                        weaponOffset,
+                        Quaternion.Euler(weaponRotation),
                         parentTransform
                     );
+                    weapon.transform.localPosition = weaponOffset;
+                    weapon.transform.localRotation = Quaternion.Euler(weaponRotation);
                     break;
                 case PlayerTypeEnum.Swat:
                     parentTransform = weaponType.isGrenade()? 
                         leftArmSwat.transform : 
                         rightArmSwat.transform;
-                    Instantiate(
+                    weapon = Instantiate(
                         weaponPrefab,
-                        weaponController.weaponPosition,
-                        Quaternion.Euler(weaponController.weaponRotation),
+                        weaponOffset,
+                        Quaternion.Euler(weaponRotation),
                         parentTransform
                     );
+                    weapon.transform.localPosition = weaponOffset;
+                    weapon.transform.localRotation = Quaternion.Euler(weaponRotation);
                     break;
                 case PlayerTypeEnum.GasMaskSoldier:
                     parentTransform = weaponType.isGrenade()? 
                         leftArmGasMaskSoldier.transform : 
                         rightArmGasMaskSoldier.transform;
-                    Instantiate(
+                    weapon = Instantiate(
                         weaponPrefab,
-                        weaponController.weaponPosition,
-                        Quaternion.Euler(weaponController.weaponRotation),
+                        weaponOffset,
+                        Quaternion.Euler(weaponRotation),
                         parentTransform
                     );
+                    weapon.transform.localPosition = weaponOffset;
+                    weapon.transform.localRotation = Quaternion.Euler(weaponRotation);
                     break;
                 case PlayerTypeEnum.SpecialForces:
                     parentTransform = weaponType.isGrenade()? 
                         leftArmSpecialForces.transform : 
                         rightArmSpecialForces.transform;
-                    Instantiate(
+                    weapon = Instantiate(
                         weaponPrefab,
-                        weaponController.weaponPosition,
-                        Quaternion.Euler(weaponController.weaponRotation),
+                        weaponOffset,
+                        Quaternion.Euler(weaponRotation),
                         parentTransform
                     );
+                    weapon.transform.localPosition = weaponOffset;
+                    weapon.transform.localRotation = Quaternion.Euler(weaponRotation);
                     break;
                 case PlayerTypeEnum.FuturisticSoldier:
                     parentTransform = weaponType.isGrenade()? 
                         leftArmFuturistic.transform : 
                         rightArmFuturistic.transform;
-                    Instantiate(
+                    weapon = Instantiate(
                         weaponPrefab,
-                        weaponController.weaponPosition,
-                        Quaternion.Euler(weaponController.weaponRotation),
+                        weaponOffset,
+                        Quaternion.Euler(weaponRotation),
                         parentTransform
                     );
+                    weapon.transform.localPosition = weaponOffset;
+                    weapon.transform.localRotation = Quaternion.Euler(weaponRotation);
                     Debug.Log("Equipped Futuristic Soldier Weapon: " + weaponType.GetWeaponName());
                     break;
                 default:
