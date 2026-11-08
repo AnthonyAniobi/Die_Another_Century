@@ -20,11 +20,18 @@ public class PlayerAttackController : MonoBehaviour
             int currentIndex = weaponTypes.IndexOf((int)currentWeaponType);
             int nextIndex = (currentIndex + 1) % weaponTypes.Count;
             ChangeWeapon((WeaponType)weaponTypes[nextIndex]);
+            Debug.Log("Next Weapon: " + ((WeaponType)weaponTypes[nextIndex]).GetWeaponName());
         }else if (CustomInput.Instance.prevWeapon)
         {
             int currentIndex = weaponTypes.IndexOf((int)currentWeaponType);
             int prevIndex = (currentIndex - 1 + weaponTypes.Count) % weaponTypes.Count;
             ChangeWeapon((WeaponType)weaponTypes[prevIndex]);
+            Debug.Log("Previous Weapon: " + ((WeaponType)weaponTypes[prevIndex]).GetWeaponName());
+        }
+        //attack
+        if (CustomInput.Instance.attackSingle)
+        {
+            animator.SetTrigger("Attack");
         }
     }
 
@@ -39,6 +46,5 @@ public class PlayerAttackController : MonoBehaviour
     private void SetWeaponAnimation(WeaponType weaponType)
     {
         animator.SetInteger("WeaponType", (int)weaponType);
-        animator.SetBool(weaponType.GetWeaponName(), true);
     }
 }

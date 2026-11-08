@@ -20,7 +20,7 @@ public enum WeaponType
     Rifle = 3,
     Shotgun = 4,
     Grenade = 5,
-    SMG = 6
+    RPG = 6
 }
 
 public static class WeaponDataExtensions
@@ -41,8 +41,8 @@ public static class WeaponDataExtensions
                 return "Shotgun";
             case WeaponType.Grenade:
                 return "Grenade";
-            case WeaponType.SMG:
-                return "SMG";
+            case WeaponType.RPG:
+                return "RPG";
             default:
                 return "Unknown Weapon";
         }

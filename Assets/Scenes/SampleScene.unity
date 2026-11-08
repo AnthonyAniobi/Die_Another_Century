@@ -2860,6 +2860,7 @@ GameObject:
   - component: {fileID: 7018120648961586409}
   - component: {fileID: 7018120648961586410}
   - component: {fileID: 7018120648961586411}
+  - component: {fileID: 7018120648961586412}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -15177,6 +15178,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAimController
   thirdPersonCamera: {fileID: 3203261901519670738}
   firstPersonCamera: {fileID: 853192659}
+--- !u!114 &7018120648961586412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974238579264560664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8046a727d7b9849a8b0d329464f77a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackController
+  currentWeaponType: 0
+  weaponTypes: 000000000100000002000000
 --- !u!4 &7023965415636673601
 Transform:
   m_ObjectHideFlags: 0
