@@ -24,6 +24,19 @@ public class WeaponManager : MonoBehaviour
 
     public static WeaponManager Instance { get; private set; }
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     private void Start()
     {
         // Initialize ammo counts for each weapon type

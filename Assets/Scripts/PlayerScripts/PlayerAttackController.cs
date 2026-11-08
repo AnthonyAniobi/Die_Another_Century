@@ -26,7 +26,7 @@ public class PlayerAttackController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        ChangeWeapon(currentWeaponType);
+        // ChangeWeapon(currentWeaponType);
     }
 
     void Update()
@@ -56,6 +56,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         currentWeaponType = newWeaponType;
         SetWeaponAnimation(newWeaponType);
+        EquipWeapon(newWeaponType);
     }
 
 
@@ -80,8 +81,8 @@ public class PlayerAttackController : MonoBehaviour
         leftArmFuturistic.RemoveAllChildren();
         // then add the new weapon to the correct arm based on the player type
         GameObject weaponPrefab = WeaponManager.Instance.GetWeaponPrefab(weaponType);
-        WeaponController weaponController = weaponPrefab.GetComponent<WeaponController>();
-        if (weaponController != null)
+        WeaponController weaponController;
+        if (weaponPrefab != null && weaponPrefab.TryGetComponent<WeaponController>(out weaponController))
         {
             Transform parentTransform;
             switch (currentPlayerType)
@@ -140,6 +141,7 @@ public class PlayerAttackController : MonoBehaviour
                         Quaternion.Euler(weaponController.weaponRotation),
                         parentTransform
                     );
+                    Debug.Log("Equipped Futuristic Soldier Weapon: " + weaponType.GetWeaponName());
                     break;
                 default:
                     break;
