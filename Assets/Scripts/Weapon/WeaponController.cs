@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Vector3 weaponPosition;
+    public Vector3 weaponRotation;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.localPosition = weaponPosition;
+        transform.localRotation = Quaternion.Euler(weaponRotation);
     }
 }
