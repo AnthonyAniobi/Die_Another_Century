@@ -14286,19 +14286,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4355234212804570218, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.17
+      value: 4.97
       objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.14
+      value: 4.35
       objectReference: {fileID: 0}
     - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14328,6 +14340,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4891038555333072547, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016906443349190186, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 590620bf1f6d443aabf7f4e365bcca02, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18764,16 +18784,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2129771544534429611, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129771544534429611, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129771544534429611, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129771544534429611, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.3
+      value: 3.28
       objectReference: {fileID: 0}
     - target: {fileID: 2129771544534429611, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.28103
+      value: 1.41
       objectReference: {fileID: 0}
     - target: {fileID: 2129771544534429611, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.6
+      value: 4.17
       objectReference: {fileID: 0}
     - target: {fileID: 2129771544534429611, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18803,13 +18835,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2129771544534429611, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5950584494710136227, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 5950584494710136227, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
