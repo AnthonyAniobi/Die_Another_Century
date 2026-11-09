@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public void Initialize(int maxHealth)
     {
         this.maxHealth = maxHealth;
-        this.currentHealth = maxHealth;
+        currentHealth = maxHealth;
         healthSlider.value = healthSliderValue; // Initialize the slider value
     }
 

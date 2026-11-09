@@ -6,6 +6,9 @@ public class EnemyType : MonoBehaviour
 
     [SerializeField] private GameObject bruteObject;
     [SerializeField] private GameObject ninjaObject;
+    [SerializeField] private Avatar bruteAvatar;
+    [SerializeField] private Avatar ninjaAvatar;
+
     void Start()
     {
        Initialize(enemyType); 
@@ -14,8 +17,10 @@ public class EnemyType : MonoBehaviour
     public void Initialize(EnemyTypeEnum type)
     {
         enemyType = type;
+        SetAvatar();
         SetActiveEnemyObject();
         GetComponent<EnemyHealth>().Initialize(enemyType.GetMaxHealth());
+        GetComponent<EnemyLookout>().Initialize(enemyType);
     }
 
 
@@ -30,6 +35,23 @@ public class EnemyType : MonoBehaviour
             case EnemyTypeEnum.Ninja:
                 bruteObject.SetActive(false);
                 ninjaObject.SetActive(true);
+                break;
+            default:
+                Debug.LogWarning("Unknown enemy type: " + enemyType);
+                break;
+        }
+    }
+
+    private void SetAvatar()
+    {
+        Animator animator = GetComponent<Animator>();
+        switch (enemyType)
+        {
+            case EnemyTypeEnum.Brute:
+                animator.avatar = bruteAvatar;
+                break;
+            case EnemyTypeEnum.Ninja:
+                animator.avatar = ninjaAvatar;
                 break;
             default:
                 Debug.LogWarning("Unknown enemy type: " + enemyType);
