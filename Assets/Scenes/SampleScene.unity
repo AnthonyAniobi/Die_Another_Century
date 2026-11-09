@@ -21930,7 +21930,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: ce943c49a1a55422e890272f47e3214f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -25907,7 +25907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfcd101453594abba15c2263e710494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NpcController
-  MoveSpeed: 2
+  MoveSpeed: 4
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -25933,7 +25933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e2ebe5d9ac84332a8111fce0dd0c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NpcType
-  npcType: 1
+  npcType: 0
   workerObject: {fileID: 1810792386}
   womanObject: {fileID: 9162218880490771674}
   workerAvatar: {fileID: 9000000, guid: a0a06ae1e1c044a49a150aa5e1bc82d7, type: 2}
