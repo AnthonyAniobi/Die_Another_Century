@@ -42,19 +42,12 @@ public class EnemyAttack : MonoBehaviour
         activeAttackCollider.enabled = false; // Disable the attack collider initially
     }
 
-    
-     // reference of the attack point
-
-    void Update()
+    public void Attack()
     {
-        if (CustomInput.Instance.attackSingle && canAttack)
+        if (!canAttack)
         {
-            Attack();
-        } 
-    }
-
-    private void Attack()
-    {
+            return;
+        }
         Invoke(nameof(ResetDamage), attackInterval); // Reset the canDamage flag after the interval
         canAttack = false; // Prevent further attacks until the interval has passed
         activeAttackCollider.enabled = true;
