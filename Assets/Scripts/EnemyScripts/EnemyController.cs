@@ -4,84 +4,82 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public Vector2 patrolCenter;
-    [SerializeField] private float patrolLength = 20f; // radius of where the enemy will walk arround to search for the player
-    [SerializeField] private Transform playerEyeLevelTransform; // reference to the player's eye level transform
-    [SerializeField] private float walkSpeed = 3f;
-    [SerializeField] private float runSpeed = 6f;
-    [SerializeField] private float attackRange = 5f;
-
-    private Animator animator;
+    public bool Patroll = true; // whether the enemy is patrolling or idle / chasing
     
-    public Transform playerTransform;
-    private BotCharacterMove movementController;
-    [SerializeField] internal EnemyState currentState = EnemyState.Idle;
+    [Tooltip("Distance to walk before turning")]
+    [SerializeField] private float patroltime = 2f; // time to walk before turning 
+    [Tooltip("Distance to walk when hit by player")]
+    [SerializeField] private float hitReactionTime = 1.5f; // time to move to direction of hit
+    [SerializeField] private float chaseLostCooldown = 3f; // time to wait before returning to patrol after losing sight of player
+    [SerializeField] private float attackRange = 1.5f; // range at which enemy can attack
+    
+    [Tooltip("Position of the player")]
+    public Vector3 playerPosition; // reference to the player's transform if found
+    
 
+    // controls for movement
+    // this will serve like a realtime input into the movement controller
+    // imagine this as a virtual joystick that the enemy AI can control
+    internal Vector2 moveDirection = Vector2.zero; // current move direction
+    internal bool sprinting = false; // whether the enemy is sprinting
 
+    // timers for movement
+    private float chaseTimer = 0f;
+    private int patrolAngle = 0; // 0 = North, 1= East, 2= South, 3= West movement direction in square patrol
+    private bool isPatrolling = true; // whether the enemy is patrolling or idle / chasing
+    private float chaseLostTimer = 0f; // timer for how long the enemy has been chasing the player
 
+    public void Initialize(bool isPatrolling, float patrolTime = 2f)
+    {
+        this.Patroll = isPatrolling; // set wether the enemy is patrolling by default or not
+        this.patroltime = patrolTime;
+    }
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
-        movementController = GetComponent<BotCharacterMove>();
-        if(currentState == EnemyState.Patrol)
+        chaseTimer = patroltime;
+    }
+
+    void Update()
+    {
+        if(chaseTimer > 0)
         {
-            StartPatrolling();
+            chaseTimer -= Time.deltaTime;
+        }
+        else
+        {
+            // if the enemy has been chasing for too long, reset to patrol
+            moveDirection = Vector2.zero;
+            sprinting = false;
+            chaseTimer = patroltime;
+            if (isPatrolling) // if the enemy is patrolling change direcion
+            {
+                SwitchPatrolDirection();
+            }else if (Patroll)
+            {
+                // if the enemy is a patrolling enemy and has lost the player
+                if (chaseLostTimer > 0)
+                {
+                    chaseLostTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    isPatrolling = true;
+                    SwitchPatrolDirection();
+                }
+            }
         }
     }
     
-    // void Update()
-    // {
-    // }
-
-
-    public enum EnemyState
+    public void SetPlayerTransform(Vector3 player)
     {
-        Idle,
-        Patrol,
-        Chase,
-        Attack,
-        Hit,
-        Dead
-    }
-
-    internal void PursuePlayer(Transform playerTransform)
-    {
-        if(currentState == EnemyState.Chase){
-            /// if player is sighted rotate to face the player
-            Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 1);
-        }
-        // pursue the player current position
-        // if the player is in attack range, stop and attack
-        if(IsPlayerInAttackRange(playerTransform))
-        {
-            movementController.StopMovement();
-            PerformAttack();
-        }
-        else if(currentState != EnemyState.Attack)
-        {
-            UpdateEnemyState(EnemyState.Chase);
-            movementController.SetMoveDestination(
-                new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z),
-                runSpeed, 
-                attackRange,
-                attackRange, // use the same threshold for obstacle maneuvering
-                () => {
-                    // UpdateEnemyState(EnemyState.Idle);
-                    // callback when the enemy reaches the players position
-                    if (IsPlayerInAttackRange(playerTransform))
-                    {
-                        movementController.StopMovement();
-                        PerformAttack();
-                    }
-                    else
-                    {
-                        UpdateEnemyState(EnemyState.Idle); // continue pursuing the player if not in range
-                    }
-                }
-            );
-        }
+        playerPosition = new Vector3(player.x, player.y, player.z);
+        moveDirection = new Vector2(
+            playerPosition.x - transform.position.x, 
+            playerPosition.z - transform.position.z).normalized;
+        sprinting = true;
+        chaseTimer = patroltime; // reset the chase timer if the player is still in view
+        isPatrolling = false; // stop patrolling when chasing the player
+        chaseLostTimer = chaseLostCooldown; // reset the chase lost timer for patrolling enemies
     }
 
     private bool IsPlayerInAttackRange(Transform playerTransform)
@@ -94,93 +92,34 @@ public class EnemyController : MonoBehaviour
     {
         // if (canAttack)
         // {
-            UpdateEnemyState(EnemyState.Attack);
+            // UpdateEnemyState(EnemyState.Attack);
             // Invoke("EndAttack", attackInterval); // Schedule the end of the attack after the interval
         // }
     }
 
-    internal void EnemyHit(Vector3 hitDirection)
+    internal void EnemyHit(Vector3 hitDirection) // if enemy is hit move in hit direction
     {
-        movementController.StopMovement();
-        UpdateEnemyState(EnemyState.Hit);
-        // rotate the enemy to face the hit direction
-        StartCoroutine(EndHit(hitDirection));
-
+        moveDirection = new Vector2(hitDirection.x, hitDirection.z).normalized;
+        sprinting = true;
+        chaseTimer = hitReactionTime; // reset the chase timer if the player is still in view
+        isPatrolling = false; // stop patrolling when chasing the player
+        chaseLostTimer = chaseLostCooldown; // reset the chase lost timer for patrolling enemies
     }
-
-    IEnumerator EndHit(Vector3 hitDirection)
+    
+    private void SwitchPatrolDirection()
     {
-        yield return new WaitForSeconds(1.5f); // Wait for the hit animation to finish
-        // Quaternion lookRotation = Quaternion.LookRotation(hitDirection);
-        // transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 1);
-        UpdateEnemyState(EnemyState.Idle);
-    }
-
-    internal void UpdateEnemyState(EnemyState newState)
-    {
-
-        switch (newState)
-        {
-            case EnemyState.Idle:
-                animator.SetBool("WALKING", false);
-                animator.SetBool("RUNNING", false);
-                animator.SetBool("ATTACKING", false);
-                animator.SetBool("DIE", false);
-                currentState = EnemyState.Idle;
-                break;
-            case EnemyState.Patrol:
-                animator.SetBool("WALKING", true);
-                animator.SetBool("RUNNING", false);
-                animator.SetBool("ATTACKING", false);
-                animator.SetBool("DIE", false);
-                currentState = EnemyState.Patrol;
-                break;
-            case EnemyState.Chase:
-                animator.SetBool("WALKING", false);
-                animator.SetBool("RUNNING", true);
-                animator.SetBool("ATTACKING", false);
-                animator.SetBool("DIE", false);
-                currentState = EnemyState.Chase;
-                break;
-            case EnemyState.Attack:
-                animator.SetBool("WALKING", false);
-                animator.SetBool("RUNNING", false);
-                animator.SetBool("ATTACKING", true);
-                animator.SetBool("DIE", false);
-                currentState = EnemyState.Attack;
-                break;
-            case EnemyState.Hit:
-                animator.SetBool("WALKING", false);
-                animator.SetBool("RUNNING", false);
-                animator.SetBool("ATTACKING", false);
-                animator.SetBool("DIE", false);
-                animator.SetTrigger("Hit");
-                currentState = EnemyState.Hit;
-                break;
-            case EnemyState.Dead:
-                animator.SetBool("DIE", true);
-                currentState = EnemyState.Dead;
-                break;
-        }
-    }
-
-
-    private void StartPatrolling()
-    {
-        UpdateEnemyState(EnemyState.Patrol);
         // turn 90 degrees to the right and move forward with the patrol length and walk speed
-        Vector3 patrolDirection = Quaternion.Euler(0, 90, 0) * transform.forward;
-        Vector3 patrolDestination = transform.position + patrolDirection * patrolLength;
-        // rotate the enemy to face the patrol destination
-        Vector3 directionToPatrol = (patrolDestination - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(directionToPatrol);
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 1);
+        patrolAngle = (patrolAngle + 1) % 4;
+        moveDirection = patrolAngle switch
+        {
+            0 => Vector2.up,    // North
+            1 => Vector2.right, // East
+            2 => Vector2.down,  // South
+            3 => Vector2.left,  // West
+            _ => Vector2.zero
+        };
+        sprinting = false;
+        chaseTimer = patroltime; // reset the chase timer if the player is still in view
         
-        movementController.SetMoveDestination(patrolDestination, walkSpeed, attackRange,
-                attackRange, () => {
-            // Once the enemy reaches the patrol point, pick a new one
-            // movementController.StopMovement();
-            StartPatrolling();
-        });
     }
 }

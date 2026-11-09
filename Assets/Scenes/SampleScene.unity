@@ -344,7 +344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &330585544
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1237,6 +1237,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1541060817365579292}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1892237946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4355234212804570218, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+  m_PrefabInstance: {fileID: 6285702152050027662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1892237956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892237946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1aaa5c51ad64c62bb52079d8330a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovementController
+  MoveSpeed: 2
+  SprintSpeed: 5.335
+  RotationSmoothTime: 0.12
+  SpeedChangeRate: 10
+  LandingAudioClip: {fileID: 0}
+  FootstepAudioClips: []
+  FootstepAudioVolume: 0.5
+  Gravity: -15
+  FallTimeout: 0.15
+  Grounded: 1
 --- !u!1 &2064286624
 GameObject:
   m_ObjectHideFlags: 0
@@ -14345,13 +14372,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5016906443349190186, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: bbc9064278e7b4977a686dce68b7bea2, type: 3}
+    - target: {fileID: 5016906443349190186, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 590620bf1f6d443aabf7f4e365bcca02, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 6469658237785930621, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6469658237785930621, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4355234212804570218, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892237956}
   m_SourcePrefab: {fileID: 100100000, guid: baef8b304524a4cedb45f9e95a8de5f3, type: 3}
 --- !u!4 &6287425248276639454
 Transform:
@@ -17616,7 +17655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8051117487140763518
 GameObject:
   m_ObjectHideFlags: 0
@@ -18839,6 +18878,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2613609522302198160, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ce943c49a1a55422e890272f47e3214f, type: 2}
     - target: {fileID: 5950584494710136227, guid: bb860de4edc364b7c83f7eb112acdebd, type: 3}
       propertyPath: m_Name
       value: NPC

@@ -11,7 +11,7 @@ public class NPCVictimController : MonoBehaviour
 
     private Transform playerTransform;
 
-    private BotCharacterMove movementController;
+    // private BotCharacterMove movementController;
 
 
 
@@ -25,7 +25,7 @@ public class NPCVictimController : MonoBehaviour
     
     void Start()
     {
-        movementController = GetComponent<BotCharacterMove>();
+        // movementController = GetComponent<BotCharacterMove>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -44,7 +44,7 @@ public class NPCVictimController : MonoBehaviour
         // if player is in range do nothing
         if(IsPlayerInRange())
         {
-            movementController.StopMovement();
+            // movementController.StopMovement();
             UpdateNPCState(NPCState.Idle);
         }
         else if(playerTransform != null && isBeingRescued)
@@ -53,17 +53,17 @@ public class NPCVictimController : MonoBehaviour
 
             UpdateNPCState(NPCState.Running);
             // move towards the player
-            movementController.SetMoveDestination(
-                playerTransform.position, 
-                moveSpeed, 
-                distanceFromPlayer,
-                distanceFromPlayer,
-                ()=>{
-                    // when the NPC reaches the player, stop moving and play the rescue animation
-                    movementController.StopMovement();
-                    UpdateNPCState(NPCState.Idle);
-                }
-            );
+            // movementController.SetMoveDestination(
+            //     playerTransform.position, 
+            //     moveSpeed, 
+            //     distanceFromPlayer,
+            //     distanceFromPlayer,
+            //     ()=>{
+            //         // when the NPC reaches the player, stop moving and play the rescue animation
+            //         movementController.StopMovement();
+            //         UpdateNPCState(NPCState.Idle);
+            //     }
+            // );
             animator.SetBool("MOVING", true);
         }
     }

@@ -140,9 +140,10 @@ public class GameLevelManager : MonoBehaviour
                 GameObject enemyPrefab = enemyPrefabs[randomIndex];
                 Vector3 enemyPatrolCenter = characterPosition.position;
                 // all preset enemy prefabs will be idle in a single spot
-                enemyPrefab.GetComponent<EnemyController>().patrolCenter = enemyPatrolCenter;
-                enemyPrefab.GetComponent<EnemyController>().currentState = 
-                characterPosition.isOnPatrol?  EnemyController.EnemyState.Patrol : EnemyController.EnemyState.Idle;
+                enemyPrefab.GetComponent<EnemyController>().Initialize(characterPosition.isOnPatrol);
+                // enemyPrefab.GetComponent<EnemyController>().patrolCenter = enemyPatrolCenter;
+                // enemyPrefab.GetComponent<EnemyController>().currentState = 
+                // characterPosition.isOnPatrol?  EnemyController.EnemyState.Patrol : EnemyController.EnemyState.Idle;
                 Instantiate(enemyPrefab, characterPosition.position, characterPosition.rotation);
             }
             else if (characterPosition.characterType == CharacterPosition.CharacterType.NPC)
@@ -169,7 +170,8 @@ public class GameLevelManager : MonoBehaviour
             // find the player in the scene
             if (currentPlayer != null)
             {
-                enemyPrefab.GetComponent<EnemyController>().PursuePlayer(currentPlayer.transform);
+                enemyPrefab.GetComponent<EnemyController>().Initialize(true);
+                // enemyPrefab.GetComponent<EnemyController>().PursuePlayer(currentPlayer.transform);
                 // all spawed enemies should pursue the player
                 Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
             }
