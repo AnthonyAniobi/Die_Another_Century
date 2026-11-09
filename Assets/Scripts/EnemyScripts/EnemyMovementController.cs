@@ -50,30 +50,13 @@ public class EnemyMovementController : MonoBehaviour
     private Animator _animator;
     private CharacterController _controller;
 
-    private const float _threshold = 0.01f;
-
     private bool _hasAnimator;
-
-    private bool IsCurrentDeviceMouse
-    {
-        get
-        {
-            return true;
-        }
-    }
-
-
-    private void Awake()
-    {
-        
-    }
 
     private void Start()
     {
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
         AssignAnimationIDs();
-
         _fallTimeoutDelta = FallTimeout;
     }
 
