@@ -3,7 +3,9 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] private Canvas healthCanvas; // Reference to the Canvas containing the health bar
     [SerializeField] private Slider healthSlider; // Reference to the UI Slider for health
+    [SerializeField] private Image fillImage; // Reference to the fill image of the slider
     private int maxHealth;
     private int currentHealth;
 
@@ -11,13 +13,13 @@ public class EnemyHealth : MonoBehaviour
     {
         this.maxHealth = maxHealth;
         currentHealth = maxHealth;
-        healthSlider.value = healthSliderValue; // Initialize the slider value
+        healthSlider.value = 1; // Initialize the slider value
+        healthCanvas.worldCamera = Camera.main; // Set the canvas to face the main camera
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthSlider.value = healthSliderValue; // Update the slider value
 
         if (currentHealth <= 0)
         {
@@ -32,5 +34,14 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject); // Destroy the enemy GameObject
     }
 
-    private float healthSliderValue => (float)currentHealth / maxHealth;
+    
+
+    private void Update()
+    {
+        // Make the health bar face the camera
+        healthCanvas.transform.LookAt(Camera.main.transform);
+        healthCanvas.transform.Rotate(0, 180, 0); // Rotate to face the camera correctly
+        healthSlider.value = (float)currentHealth / maxHealth; // Update the slider value each frame
+        fillImage.color = Color.Lerp(Color.red, Color.green, (float)currentHealth / maxHealth); // Update the fill color based on health
+    }
 }
