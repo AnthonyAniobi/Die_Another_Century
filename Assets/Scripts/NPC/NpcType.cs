@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class NpcType : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public NpcTypeEnum npcType;
+    [SerializeField] private GameObject workerObject;
+    [SerializeField] private GameObject womanObject;
+    [SerializeField] private Avatar workerAvatar;
+    [SerializeField] private Avatar womanAvatar;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize()
     {
+        Animator animator = GetComponent<Animator>();
+        animator.avatar = npcType == NpcTypeEnum.Worker ? workerAvatar : womanAvatar;
         
     }
 }
