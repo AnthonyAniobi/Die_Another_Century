@@ -141,6 +141,7 @@ public class EnemyMovementController : MonoBehaviour
         {
             _speed = targetSpeed;
         }
+        Debug.Log($"Current Speed: {_speed}, Target Speed: {targetSpeed}, Input Magnitude: {inputMagnitude}");
 
         _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
         if (_animationBlend < 0.01f) _animationBlend = 0f;
@@ -163,7 +164,7 @@ public class EnemyMovementController : MonoBehaviour
 
 
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
+        // Debug.Log($"Target Direction: {targetDirection}, Target Rotation: {_targetRotation}, Input Direction: {inputDirection}");
         // move the player
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
