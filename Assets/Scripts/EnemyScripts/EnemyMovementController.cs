@@ -123,7 +123,7 @@ public class EnemyMovementController : MonoBehaviour
 
         float speedOffset = 0.1f;
         float inputMagnitude = CustomInput.Instance.move.magnitude;
-        // _input.analogMovement ? _input.move.magnitude : 1f;
+        
 
         // accelerate or decelerate to target speed
         if (currentHorizontalSpeed < targetSpeed - speedOffset ||
