@@ -39,4 +39,17 @@ public static class EnemyTypeExtensions
                 return 1f; // Default speed for unknown types
         }
     }
+
+    public static float GetAttackDelay(this EnemyTypeEnum enemyType)
+    {
+        switch (enemyType)
+        {
+            case EnemyTypeEnum.Brute:
+                return 4f; // Brute has a longer attack delay
+            case EnemyTypeEnum.Ninja:
+                return 1.2f; // Ninja has a shorter attack delay
+            default:
+                return 1f; // Default attack delay for unknown types
+        }
+    }
 }

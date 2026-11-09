@@ -56,7 +56,7 @@ public class EnemyAttack : MonoBehaviour
         Invoke(nameof(ResetDamage), attackInterval); // Reset the canDamage flag after the interval
         canAttack = false; // Prevent further attacks until the interval has passed
         activeAttackCollider.enabled = true;
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(animationTriggerName); // Trigger the attack animation
     }
 
     private void ResetDamage()
