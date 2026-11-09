@@ -28,10 +28,12 @@ public class EnemyAttack : MonoBehaviour
             case EnemyTypeEnum.Brute:
                 activeAttackCollider = bruteAxeCollider;
                 animationTriggerName = "Attack1"; // Set the animation trigger name for Brute
+                attackInterval = enemyType.GetAttackDelay(); // Set the attack interval based on the enemy type
                 break;
             case EnemyTypeEnum.Ninja:
                 activeAttackCollider = ninjaSwordCollider;
                 animationTriggerName = "Attack2"; // Set the animation trigger name for Ninja
+                attackInterval = enemyType.GetAttackDelay(); // Set the attack interval based on the enemy type
                 break;
             default:
                 Debug.LogWarning("Unknown enemy type: " + enemyType);
