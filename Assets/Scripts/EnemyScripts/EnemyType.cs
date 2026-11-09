@@ -21,6 +21,7 @@ public class EnemyType : MonoBehaviour
         SetActiveEnemyObject();
         GetComponent<EnemyHealth>().Initialize(enemyType.GetMaxHealth());
         GetComponent<EnemyLookout>().Initialize(enemyType);
+        GetComponent<EnemyAttack>().Initialize(enemyType);
     }
 
 

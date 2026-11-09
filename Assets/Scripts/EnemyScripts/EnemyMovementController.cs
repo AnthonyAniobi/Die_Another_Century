@@ -141,8 +141,7 @@ public class EnemyMovementController : MonoBehaviour
         {
             _speed = targetSpeed;
         }
-        Debug.Log($"Current Speed: {_speed}, Target Speed: {targetSpeed}, Input Magnitude: {inputMagnitude}");
-
+        
         _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
         if (_animationBlend < 0.01f) _animationBlend = 0f;
 

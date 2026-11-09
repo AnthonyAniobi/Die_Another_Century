@@ -3,63 +3,66 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
 
-    [SerializeField] private int damage = 1; // Damage dealt to the player
-    [SerializeField] private float attackRadius = 2f; // Range within which the enemy can attack
-    [SerializeField] private Transform attackPoint;
+    [SerializeField] private BoxCollider ninjaSwordCollider; // Reference to the ninja's attack collider
+    [SerializeField] private BoxCollider bruteAxeCollider; // Reference to the brute's attack collider
     [SerializeField] private LayerMask[] enemyAttackVictim = new LayerMask[2]; // Layer mask to filter the player layer
-    [SerializeField] private float damageInterval = 1.5f; // Time between attacks to prevent continuous damage
-    [SerializeField] private bool canDamage = true; // Flag to control attack timing
+    
+    // private variables
+    private BoxCollider activeAttackCollider; // Reference to the currently active attack collider
+    private bool canAttack = true; // Flag to control attack availability
+    private float attackInterval = 1f; // Interval between attacks
+    private Animator animator; // Reference to the Animator component
 
-    private EnemyController enemyController;
+    private string animationTriggerName = "Attack";
 
     void Start()
     {
-        enemyController = GetComponentInParent<EnemyController>();
-        if (attackPoint == null)
-        {
-            Debug.LogError("Attack point is not assigned in the inspector.");
-        }
+        animator = GetComponent<Animator>();
     }
 
-    void OnDrawGizmos()
+
+    public void Initialize(EnemyTypeEnum enemyType)
     {
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+        switch (enemyType)
+        {
+            case EnemyTypeEnum.Brute:
+                activeAttackCollider = bruteAxeCollider;
+                animationTriggerName = "Attack1"; // Set the animation trigger name for Brute
+                break;
+            case EnemyTypeEnum.Ninja:
+                activeAttackCollider = ninjaSwordCollider;
+                animationTriggerName = "Attack2"; // Set the animation trigger name for Ninja
+                break;
+            default:
+                Debug.LogWarning("Unknown enemy type: " + enemyType);
+                break;
+        }
+        activeAttackCollider.enabled = false; // Disable the attack collider initially
     }
+
+    
      // reference of the attack point
 
     void Update()
     {
-        if (canDamage && IsEnemyAttacking())
+        if (CustomInput.Instance.attackSingle && canAttack)
         {
-            canDamage = false; // Prevent further damage until the interval has passed
-            Invoke(nameof(ResetDamage), damageInterval); // Reset the canDamage flag after the interval
-            CheckForPlayerInDamageRange();
+            Attack();
         } 
     }
 
-    private void CheckForPlayerInDamageRange()
+    private void Attack()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(attackPoint.position, attackRadius, LayerMask.GetMask("Player", "NPC"));
-        foreach(var collider in hitColliders)
-        {
-            if (collider.CompareTag("Player") || collider.CompareTag("NPC"))
-            {
-                print("Enemy hit a target!");
-                collider.GetComponent<HealthController>()?.TakeDamage(damage);
-                break;
-            }
-        }
+        Invoke(nameof(ResetDamage), attackInterval); // Reset the canDamage flag after the interval
+        canAttack = false; // Prevent further attacks until the interval has passed
+        activeAttackCollider.enabled = true;
+        animator.SetTrigger("Attack");
     }
 
     private void ResetDamage()
     {
-        canDamage = true; // Allow damage again after the interval
-    }
-
-    private bool IsEnemyAttacking()
-    {
-        return false;
-        // return enemyController.currentState == EnemyController.EnemyState.Attack;
+        canAttack = true; // Allow damage again after the interval
+        activeAttackCollider.enabled = false; // Disable the attack collider after the interval
     }
     
 }
