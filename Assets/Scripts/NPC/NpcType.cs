@@ -10,13 +10,29 @@ public class NpcType : MonoBehaviour
 
     void Start()
     {
-        
+        Initialize();
     }
 
     public void Initialize()
     {
-        Animator animator = GetComponent<Animator>();
-        animator.avatar = npcType == NpcTypeEnum.Worker ? workerAvatar : womanAvatar;
-        
+        SetNpcType(npcType);
+    }
+
+    private void SetNpcType(NpcTypeEnum type)
+    {
+        npcType = type;
+        switch (npcType)
+        {
+            case NpcTypeEnum.Worker:
+                workerObject.SetActive(true);
+                womanObject.SetActive(false);
+                GetComponent<Animator>().avatar = workerAvatar;
+                break;
+            case NpcTypeEnum.Woman:
+                workerObject.SetActive(false);
+                womanObject.SetActive(true);
+                GetComponent<Animator>().avatar = womanAvatar;
+                break;
+        }
     }
 }
