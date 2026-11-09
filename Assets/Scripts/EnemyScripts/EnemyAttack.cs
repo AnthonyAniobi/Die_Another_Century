@@ -58,7 +58,8 @@ public class EnemyAttack : MonoBehaviour
 
     private bool IsEnemyAttacking()
     {
-        return enemyController.currentState == EnemyController.EnemyState.Attack;
+        return false;
+        // return enemyController.currentState == EnemyController.EnemyState.Attack;
     }
     
 }
