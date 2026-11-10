@@ -160,7 +160,6 @@ public class PlayerAttackController : MonoBehaviour
                     );
                     weapon.transform.localPosition = weaponOffset;
                     weapon.transform.localRotation = Quaternion.Euler(weaponRotation);
-                    Debug.Log("Equipped Futuristic Soldier Weapon: " + weaponType.GetWeaponName());
                     break;
                 default:
                     break;

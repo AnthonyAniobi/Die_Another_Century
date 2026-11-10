@@ -39,6 +39,7 @@ public class EnemyLookout : MonoBehaviour
         {
             if(hit.collider.CompareTag("Player"))
             {
+                Debug.Log($"Player sighted by enemy lookout!, distance: {Vector3.Distance(playerEyeLevelTransform.position, hit.transform.position)}");
                 canSeePlayer = true;
                 // Debug.Log("Player sighted by enemy lookout!");
                 // if(gameObject.GetComponent<EnemyAttack>().canAttack){

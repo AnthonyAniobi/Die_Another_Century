@@ -1,5 +1,7 @@
 using UnityEngine;
 using PlayerData;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerType : MonoBehaviour
 {
@@ -19,9 +21,14 @@ public class PlayerType : MonoBehaviour
     public Avatar warSoldierAvatar;
     public Avatar gasMaskSoldierAvatar;
     public Avatar futuristicTrooperAvatar;
+    
+    [Header("Player Type Data")]
+    public TextMeshProUGUI playerNameText;
+    public Image image;
 
     private Animator animator;
     internal Sprite sprite;
+    private string playerName;
     
     void Awake()
     {
@@ -33,8 +40,11 @@ public class PlayerType : MonoBehaviour
         playerType = type;
         ActivatePlayerType(type);
         animator.avatar = GetAvatarForPlayerType(type);
-        GetComponent<PlayerAttackController>().Initialize(type);
         sprite = type.GetSpriteForPlayerType();
+        playerName = type.GetDisplayName();
+        playerNameText.text = playerName;
+        image.sprite = sprite;
+        GetComponent<PlayerAttackController>().Initialize(type);
     }
 
     void ActivatePlayerType(PlayerTypeEnum type)

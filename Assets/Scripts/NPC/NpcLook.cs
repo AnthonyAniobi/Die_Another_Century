@@ -38,7 +38,7 @@ public class NpcLook : MonoBehaviour
             if(hit.collider.CompareTag("Player"))
             {
                 // Debug.Log("Player sighted by enemy lookout!");
-                gameObject.GetComponent<EnemyController>().SetPlayerTransform(hit.transform.position);
+                gameObject.GetComponent<NpcController>().SetPlayerTransform(hit.transform.position);
             } 
             DebugExtension.DrawSphereCast(npcEyeTransform.position, lookRadius, npcEyeTransform.forward, hit.distance, Color.green);
         }
