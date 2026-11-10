@@ -8,6 +8,8 @@ public class EnemyLookout : MonoBehaviour
     [SerializeField] private float viewRadius = 2f; // Radius of the lookout area
     
     private Transform playerEyeLevelTransform;
+    public bool canSeePlayer = false; // Flag to indicate if the enemy can see the player
+    public bool canAttackPlayer = false; // Flag to indicate if the enemy can attack the player
 
     public void Initialize(EnemyTypeEnum enemyType)
     {
@@ -37,17 +39,30 @@ public class EnemyLookout : MonoBehaviour
         {
             if(hit.collider.CompareTag("Player"))
             {
+                canSeePlayer = true;
                 // Debug.Log("Player sighted by enemy lookout!");
-                if(gameObject.GetComponent<EnemyAttack>().canAttack){
+                // if(gameObject.GetComponent<EnemyAttack>().canAttack){
                     // only set the player position if the enemy can attack so the enemy doesn't chase the player
                     // while in the middle of an attack animation
+                    canAttackPlayer = true;
                     gameObject.GetComponent<EnemyController>().SetPlayerTransform(hit.transform.position);
-                }
-            } 
+                // }
+                // else
+                // {
+                //     canAttackPlayer = false;
+                // }
+            }
+            else
+            {
+                canSeePlayer = false;
+                canAttackPlayer = false;
+            }
             DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.green);
         }
         else
         {
+            canSeePlayer = false;
+            canAttackPlayer = false;
             DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, eyeDistance, Color.red);
         }
     }
