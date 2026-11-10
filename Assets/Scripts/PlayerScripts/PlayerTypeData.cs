@@ -110,6 +110,25 @@ namespace PlayerData
             }
         }
     
+        public static Sprite GetSpriteForPlayerType(this PlayerTypeEnum playerType)
+        {
+            switch (playerType)
+            {
+                case PlayerTypeEnum.WarSoldier:
+                    return Resources.Load<Sprite>("Sprites/Players/OldSoldierSprite");
+                case PlayerTypeEnum.Swat:
+                    return Resources.Load<Sprite>("Sprites/Players/SwatSprite");
+                case PlayerTypeEnum.GasMaskSoldier:
+                    return Resources.Load<Sprite>("Sprites/Players/SoldierGasMaskSprite");
+                case PlayerTypeEnum.SpecialForces:
+                    return Resources.Load<Sprite>("Sprites/Players/SwatSoldierSprite");
+                case PlayerTypeEnum.FuturisticSoldier:
+                    return Resources.Load<Sprite>("Sprites/Players/TrooperSprite");
+                default:
+                    return null;
+            }
+        }
+        
         // public static int GetPlayerWeaponCapacity(this PlayerTypeEnum playerType, WeaponType weaponType)
         // {
         //     switch (playerType)

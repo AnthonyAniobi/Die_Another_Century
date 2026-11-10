@@ -21,6 +21,7 @@ public class PlayerType : MonoBehaviour
     public Avatar futuristicTrooperAvatar;
 
     private Animator animator;
+    internal Sprite sprite;
     
     void Awake()
     {
@@ -33,6 +34,7 @@ public class PlayerType : MonoBehaviour
         ActivatePlayerType(type);
         animator.avatar = GetAvatarForPlayerType(type);
         GetComponent<PlayerAttackController>().Initialize(type);
+        sprite = GetSpriteForPlayerType(type);
     }
 
     void ActivatePlayerType(PlayerTypeEnum type)
