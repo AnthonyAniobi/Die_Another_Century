@@ -2666,7 +2666,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 4.000001}
+  m_AnchoredPosition: {x: 0, y: 4.6}
   m_SizeDelta: {x: 15, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7961320976361162818
@@ -4615,6 +4615,8 @@ MonoBehaviour:
   bruteEyeLevelTransform: {fileID: 8199654600614700249}
   ninjaEyeLevelTransform: {fileID: 4627410605655722055}
   viewRadius: 2
+  canSeePlayer: 0
+  canAttackPlayer: 0
 --- !u!114 &3719935463848643079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4634,6 +4636,7 @@ MonoBehaviour:
     m_Bits: 0
   - serializedVersion: 2
     m_Bits: 0
+  canAttack: 1
 --- !u!114 &4290458143484777080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4650,7 +4653,7 @@ MonoBehaviour:
   patroltime: 2
   hitReactionTime: 1.5
   chaseLostCooldown: 3
-  attackRange: 3
+  attackRange: 1.8
   playerPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &6028630222949061887
 MonoBehaviour:
@@ -6334,9 +6337,9 @@ Transform:
   m_GameObject: {fileID: 7766261974277117208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6859334551906343653}
   - {fileID: 8313522359335597114}
@@ -6939,8 +6942,8 @@ Transform:
   m_GameObject: {fileID: 8807480822298059120}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -1.97, z: 0}
-  m_LocalScale: {x: 2.820513, y: 2.820513, z: 2.820513}
+  m_LocalPosition: {x: 0.06, y: -1.86, z: 0}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2937533149474370405}

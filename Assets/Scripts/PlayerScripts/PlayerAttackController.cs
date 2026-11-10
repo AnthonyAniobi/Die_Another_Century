@@ -3,6 +3,11 @@ using UnityEngine;
 using PlayerData;
 public class PlayerAttackController : MonoBehaviour
 {
+    [Header("Player Attack Controller")]
+    [Space(10)]
+    [Header("Aim UI")]
+    [SerializeField] private GameObject aimUI;
+
     [Header("Player Right Arm")]
     [SerializeField] private GameObject rightArmSwat;
     [SerializeField] private GameObject rightArmSpecialForces;
@@ -21,7 +26,7 @@ public class PlayerAttackController : MonoBehaviour
     private Animator animator;
     public WeaponType currentWeaponType;
     private PlayerTypeEnum currentPlayerType;
-
+    private GameObject weapon;
     public List<int> weaponTypes = new List<int> { 0, 1, 2, 3, 4, 5, 6 }; // List of weapon types as integers
     void Start()
     {
@@ -54,6 +59,7 @@ public class PlayerAttackController : MonoBehaviour
         currentWeaponType = startingWeapon;
         SetWeaponAnimation(startingWeapon);
         EquipWeapon(startingWeapon);
+        aimUI.SetActive(false);
     }
 
     
@@ -90,7 +96,18 @@ public class PlayerAttackController : MonoBehaviour
         leftArmFuturistic.RemoveAllChildren();
         if (weaponType == WeaponType.punch)
         {
+            weapon = null;
+            aimUI.SetActive(false);
             return; // No weapon to equip for punch
+        }
+        // checks for aim ui for the weapon type
+        if(weaponType == WeaponType.Pistol || weaponType == WeaponType.Rifle || weaponType == WeaponType.Shotgun)
+        {
+            aimUI.SetActive(true);
+        }
+        else
+        {
+            aimUI.SetActive(false);
         }
         // then add the new weapon to the correct arm based on the player type
         GameObject weaponPrefab = WeaponManager.Instance.GetWeaponPrefab(weaponType);
@@ -98,7 +115,6 @@ public class PlayerAttackController : MonoBehaviour
         {
             Debug.Log("Weapon Controller found for: " + weaponType.GetWeaponName());
             Transform parentTransform;
-            GameObject weapon;
             Vector3 weaponOffset =  weaponType.GetWeaponOffset(currentPlayerType);
             Vector3 weaponRotation =  weaponType.GetWeaponRotation(currentPlayerType);
             switch (currentPlayerType)
