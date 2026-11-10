@@ -10,12 +10,13 @@ public class NpcType : MonoBehaviour
 
     void Start()
     {
-        Initialize();
+        Initialize(npcType);
     }
 
-    public void Initialize()
+    public void Initialize(NpcTypeEnum npcType)
     {
         SetNpcType(npcType);
+        GetComponent<NpcLook>().Initialize(npcType);
     }
 
     private void SetNpcType(NpcTypeEnum type)

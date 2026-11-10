@@ -9,7 +9,7 @@ public class EnemyAttack : MonoBehaviour
     
     // private variables
     private BoxCollider activeAttackCollider; // Reference to the currently active attack collider
-    private bool canAttack = true; // Flag to control attack availability
+    public bool canAttack = true; // Flag to control attack availability
     private float attackInterval = 1f; // Interval between attacks
     private Animator animator; // Reference to the Animator component
 

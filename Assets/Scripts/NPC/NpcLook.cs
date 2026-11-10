@@ -8,7 +8,7 @@ public class NpcLook : MonoBehaviour
     [SerializeField] private GameObject womanEyeTransform;
 
     private Transform npcEyeTransform;
-    void Initialize(NpcTypeEnum npcType)
+    public void Initialize(NpcTypeEnum npcType)
     {
         switch (npcType)
         {

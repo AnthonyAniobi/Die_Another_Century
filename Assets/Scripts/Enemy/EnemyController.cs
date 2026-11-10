@@ -43,7 +43,6 @@ public class EnemyController : MonoBehaviour
     {
         if(IsPlayerInAttackRange())
         {
-            StopMoving();
             PerformAttack();
         }
         else if(chaseTimer > 0)
@@ -76,12 +75,6 @@ public class EnemyController : MonoBehaviour
     public void SetPlayerTransform(Vector3 player)
     {
         playerPosition = new Vector3(player.x, player.y, player.z);
-        if (IsPlayerInAttackRange())
-        {
-            StopMoving();
-            PerformAttack();
-            return;
-        }
         moveDirection = new Vector2(
             playerPosition.x - transform.position.x, 
             playerPosition.z - transform.position.z).normalized;
@@ -99,11 +92,13 @@ public class EnemyController : MonoBehaviour
     
     private void PerformAttack()
     {
+        StopMoving();
         GetComponent<EnemyAttack>().Attack();
     }
     private void StopMoving()
     {
         moveDirection = Vector2.zero;
+        playerPosition = Vector3.zero;
         sprinting = false;
         chaseTimer = patroltime;
     }
