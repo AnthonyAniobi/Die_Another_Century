@@ -23,4 +23,9 @@ public static class DebugExtension
         Debug.DrawLine(origin + orthoY, endPoint + orthoY, color);
         Debug.DrawLine(origin - orthoY, endPoint - orthoY, color);
     }
+
+    public static void DrawRay(Vector3 origin, Vector3 direction, Color color)
+    {
+        Debug.DrawLine(origin, origin + direction, color);
+    }
 }

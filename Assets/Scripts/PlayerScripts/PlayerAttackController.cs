@@ -26,7 +26,6 @@ public class PlayerAttackController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        // ChangeWeapon(currentWeaponType);
     }
 
     void Update()
@@ -68,6 +67,10 @@ public class PlayerAttackController : MonoBehaviour
 
     private void SetWeaponAnimation(WeaponType weaponType)
     {
+        if(animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
         animator.SetInteger("WeaponType", (int)weaponType);
         animator.SetTrigger("Equip");
     }
