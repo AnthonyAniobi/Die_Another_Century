@@ -45,6 +45,7 @@ public class PlayerType : MonoBehaviour
         playerNameText.text = playerName;
         image.sprite = sprite;
         GetComponent<PlayerAttackController>().Initialize(type);
+        GetComponent<PlayerHealth>().Initialize(type.GetHealth());
     }
 
     void ActivatePlayerType(PlayerTypeEnum type)
