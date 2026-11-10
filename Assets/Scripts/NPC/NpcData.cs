@@ -10,3 +10,11 @@ public enum NpcTypeEnum
     Worker,
     Woman,
 }
+
+public enum NpcStateEnum
+{
+    InCaptivity,
+    Rescuing,
+    Lost,
+    Rescued,
+}

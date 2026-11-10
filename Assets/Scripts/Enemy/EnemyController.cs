@@ -41,16 +41,19 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if(chaseTimer > 0)
+        if(IsPlayerInAttackRange())
+        {
+            StopMoving();
+            PerformAttack();
+        }
+        else if(chaseTimer > 0)
         {
             chaseTimer -= Time.deltaTime;
         }
         else
         {
             // if the enemy has been chasing for too long, reset to patrol
-            moveDirection = Vector2.zero;
-            sprinting = false;
-            chaseTimer = patroltime;
+            StopMoving();
             if (isPatrolling) // if the enemy is patrolling change direcion
             {
                 SwitchPatrolDirection();
@@ -82,19 +85,21 @@ public class EnemyController : MonoBehaviour
         chaseLostTimer = chaseLostCooldown; // reset the chase lost timer for patrolling enemies
     }
 
-    private bool IsPlayerInAttackRange(Transform playerTransform)
+    private bool IsPlayerInAttackRange()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, playerPosition);
         return distanceToPlayer <= attackRange;
     }
     
     private void PerformAttack()
     {
-        // if (canAttack)
-        // {
-            // UpdateEnemyState(EnemyState.Attack);
-            // Invoke("EndAttack", attackInterval); // Schedule the end of the attack after the interval
-        // }
+        GetComponent<EnemyAttack>().Attack();
+    }
+    private void StopMoving()
+    {
+        moveDirection = Vector2.zero;
+        sprinting = false;
+        chaseTimer = patroltime;
     }
 
     internal void EnemyHit(Vector3 hitDirection) // if enemy is hit move in hit direction
