@@ -83,6 +83,15 @@ public class PlayerAttackController : MonoBehaviour
 
     private void EquipWeapon(WeaponType weaponType)
     {
+        // checks for aim ui for the weapon type
+        if(weaponType == WeaponType.Pistol || weaponType == WeaponType.Rifle || weaponType == WeaponType.Shotgun)
+        {
+            aimUI.SetActive(true);
+        }
+        else
+        {
+            aimUI.SetActive(false);
+        }
         // look at all the arm and remove the children
         rightArmWarSoldier.RemoveAllChildren();
         leftArmWarSoldier.RemoveAllChildren();
@@ -97,18 +106,9 @@ public class PlayerAttackController : MonoBehaviour
         if (weaponType == WeaponType.punch)
         {
             weapon = null;
-            aimUI.SetActive(false);
             return; // No weapon to equip for punch
         }
-        // checks for aim ui for the weapon type
-        if(weaponType == WeaponType.Pistol || weaponType == WeaponType.Rifle || weaponType == WeaponType.Shotgun)
-        {
-            aimUI.SetActive(true);
-        }
-        else
-        {
-            aimUI.SetActive(false);
-        }
+        
         // then add the new weapon to the correct arm based on the player type
         GameObject weaponPrefab = WeaponManager.Instance.GetWeaponPrefab(weaponType);
         if (weaponPrefab != null)
