@@ -88,6 +88,10 @@ public class PlayerAttackController : MonoBehaviour
         leftArmSpecialForces.RemoveAllChildren();
         rightArmFuturistic.RemoveAllChildren();
         leftArmFuturistic.RemoveAllChildren();
+        if (weaponType == WeaponType.punch)
+        {
+            return; // No weapon to equip for punch
+        }
         // then add the new weapon to the correct arm based on the player type
         GameObject weaponPrefab = WeaponManager.Instance.GetWeaponPrefab(weaponType);
         if (weaponPrefab != null)
