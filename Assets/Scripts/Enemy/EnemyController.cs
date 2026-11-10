@@ -76,6 +76,12 @@ public class EnemyController : MonoBehaviour
     public void SetPlayerTransform(Vector3 player)
     {
         playerPosition = new Vector3(player.x, player.y, player.z);
+        if (IsPlayerInAttackRange())
+        {
+            StopMoving();
+            PerformAttack();
+            return;
+        }
         moveDirection = new Vector2(
             playerPosition.x - transform.position.x, 
             playerPosition.z - transform.position.z).normalized;

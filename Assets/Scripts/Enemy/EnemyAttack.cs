@@ -52,12 +52,14 @@ public class EnemyAttack : MonoBehaviour
         canAttack = false; // Prevent further attacks until the interval has passed
         activeAttackCollider.enabled = true;
         animator.SetTrigger(animationTriggerName); // Trigger the attack animation
+        animator.SetBool("IsAttacking", true); // Set the IsAttacking parameter to true
     }
 
     private void ResetDamage()
     {
         canAttack = true; // Allow damage again after the interval
         activeAttackCollider.enabled = false; // Disable the attack collider after the interval
+        animator.SetBool("IsAttacking", false); // Set the IsAttacking parameter to false
     }
     
 }
