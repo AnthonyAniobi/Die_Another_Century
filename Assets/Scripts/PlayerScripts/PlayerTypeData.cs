@@ -115,15 +115,15 @@ namespace PlayerData
             switch (playerType)
             {
                 case PlayerTypeEnum.WarSoldier:
-                    return Resources.Load<Sprite>("Sprites/Players/OldSoldierSprite");
+                    return Resources.Load<Sprite>("Sprites/Avatars/WarSoldier");
                 case PlayerTypeEnum.Swat:
-                    return Resources.Load<Sprite>("Sprites/Players/SwatSprite");
+                    return Resources.Load<Sprite>("Sprites/Avatars/Swat");
                 case PlayerTypeEnum.GasMaskSoldier:
-                    return Resources.Load<Sprite>("Sprites/Players/SoldierGasMaskSprite");
+                    return Resources.Load<Sprite>("Sprites/Avatars/GasMask");
                 case PlayerTypeEnum.SpecialForces:
-                    return Resources.Load<Sprite>("Sprites/Players/SwatSoldierSprite");
+                    return Resources.Load<Sprite>("Sprites/Avatars/SpecialForces");
                 case PlayerTypeEnum.FuturisticSoldier:
-                    return Resources.Load<Sprite>("Sprites/Players/TrooperSprite");
+                    return Resources.Load<Sprite>("Sprites/Avatars/FuturisticTrooper");
                 default:
                     return null;
             }
