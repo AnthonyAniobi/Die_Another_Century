@@ -1,6 +1,7 @@
 using UnityEngine;
 using PlayerData;
 using Unity.Cinemachine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -355,4 +356,45 @@ public class PlayerController : MonoBehaviour
             AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
         }
     }
+
+    // public methods
+    public void FaceCamera(System.Action onFinished = null, float smoothTime = 0.1f)
+    {
+        IEnumerator FaceCameraCoroutine()
+        {
+            Vector3 cameraForward = _mainCamera.transform.forward;
+            cameraForward.y = 0f; // Keep only the horizontal direction
+            if (cameraForward.sqrMagnitude > 0.001f) // Avoid zero-length vector
+            {
+                _animator.SetFloat(_animIDSpeed, 0.5f);
+                float targetYaw = Quaternion.LookRotation(cameraForward).eulerAngles.y;
+                float rotationVelocity = 0f;
+                float dampTime = Mathf.Max(0.0001f, smoothTime);
+
+                while (true)
+                {
+                    float rotation = Mathf.SmoothDampAngle(
+                        transform.eulerAngles.y,
+                        targetYaw,
+                        ref rotationVelocity,
+                        dampTime);
+
+                    transform.rotation = Quaternion.Euler(0f, rotation, 0f);
+
+                    if (Mathf.Abs(Mathf.DeltaAngle(rotation, targetYaw)) < 0.01f)
+                    {
+                        transform.rotation = Quaternion.Euler(0f, targetYaw, 0f);
+                        yield break;
+                    }
+
+                    yield return null;
+                }
+            }
+            _animator.SetFloat(_animIDSpeed, 0f);
+            onFinished?.Invoke();
+        }
+        StartCoroutine(FaceCameraCoroutine());
+    }
+
+
 }

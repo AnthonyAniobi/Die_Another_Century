@@ -11,7 +11,7 @@ public class NpcController : MonoBehaviour
     bool isRescuing = false;
     bool isRescued = false;
     // internal variables
-    internal Vector2 moveDirection = Vector2.zero; // The direction the NPC is moving in
+    internal Vector2 move = Vector2.zero; // The direction the NPC is moving in
     internal bool sprinting = false; // Whether the NPC is sprinting or not
     internal NpcStateEnum npcState = NpcStateEnum.InCaptivity; // The current state of the NPC
     float followTimer = 0.0f;
@@ -44,7 +44,7 @@ public class NpcController : MonoBehaviour
     public void SetPlayerTransform(Vector3 player)
     {
         playerPosition = new Vector3(player.x, player.y, player.z);
-        moveDirection = new Vector2(
+        move = new Vector2(
             playerPosition.x - transform.position.x, 
             playerPosition.z - transform.position.z).normalized;
         sprinting = true;
@@ -60,7 +60,7 @@ public class NpcController : MonoBehaviour
     
     private void StopMoving()
     {
-        moveDirection = Vector2.zero;
+        move = Vector2.zero;
         sprinting = false;
         followTimer = npcFollowTime; // reset the follow timer when stopping movement
     }

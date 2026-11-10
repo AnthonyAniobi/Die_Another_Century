@@ -49,7 +49,7 @@ public class PlayerAttackController : MonoBehaviour
         //attack
         if (CustomInput.Instance.attackSingle)
         {
-            animator.SetTrigger("Attack");
+            Attack();
         }
     }
 
@@ -188,5 +188,11 @@ public class PlayerAttackController : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void Attack()
+    {
+        gameObject.GetComponent<PlayerController>().FaceCamera();
+        animator.SetTrigger("Attack");
     }
 }

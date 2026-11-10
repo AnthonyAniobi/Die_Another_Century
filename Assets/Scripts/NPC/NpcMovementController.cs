@@ -49,8 +49,8 @@ public class NpcMovementController : MonoBehaviour
     private int _animIDMotionSpeed;
     private Animator _animator;
     private CharacterController _controller;
-
     private bool _hasAnimator;
+    private NpcController _npcController;
 
     private void Start()
     {
@@ -93,19 +93,19 @@ public class NpcMovementController : MonoBehaviour
     private void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
-        float targetSpeed = CustomInput.Instance.sprint ? SprintSpeed : MoveSpeed;
+        float targetSpeed = _npcController.sprinting ? SprintSpeed : MoveSpeed;
 
         // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
         // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is no input, set the target speed to 0
-        if (CustomInput.Instance.move == Vector2.zero) targetSpeed = 0.0f;
+        if (_npcController.move == Vector2.zero) targetSpeed = 0.0f;
 
         // a reference to the players current horizontal velocity
         float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
         float speedOffset = 0.1f;
-        float inputMagnitude = CustomInput.Instance.move.magnitude;
+        float inputMagnitude = _npcController.move.magnitude;
         
 
         // accelerate or decelerate to target speed
@@ -129,11 +129,11 @@ public class NpcMovementController : MonoBehaviour
         if (_animationBlend < 0.01f) _animationBlend = 0f;
 
         // normalise input direction
-        Vector3 inputDirection = new Vector3(CustomInput.Instance.move.x, 0.0f, CustomInput.Instance.move.y).normalized;
+        Vector3 inputDirection = new Vector3(_npcController.move.x, 0.0f, _npcController.move.y).normalized;
 
         // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is a move input rotate player when the player is moving
-        if (CustomInput.Instance.move != Vector2.zero)
+        if (_npcController.move != Vector2.zero)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;// +
                                 //_mainCamera.transform.eulerAngles.y;
@@ -197,7 +197,7 @@ public class NpcMovementController : MonoBehaviour
             }
 
             // if we are not grounded, do not jump
-            CustomInput.Instance.jump = false;
+            // _npcController.jump = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
