@@ -56,6 +56,7 @@ public class NpcMovementController : MonoBehaviour
     {
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
+        _npcController = GetComponent<NpcController>();
         AssignAnimationIDs();
         _fallTimeoutDelta = FallTimeout;
     }
