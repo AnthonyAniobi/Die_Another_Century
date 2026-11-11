@@ -28,6 +28,7 @@ public class PlayerAttackController : MonoBehaviour
     private PlayerTypeEnum currentPlayerType;
     private GameObject weapon;
     public List<int> weaponTypes = new List<int> { 0, 1, 2, 3, 4, 5, 6 }; // List of weapon types as integers
+    private bool isAttacking = false;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -62,7 +63,6 @@ public class PlayerAttackController : MonoBehaviour
         aimUI.SetActive(false);
     }
 
-    
     public void ChangeWeapon(WeaponType newWeaponType)
     {
         currentWeaponType = newWeaponType;
@@ -84,7 +84,7 @@ public class PlayerAttackController : MonoBehaviour
     private void EquipWeapon(WeaponType weaponType)
     {
         // checks for aim ui for the weapon type
-        if(weaponType == WeaponType.Pistol || weaponType == WeaponType.Rifle || weaponType == WeaponType.Shotgun)
+        if(IsAimedWeapon)
         {
             aimUI.SetActive(true);
         }
@@ -192,7 +192,29 @@ public class PlayerAttackController : MonoBehaviour
 
     private void Attack()
     {
-        gameObject.GetComponent<PlayerController>().FaceCamera();
+        if(isAttacking) return; // Prevent starting a new attack if already attacking
+        isAttacking = true;
+        if(IsAimedWeapon){ // only face camera for aimed weapons
+            gameObject.GetComponent<PlayerController>().FaceCamera();
+        }
         animator.SetTrigger("Attack");
+        weapon.GetComponent<WeaponController>().StartAttack();
+        EndAttack();
     }
+
+    private void EndAttack()
+    {
+        float delay = currentWeaponType.GetWeaponDelay();
+        System.Collections.IEnumerator _EndAttack()
+        {
+            yield return new WaitForSeconds(delay);
+            animator.ResetTrigger("Attack");
+            weapon.GetComponent<WeaponController>().StopAttack();
+        }
+        StartCoroutine(_EndAttack());
+        animator.ResetTrigger("Attack");
+        weapon.GetComponent<WeaponController>().StopAttack();
+    }
+
+    private bool IsAimedWeapon=> currentWeaponType == WeaponType.Pistol || currentWeaponType == WeaponType.Rifle || currentWeaponType == WeaponType.Shotgun;
 }

@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
         healthCanvas.worldCamera = Camera.main; // Set the canvas to face the main camera
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector3 hitPoint)
     {
         currentHealth -= damage;
 

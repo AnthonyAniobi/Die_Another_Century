@@ -225,4 +225,45 @@ public static class WeaponDataExtensions
         }
     }
 
+    public static float GetWeaponDelay(this WeaponType weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponType.punch:
+                return 0.5f;
+            case WeaponType.knife:
+                return 0.7f;
+            case WeaponType.Pistol:
+                return 0.3f;
+            case WeaponType.Rifle:
+                return 0.2f;
+            case WeaponType.Shotgun:
+                return 1f;
+            case WeaponType.Grenade:
+                return 1.5f;
+            case WeaponType.RPG:
+                return 2f;
+            default:
+                return 0f;
+        }
+    }
+
+    public static float GetWeaponFireForce(this WeaponType weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponType.Pistol:
+                return 15f;
+            case WeaponType.Rifle:
+                return 20f;
+            case WeaponType.Shotgun:
+                return 25f;
+            case WeaponType.Grenade:
+                return 30f;
+            case WeaponType.RPG:
+                return 50f;
+            default:
+                return 0f;
+        }
+    }
 }

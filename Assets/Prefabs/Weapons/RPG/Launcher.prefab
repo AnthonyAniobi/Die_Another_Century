@@ -123,6 +123,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1071441016383339883}
+  - {fileID: 5614317451954829326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7609275253561362154
@@ -194,5 +195,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3036672714c940a7af5e14b7a929f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
-  weaponPosition: {x: 0.173, y: -0.009, z: 0.178}
-  weaponRotation: {x: 186.116, y: 83.131, z: 94.868}
+  weaponType: 6
+  spawnPoint: {fileID: 5614317451954829326}
+  fireSpeed: 1
+  projectilePrefab: {fileID: 8541142116739348195, guid: 99c0b0fef5ed84e5ebacfd5ea3518a93, type: 3}
+--- !u!1 &3780145707656706232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5614317451954829326}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5614317451954829326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780145707656706232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.045}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1317481598100276301}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
