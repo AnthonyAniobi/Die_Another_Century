@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
     
     void Start()
     {
-        ResetAmmo();
+        // ResetAmmo();
         TryGetComponent(out weaponCollider);
     }
 
@@ -63,21 +63,9 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    void ResetAmmo(Vector3? position = null, Quaternion? rotation = null, Transform parentTransform = null)
+    void ResetAmmo()
     {
-        if(weaponType == WeaponType.RPG )
-        {
-            fixedAmmo = Instantiate(
-                projectilePrefab, 
-                spawnPoint.position, 
-                spawnPoint.rotation,
-                spawnPoint.transform
-            );
-            fixedAmmo.transform.localPosition = Vector3.zero;
-            fixedAmmo.SetActive(true);
-            fixedAmmo.GetComponent<Rigidbody>().freezeRotation = true; // Freeze rotation to prevent it from falling over
-            fixedAmmo.GetComponent<Rigidbody>().isKinematic = true; // Make it kinematic so it doesn't respond to physics until fired
-        }else if(weaponType == WeaponType.Grenade)
+        if(weaponType == WeaponType.RPG || weaponType == WeaponType.Grenade)
         {
             fixedAmmo = Instantiate(
                 projectilePrefab, 
@@ -116,7 +104,7 @@ public class WeaponController : MonoBehaviour
         
         Rigidbody rb;
         ProjectileManager projectileManager;
-        if(weaponType == WeaponType.RPG && fixedAmmo != null)
+        if((weaponType == WeaponType.RPG || weaponType == WeaponType.Grenade) && fixedAmmo != null)
         {
             rb = fixedAmmo.GetComponent<Rigidbody>();
             projectileManager = fixedAmmo.GetComponent<ProjectileManager>();

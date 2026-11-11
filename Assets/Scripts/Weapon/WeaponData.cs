@@ -228,10 +228,6 @@ public static class WeaponDataExtensions
     {
         switch (weaponType)
         {
-            case WeaponType.punch:
-                return 0.5f;
-            case WeaponType.knife:
-                return 0.7f;
             case WeaponType.Pistol:
                 return 0.3f;
             case WeaponType.Rifle:
@@ -239,7 +235,7 @@ public static class WeaponDataExtensions
             case WeaponType.Shotgun:
                 return 1f;
             case WeaponType.Grenade:
-                return 1.5f;
+                return 2.5f;
             case WeaponType.RPG:
                 return 2f;
             default:
@@ -258,7 +254,7 @@ public static class WeaponDataExtensions
             case WeaponType.Shotgun:
                 return 25f;
             case WeaponType.Grenade:
-                return 8f;
+                return 4f;
             case WeaponType.RPG:
                 return 50f;
             default:
