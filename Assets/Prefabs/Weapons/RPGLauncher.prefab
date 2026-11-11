@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 8223136162872302837}
   - component: {fileID: 1975481244841586586}
   m_Layer: 0
-  m_Name: Launcher
+  m_Name: RPGLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

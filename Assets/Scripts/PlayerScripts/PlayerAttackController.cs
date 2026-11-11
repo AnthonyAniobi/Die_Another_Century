@@ -103,10 +103,10 @@ public class PlayerAttackController : MonoBehaviour
         leftArmSpecialForces.RemoveAllChildren();
         rightArmFuturistic.RemoveAllChildren();
         leftArmFuturistic.RemoveAllChildren();
-        if (weaponType == WeaponType.punch)
+        if (weaponType == WeaponType.punch || weaponType == WeaponType.Grenade)
         {
             weapon = null;
-            return; // No weapon to equip for punch
+            return; // No weapon to equip for punch or grenade because the hands should be empty
         }
         
         // then add the new weapon to the correct arm based on the player type
