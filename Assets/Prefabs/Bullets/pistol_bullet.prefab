@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4219495444961135127}
   - component: {fileID: 6629121244966355270}
   - component: {fileID: 2067270186091496443}
+  - component: {fileID: 4672211619052690537}
   m_Layer: 0
   m_Name: pistol_bullet
   m_TagString: Untagged
@@ -142,3 +143,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4672211619052690537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262392696595835953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8489ebdbef0f84032bf1a74a97486d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileManager
