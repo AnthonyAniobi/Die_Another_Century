@@ -5637,6 +5637,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launcher
       objectReference: {fileID: 0}
+    - target: {fileID: 6168594786372102356, guid: 29251c2bd4d6a4241bae2acb3cabef60, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168594786372102356, guid: 29251c2bd4d6a4241bae2acb3cabef60, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218395117308430291, guid: 29251c2bd4d6a4241bae2acb3cabef60, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218395117308430291, guid: 29251c2bd4d6a4241bae2acb3cabef60, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
