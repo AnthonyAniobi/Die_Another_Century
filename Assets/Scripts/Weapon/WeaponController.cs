@@ -37,26 +37,41 @@ public class WeaponController : MonoBehaviour
         if (weaponType.UsesProjectile()) // Check if the weapon type uses projectiles
         {
             Vector3 direction;
-            // if (isAimedWeapon)
-            // {
-            //     direction = (spawnPoint.position - Camera.main.transform.forward).normalized;
-            // }
-            // else
-            // {
+            if (isAimedWeapon)
+            {
+                Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+                if(Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    direction = (hitInfo.point - spawnPoint.position).normalized;
+                }
+                else
+                {
+                    direction =   (ray.GetPoint(10f) - spawnPoint.position).normalized; // Use a point far away in the direction of the camera
+                }
+            }
+            else
+            {
                 direction = spawnPoint.forward.normalized * -1; // Use the opposite direction
-            // }
+            }
             
             Rigidbody rb;
+            ProjectileManager projectileManager;
             if(weaponType == WeaponType.RPG && fixedAmmo != null)
             {
                 rb = fixedAmmo.GetComponent<Rigidbody>();
+                projectileManager = fixedAmmo.GetComponent<ProjectileManager>();
                 fixedAmmo.transform.parent = null; // Detach the projectile from the spawn point
                 rb.isKinematic = false; // Make it respond to physics
             }
             else
             {   
                 GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.LookRotation(direction));
+                projectileManager = projectile.GetComponent<ProjectileManager>();
                 rb = projectile.GetComponent<Rigidbody>();
+            }
+            if(projectileManager != null)
+            {
+                projectileManager.Activate(); // Start the projectile's lifecycle
             }
             if (rb != null)
             {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8972401728762672480}
   - component: {fileID: 8839150253732239335}
   - component: {fileID: -8385595868810152177}
+  - component: {fileID: -470001284799014755}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -261,3 +262,17 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-470001284799014755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541142116739348195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8489ebdbef0f84032bf1a74a97486d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileManager
+  delayBeforeDestroy: 5
+  weaponType: 6

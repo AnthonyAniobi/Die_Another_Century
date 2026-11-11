@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileManager
   delayBeforeDestroy: 5
-  weaponType: 0
+  weaponType: 4
 --- !u!96 &3688334065085248722
 TrailRenderer:
   serializedVersion: 4
