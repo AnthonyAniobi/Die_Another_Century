@@ -26,43 +26,45 @@ public class WeaponController : MonoBehaviour
         {
             weaponCollider.enabled = true;
         }
-        Vector3 direction;
-        if (isAimedWeapon)
+        if(audioSource == null)
         {
-            direction = (spawnPoint.position - Camera.main.transform.forward).normalized;
+            audioSource = GetComponent<AudioSource>();
         }
-        else
-        {
-            direction = spawnPoint.forward.normalized * -1; // Use the opposite direction
-        }
-        audioSource.PlayOneShot(fireSound);
         if (fireEffectObject != null)
         {
             fireEffectObject.SetActive(true);
         }
-        Rigidbody rb;
-        if(weaponType == WeaponType.RPG && fixedAmmo != null)
+        if (weaponType.UsesProjectile()) // Check if the weapon type uses projectiles
         {
-            rb = fixedAmmo.GetComponent<Rigidbody>();
-            fixedAmmo.transform.parent = null; // Detach the projectile from the spawn point
-            rb.isKinematic = false; // Make it respond to physics
+            Vector3 direction;
+            // if (isAimedWeapon)
+            // {
+            //     direction = (spawnPoint.position - Camera.main.transform.forward).normalized;
+            // }
+            // else
+            // {
+                direction = spawnPoint.forward.normalized * -1; // Use the opposite direction
+            // }
+            
+            Rigidbody rb;
+            if(weaponType == WeaponType.RPG && fixedAmmo != null)
+            {
+                rb = fixedAmmo.GetComponent<Rigidbody>();
+                fixedAmmo.transform.parent = null; // Detach the projectile from the spawn point
+                rb.isKinematic = false; // Make it respond to physics
+            }
+            else
+            {   
+                GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.LookRotation(direction));
+                rb = projectile.GetComponent<Rigidbody>();
+            }
+            if (rb != null)
+            {
+                rb.useGravity = true; // Enable gravity for the projectile
+                rb.AddForce(direction * weaponType.GetWeaponFireForce(), ForceMode.Impulse);
+            }
         }
-        else
-        {   
-            Debug.Log("Firing projectile from weapon: " + weaponType);
-            GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.LookRotation(direction));
-            rb = projectile.GetComponent<Rigidbody>();
-        }
-        if (rb != null)
-        {
-            rb.useGravity = true; // Enable gravity for the projectile
-            Debug.Log("Applying force to projectile for weapon: " + weaponType);
-            rb.AddForce(direction * weaponType.GetWeaponFireForce(), ForceMode.Impulse);
-        }
-        else
-        {
-            Debug.LogWarning("Rigidbody not found on the projectile prefab for weapon: " + weaponType);
-        }
+        
     }
 
     public void StopAttack()

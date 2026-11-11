@@ -265,4 +265,19 @@ public static class WeaponDataExtensions
                 return 0f;
         }
     }
+
+    public static bool UsesProjectile(this WeaponType weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponType.Pistol:
+            case WeaponType.Rifle:
+            case WeaponType.Shotgun:
+            case WeaponType.Grenade:
+            case WeaponType.RPG:
+                return true;
+            default:
+                return false;
+        }
+    }
 }
