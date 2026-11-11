@@ -1,10 +1,8 @@
 using UnityEngine;
 using PlayerData;
 
-public class WeaponData
-{
-    
-}
+public class WeaponData{}
+
 public enum WeaponType
 {
     punch = 0,

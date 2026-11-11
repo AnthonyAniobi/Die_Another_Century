@@ -19,6 +19,7 @@ public class WeaponController : MonoBehaviour
 
     public void StartAttack(bool isAimedWeapon)
     {
+        Debug.Log("WeaponController: StartAttack called for weapon: " + weaponType);
         if(weaponCollider != null)
         {
             GetComponent<Collider>().enabled = true;
@@ -30,7 +31,7 @@ public class WeaponController : MonoBehaviour
         }
         else
         {
-            direction = spawnPoint.forward.normalized; // Use the aim direction for non-aimed weapons
+            direction = spawnPoint.forward.normalized * -1; // Use the opposite direction
         }
 
         Rigidbody rb;
