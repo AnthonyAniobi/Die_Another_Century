@@ -208,17 +208,18 @@ public static class WeaponDataExtensions
                     return new Vector3(-90f, 0f, 0f);
                 }
                 return new Vector3(26.731f, -14.757f, -68.797f);
+            
             case WeaponType.RPG:
                 switch (playerType)
                 {
                     case PlayerTypeEnum.FuturisticSoldier:
-                        return new Vector3(-7.154f, -93.89f, -86.903f);
+                        return new Vector3(-6.94f, -95.804f, -86.925f);
                     case PlayerTypeEnum.GasMaskSoldier:
-                        return new Vector3(82.635f, -97.412f, 4.182f);
+                        return new Vector3(84.556f, -266.396f, -164.79f);
                     case PlayerTypeEnum.Swat:
-                        return new Vector3(82.291f, -106.266f, -4.651f);
+                        return new Vector3(87.563f, -193.578f, -91.82f);
                     default:
-                        return new Vector3(80.49f, -141.075f, -38.06f);
+                        return new Vector3(81.896f, -150.93f, -48.099f);
                 }
             default:
                 return Vector3.zero;

@@ -259,8 +259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
   weaponType: 2
   spawnPoint: {fileID: 6474087331945858546}
-  fireSpeed: 1
   projectilePrefab: {fileID: 0}
+  aimDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &1748277932983872
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6474087331945858546}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

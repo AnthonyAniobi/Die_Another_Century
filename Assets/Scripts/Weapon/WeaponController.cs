@@ -30,7 +30,7 @@ public class WeaponController : MonoBehaviour
         }
         else
         {
-            direction = aimDirection.normalized;
+            direction = spawnPoint.forward.normalized; // Use the aim direction for non-aimed weapons
         }
 
         Rigidbody rb;
