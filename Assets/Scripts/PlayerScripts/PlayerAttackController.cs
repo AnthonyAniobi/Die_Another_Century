@@ -198,7 +198,7 @@ public class PlayerAttackController : MonoBehaviour
             gameObject.GetComponent<PlayerController>().FaceCamera();
         }
         animator.SetTrigger("Attack");
-        weapon.GetComponent<WeaponController>().StartAttack();
+        weapon.GetComponent<WeaponController>().StartAttack(IsAimedWeapon);
         EndAttack();
     }
 
@@ -208,12 +208,10 @@ public class PlayerAttackController : MonoBehaviour
         System.Collections.IEnumerator _EndAttack()
         {
             yield return new WaitForSeconds(delay);
-            animator.ResetTrigger("Attack");
+            isAttacking = false;
             weapon.GetComponent<WeaponController>().StopAttack();
         }
         StartCoroutine(_EndAttack());
-        animator.ResetTrigger("Attack");
-        weapon.GetComponent<WeaponController>().StopAttack();
     }
 
     private bool IsAimedWeapon=> currentWeaponType == WeaponType.Pistol || currentWeaponType == WeaponType.Rifle || currentWeaponType == WeaponType.Shotgun;

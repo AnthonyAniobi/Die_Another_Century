@@ -197,8 +197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
   weaponType: 6
   spawnPoint: {fileID: 5614317451954829326}
-  fireSpeed: 1
   projectilePrefab: {fileID: 8541142116739348195, guid: 99c0b0fef5ed84e5ebacfd5ea3518a93, type: 3}
+  aimDirection: {x: 0, y: 0, z: 90}
 --- !u!1 &3780145707656706232
 GameObject:
   m_ObjectHideFlags: 0

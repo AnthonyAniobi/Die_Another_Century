@@ -5,9 +5,11 @@ public class WeaponController : MonoBehaviour
     public WeaponType weaponType;
     public Transform spawnPoint;
     public GameObject projectilePrefab;
+    public Vector3 aimDirection; // forward direction of the weapon when aiming
 
     private GameObject fixedAmmo;
     private Collider weaponCollider;
+    
     
     void Start()
     {
@@ -15,19 +17,28 @@ public class WeaponController : MonoBehaviour
         TryGetComponent<Collider>(out weaponCollider);
     }
 
-    public void StartAttack()
+    public void StartAttack(bool isAimedWeapon)
     {
         if(weaponCollider != null)
         {
             GetComponent<Collider>().enabled = true;
         }
+        Vector3 direction;
+        if (isAimedWeapon)
+        {
+            direction = (spawnPoint.position - Camera.main.transform.forward).normalized;
+        }
+        else
+        {
+            direction = aimDirection.normalized;
+        }
 
-        Vector3 direction = (spawnPoint.position - Camera.main.transform.forward).normalized;
         Rigidbody rb;
         if(weaponType == WeaponType.RPG && fixedAmmo != null)
         {
             rb = fixedAmmo.GetComponent<Rigidbody>();
             fixedAmmo.transform.parent = null; // Detach the projectile from the spawn point
+            rb.isKinematic = false; // Make it respond to physics
         }
         else
         {   
@@ -84,7 +95,8 @@ public class WeaponController : MonoBehaviour
             );
             fixedAmmo.transform.localPosition = Vector3.zero;
             fixedAmmo.SetActive(true);
-            fixedAmmo.GetComponent<Rigidbody>().useGravity = false;
+            fixedAmmo.GetComponent<Rigidbody>().freezeRotation = true; // Freeze rotation to prevent it from falling over
+            fixedAmmo.GetComponent<Rigidbody>().isKinematic = true; // Make it kinematic so it doesn't respond to physics until fired
             
         }
     }
