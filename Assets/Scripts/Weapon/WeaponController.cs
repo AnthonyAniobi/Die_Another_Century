@@ -6,6 +6,9 @@ public class WeaponController : MonoBehaviour
     public Transform spawnPoint;
     public GameObject projectilePrefab;
     public Vector3 aimDirection; // forward direction of the weapon when aiming
+    [SerializeField] private AudioClip fireSound;
+    [SerializeField] private GameObject fireEffectObject;
+    [SerializeField] private AudioSource audioSource;
 
     private GameObject fixedAmmo;
     private Collider weaponCollider;
@@ -14,15 +17,14 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         ResetAmmo();
-        TryGetComponent<Collider>(out weaponCollider);
+        TryGetComponent(out weaponCollider);
     }
 
     public void StartAttack(bool isAimedWeapon)
     {
-        Debug.Log("WeaponController: StartAttack called for weapon: " + weaponType);
         if(weaponCollider != null)
         {
-            GetComponent<Collider>().enabled = true;
+            weaponCollider.enabled = true;
         }
         Vector3 direction;
         if (isAimedWeapon)
@@ -33,7 +35,11 @@ public class WeaponController : MonoBehaviour
         {
             direction = spawnPoint.forward.normalized * -1; // Use the opposite direction
         }
-
+        audioSource.PlayOneShot(fireSound);
+        if (fireEffectObject != null)
+        {
+            fireEffectObject.SetActive(true);
+        }
         Rigidbody rb;
         if(weaponType == WeaponType.RPG && fixedAmmo != null)
         {
