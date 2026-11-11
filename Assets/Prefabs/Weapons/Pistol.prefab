@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
   weaponType: 2
   spawnPoint: {fileID: 6474087331945858546}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 6681766636307311056, guid: d86ac54c80bc64d4da120230a87a4110, type: 3}
   aimDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &1748277932983872
 GameObject:
