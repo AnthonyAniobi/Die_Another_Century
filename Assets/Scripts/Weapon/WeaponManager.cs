@@ -11,15 +11,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private GameObject shotgunPrefab;
     [SerializeField] private GameObject grenadePrefab;
     [SerializeField] private GameObject rpgLauncherPrefab;
-
-    [Header("Weapon Projectile Prefabs")]
-    [SerializeField] private GameObject pistolProjectilePrefab;
-    [SerializeField] private GameObject rifleProjectilePrefab;
-    [SerializeField] private GameObject shotgunProjectilePrefab;
-    [SerializeField] private GameObject rpgProjectilePrefab;
-
-
-
+    
     private Dictionary<WeaponType, int> ammoCounts = new Dictionary<WeaponType, int>();
 
     public static WeaponManager Instance { get; private set; }

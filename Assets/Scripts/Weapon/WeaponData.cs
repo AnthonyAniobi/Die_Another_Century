@@ -258,7 +258,7 @@ public static class WeaponDataExtensions
             case WeaponType.Shotgun:
                 return 25f;
             case WeaponType.Grenade:
-                return 30f;
+                return 8f;
             case WeaponType.RPG:
                 return 50f;
             default:
@@ -278,6 +278,17 @@ public static class WeaponDataExtensions
                 return true;
             default:
                 return false;
+        }
+    }
+
+    public static float GetWeaponSpawnDelay(this WeaponType weaponType)
+    { // delay time before the projectile is spawned after the attack animation starts
+        switch (weaponType)
+        {
+            case WeaponType.Grenade:
+                return 0.95f;
+            default:
+                return 0f;
         }
     }
 }

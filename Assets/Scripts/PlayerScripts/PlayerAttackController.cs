@@ -103,10 +103,10 @@ public class PlayerAttackController : MonoBehaviour
         leftArmSpecialForces.RemoveAllChildren();
         rightArmFuturistic.RemoveAllChildren();
         leftArmFuturistic.RemoveAllChildren();
-        if (weaponType == WeaponType.punch || weaponType == WeaponType.Grenade)
+        if (weaponType == WeaponType.punch)
         {
             weapon = null;
-            return; // No weapon to equip for punch or grenade because the hands should be empty
+            return; // No weapon to equip for punch
         }
         
         // then add the new weapon to the correct arm based on the player type
@@ -192,6 +192,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private void Attack()
     {
+        if(currentWeaponType == WeaponType.punch) return;
         if(isAttacking) return; // Prevent starting a new attack if already attacking
         isAttacking = true;
         if(IsAimedWeapon){ // only face camera for aimed weapons
@@ -214,5 +215,5 @@ public class PlayerAttackController : MonoBehaviour
         StartCoroutine(_EndAttack());
     }
 
-    private bool IsAimedWeapon=> currentWeaponType == WeaponType.Pistol || currentWeaponType == WeaponType.Rifle || currentWeaponType == WeaponType.Shotgun;
+    private bool IsAimedWeapon=> currentWeaponType == WeaponType.Pistol || currentWeaponType == WeaponType.Rifle || currentWeaponType == WeaponType.Shotgun || currentWeaponType == WeaponType.Grenade || currentWeaponType == WeaponType.RPG;
 }
