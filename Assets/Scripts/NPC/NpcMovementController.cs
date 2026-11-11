@@ -195,9 +195,6 @@ public class NpcMovementController : MonoBehaviour
                     _animator.SetBool(_animIDFreeFall, true);
                 }
             }
-
-            // if we are not grounded, do not jump
-            // _npcController.jump = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
