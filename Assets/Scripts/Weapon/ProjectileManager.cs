@@ -9,6 +9,9 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField] private bool isExplosive = false; // Whether the projectile is explosive or not
     [SerializeField] private List<ParticleSystem> explosionEffects; // List of particle systems for explosion effects
     [SerializeField] private GameObject fireEffectObject; // The fire effect object to activate when the projectile is fired
+
+    private float explosionRadius = 5.5f; // Radius of the explosion effect
+
     public void Activate()
     {
         StartCoroutine(
@@ -51,11 +54,21 @@ public class ProjectileManager : MonoBehaviour
                     // GetComponent<Rigidbody>().velocity = Vector3.zero; // Stop the projectile's movement
                     fireEffectObject.GetComponent<ParticleSystem>().Play(); // Play the fire effect
                     yield return new WaitForSeconds(2f); // Small delay before playing the fire effect
+
                 }
             }
             // yield return null; // Wait for the next frame
             Destroy(gameObject); // Destroy the projectile after detonation
         }
+    }
+
+    void DrawGizmos()
+    {
+        // if (isExplosive)
+        // {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        // }
     }
 
     
