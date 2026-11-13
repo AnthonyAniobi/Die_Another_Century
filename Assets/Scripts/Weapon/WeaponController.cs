@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
     
     void Start()
     {
-        // ResetAmmo();
+        ResetAmmo();
         TryGetComponent(out weaponCollider);
     }
 
@@ -71,7 +71,6 @@ public class WeaponController : MonoBehaviour
             {
                 Destroy(fixedAmmo);
             }
-
             fixedAmmo = Instantiate(
                 projectilePrefab, 
                 spawnPoint.position, 
@@ -80,11 +79,6 @@ public class WeaponController : MonoBehaviour
             );
             fixedAmmo.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             fixedAmmo.SetActive(true);
-            Rigidbody rigidbody = fixedAmmo.GetComponent<Rigidbody>();
-            // rigidbody.freezeRotation = true;
-            rigidbody.isKinematic = true;
-            // rigidbody.useGravity = false;
-            rigidbody.detectCollisions = false;
             fixedAmmo.GetComponent<Collider>().enabled = false;
             fixedAmmo.GetComponent<TrailRenderer>().enabled = false; // Disable trail renderer until fired
         }
@@ -116,7 +110,8 @@ public class WeaponController : MonoBehaviour
         ProjectileManager projectileManager;
         if((weaponType == WeaponType.RPG || weaponType == WeaponType.Grenade) && fixedAmmo != null)
         {
-            rb = fixedAmmo.GetComponent<Rigidbody>();
+            rb = fixedAmmo.AddComponent<Rigidbody>();
+            rb.mass = weaponType == WeaponType.RPG ? 1f : 0.2f; // Set mass based on weapon type
             projectileManager = fixedAmmo.GetComponent<ProjectileManager>();
             fixedAmmo.GetComponent<TrailRenderer>().enabled = true; // Enable trail renderer when fired
             fixedAmmo.transform.SetParent(null, true);

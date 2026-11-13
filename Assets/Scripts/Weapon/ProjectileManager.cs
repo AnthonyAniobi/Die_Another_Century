@@ -10,6 +10,7 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField] private List<ParticleSystem> explosionEffects; // List of particle systems for explosion effects
     [SerializeField] private GameObject fireEffectObject; // The fire effect object to activate when the projectile is fired
     [SerializeField] private float explosionRadius = 5.5f; // Radius of the explosion effect
+    
 
     public void Activate()
     {
