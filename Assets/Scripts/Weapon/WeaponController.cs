@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
     
     void Start()
     {
-        ResetAmmo();
+        // ResetAmmo();
         TryGetComponent(out weaponCollider);
     }
 

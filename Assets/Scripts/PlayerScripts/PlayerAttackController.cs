@@ -68,6 +68,8 @@ public class PlayerAttackController : MonoBehaviour
         currentWeaponType = newWeaponType;
         SetWeaponAnimation(newWeaponType);
         EquipWeapon(newWeaponType);
+        isAttacking = false; // Reset the attacking state when changing weapons
+        EndAttack();
     }
 
 

@@ -4584,9 +4584,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   Patroll: 0
-  patroltime: 2
+  patroltimeX: 2
+  patroltimeZ: 2
+  chaseTime: 2
   hitReactionTime: 1.5
-  chaseLostCooldown: 3
+  chaseLostCooldown: 5
   attackRange: 1.8
   playerPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &6028630222949061887
