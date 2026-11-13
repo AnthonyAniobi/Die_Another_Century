@@ -32,6 +32,7 @@ public class EnemyController : MonoBehaviour
     public void Initialize(bool isPatrolling, float patrolTime = 2f)
     {
         this.Patroll = isPatrolling; // set wether the enemy is patrolling by default or not
+        this.isPatrolling = isPatrolling;
         this.patroltime = patrolTime;
     }
     void Start()
@@ -52,8 +53,8 @@ public class EnemyController : MonoBehaviour
         else
         {
             // if the enemy has been chasing for too long, reset to patrol
-            StopMoving();
-            if (isPatrolling) // if the enemy is patrolling change direcion
+            StopMoving(false);
+            if (Patroll && isPatrolling) // if the enemy is patrolling change direcion
             {
                 SwitchPatrolDirection();
             }else if (Patroll)
@@ -95,12 +96,16 @@ public class EnemyController : MonoBehaviour
         StopMoving();
         GetComponent<EnemyAttack>().Attack();
     }
-    private void StopMoving()
+    private void StopMoving(bool resetChaseTimer = true)
     {
         moveDirection = Vector2.zero;
         playerPosition = Vector3.zero;
         sprinting = false;
-        chaseTimer = patroltime;
+
+        if (resetChaseTimer)
+        {
+            chaseTimer = patroltime;
+        }
     }
 
     internal void EnemyHit(Vector3 hitDirection) // if enemy is hit move in hit direction

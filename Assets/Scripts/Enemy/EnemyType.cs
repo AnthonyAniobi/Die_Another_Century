@@ -19,7 +19,7 @@ public class EnemyType : MonoBehaviour
         enemyType = type;
         SetAvatar();
         SetActiveEnemyObject();
-        GetComponent<EnemyController>().Initialize(false);
+        GetComponent<EnemyController>().Initialize(true);
         GetComponent<EnemyHealth>().Initialize(enemyType.GetMaxHealth());
         GetComponent<EnemyLookout>().Initialize(enemyType);
         GetComponent<EnemyAttack>().Initialize(enemyType);
