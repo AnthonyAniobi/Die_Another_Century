@@ -29,8 +29,15 @@ public class EnemyLookout : MonoBehaviour
 
     void Update()
     {
-        if(Physics.Raycast(
+        // if(Physics.Raycast(
+        //     playerEyeLevelTransform.position, 
+        //     playerEyeLevelTransform.forward,
+        //     out RaycastHit hit,
+        //     eyeDistance
+        // ))
+        if(Physics.SphereCast(
             playerEyeLevelTransform.position, 
+            viewRadius,
             playerEyeLevelTransform.forward,
             out RaycastHit hit,
             eyeDistance
@@ -57,13 +64,15 @@ public class EnemyLookout : MonoBehaviour
                 canSeePlayer = false;
                 canAttackPlayer = false;
             }
-            DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * hit.distance, Color.green);
+            // DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * hit.distance, Color.green);
+            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.green);
         }
         else
         {
             canSeePlayer = false;
             canAttackPlayer = false;
-            DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * eyeDistance, Color.red);
+            // DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * eyeDistance, Color.red);
+            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, eyeDistance, Color.red);
         }
     }
 

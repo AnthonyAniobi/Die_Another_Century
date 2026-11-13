@@ -18,21 +18,12 @@ public class NpcController : MonoBehaviour
     
     private Transform playerTransform;
 
-    //
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if(playerTransform == null)
         {
             return; // No player to follow
         }
-
-        
-
         if(IsPlayerInCloseRange())
         {
             StopMoving();

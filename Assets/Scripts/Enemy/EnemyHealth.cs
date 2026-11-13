@@ -31,7 +31,8 @@ public class EnemyHealth : MonoBehaviour
     {
         // Handle enemy death (e.g., play animation, disable enemy, etc.)
         Debug.Log("Enemy has died.");
-        Destroy(gameObject); // Destroy the enemy GameObject
+        Destroy(transform.parent.gameObject); // Destroy the enemy GameObject
+
     }
 
     
