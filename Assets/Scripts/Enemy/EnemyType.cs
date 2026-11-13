@@ -19,7 +19,7 @@ public class EnemyType : MonoBehaviour
         enemyType = type;
         SetAvatar();
         SetActiveEnemyObject();
-        GetComponent<EnemyController>().Initialize(true);
+        GetComponent<EnemyController>().Initialize(false);
         GetComponent<EnemyHealth>().Initialize(enemyType.GetMaxHealth());
         GetComponent<EnemyLookout>().Initialize(enemyType);
         GetComponent<EnemyAttack>().Initialize(enemyType);
@@ -33,10 +33,12 @@ public class EnemyType : MonoBehaviour
             case EnemyTypeEnum.Brute:
                 bruteObject.SetActive(true);
                 ninjaObject.SetActive(false);
+                // Destroy(ninjaObject); // Destroy the ninja object to free up resources
                 break;
             case EnemyTypeEnum.Ninja:
                 bruteObject.SetActive(false);
                 ninjaObject.SetActive(true);
+                // Destroy(bruteObject); // Destroy the brute object to free up resources
                 break;
             default:
                 Debug.LogWarning("Unknown enemy type: " + enemyType);

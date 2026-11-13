@@ -39,11 +39,12 @@ public class EnemyHealth : MonoBehaviour
         {
             animator.SetTrigger("Dies");
             animator.SetBool("IsDead", true);
+            healthCanvas.gameObject.SetActive(false); // Hide the health bar when dead
             Debug.Log("Enemy has died.");
             GetComponent<Collider>().enabled = false; // Disable the collider to prevent further interactions
             
             yield return new WaitForSeconds(5f); // Wait for the death animation to finish
-            Destroy(transform.parent.gameObject); // Destroy the enemy GameObject
+            // Destroy(transform.parent.gameObject); // Destroy the enemy GameObject
         }
         StartCoroutine(DieCoroutine());
     }

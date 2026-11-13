@@ -3806,7 +3806,7 @@ GameObject:
   - component: {fileID: 8143204707860473465}
   m_Layer: 7
   m_Name: WarSoldier
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8859,7 +8859,7 @@ GameObject:
   - component: {fileID: 5589558636562646703}
   m_Layer: 7
   m_Name: SoldierGasMask
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10000,7 +10000,7 @@ GameObject:
   - component: {fileID: 5758843200587963599}
   m_Layer: 7
   m_Name: SpecialForces
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11429,7 +11429,7 @@ GameObject:
   - component: {fileID: 8585020177133887651}
   m_Layer: 7
   m_Name: FuturisticSoldier
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11618,7 +11618,7 @@ GameObject:
   - component: {fileID: 2303119079475104537}
   m_Layer: 7
   m_Name: Swat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
