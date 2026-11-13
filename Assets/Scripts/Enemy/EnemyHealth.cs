@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
     {
         System.Collections.IEnumerator DieCoroutine()
         {
-            animator.SetTrigger("IsDead");
+            animator.SetTrigger("Dies");
             animator.SetBool("IsDead", true);
             Debug.Log("Enemy has died.");
             GetComponent<Collider>().enabled = false; // Disable the collider to prevent further interactions

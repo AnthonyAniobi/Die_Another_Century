@@ -66,6 +66,11 @@ public class EnemyMovementController : MonoBehaviour
     {
         _hasAnimator = TryGetComponent(out _animator);
 
+        if (_controller == null || !_controller.enabled)
+        {
+            return;
+        }
+
         JumpAndGravity();
         GroundedCheck();
         Move();
@@ -150,10 +155,8 @@ public class EnemyMovementController : MonoBehaviour
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
         // Debug.Log($"Target Direction: {targetDirection}, Target Rotation: {_targetRotation}, Input Direction: {inputDirection}");
         // move the player
-        if(_controller != null){
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                            new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-        }
+                         new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
         // update animator if using character
         if (_hasAnimator)
         {
