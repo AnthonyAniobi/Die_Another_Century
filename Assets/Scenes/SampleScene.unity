@@ -1075,9 +1075,9 @@ Transform:
   m_GameObject: {fileID: 1810792386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0.08, z: 0}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6657698964923916698}
   - {fileID: 3348793343571733291}
@@ -1365,6 +1365,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2171276722280240228, guid: 5c87b9c4337d24a7584643146a140a88, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2357035244413322395, guid: 5c87b9c4337d24a7584643146a140a88, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1384,6 +1388,22 @@ PrefabInstance:
     - target: {fileID: 3324081740294465792, guid: 5c87b9c4337d24a7584643146a140a88, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400742897951588859, guid: 5c87b9c4337d24a7584643146a140a88, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133523426866678570, guid: 5c87b9c4337d24a7584643146a140a88, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7303930339549265046, guid: 5c87b9c4337d24a7584643146a140a88, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353563754575044027, guid: 5c87b9c4337d24a7584643146a140a88, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7470408859618732403, guid: 5c87b9c4337d24a7584643146a140a88, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5541,11 +5561,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3334403040048954905, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.302
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3334403040048954905, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3958385856688675130, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: m_Name
@@ -5553,6 +5573,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3958385856688675130, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192738318383345939, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
+      propertyPath: viewRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192738318383345939, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
+      propertyPath: canAttackPlayer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7961320976361162818, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
@@ -8742,7 +8770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e2ebe5d9ac84332a8111fce0dd0c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NpcType
-  npcType: 1
+  npcType: 0
   workerObject: {fileID: 1810792386}
   womanObject: {fileID: 9162218880490771674}
   workerAvatar: {fileID: 9000000, guid: a0a06ae1e1c044a49a150aa5e1bc82d7, type: 2}

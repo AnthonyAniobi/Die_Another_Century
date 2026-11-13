@@ -8,6 +8,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private Image fillImage; // Reference to the fill image of the slider
     private int maxHealth;
     private int currentHealth;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void Initialize(int maxHealth)
     {
@@ -29,10 +35,13 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
-        // Handle enemy death (e.g., play animation, disable enemy, etc.)
-        Debug.Log("Enemy has died.");
-        Destroy(transform.parent.gameObject); // Destroy the enemy GameObject
-
+        System.Collections.IEnumerator DieCoroutine()
+        {
+            animator.SetTrigger("Die");
+            yield return new WaitForSeconds(2f); // Wait for the death animation to finish
+            Destroy(transform.parent.gameObject); // Destroy the enemy GameObject
+        }
+        StartCoroutine(DieCoroutine());
     }
 
     

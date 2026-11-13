@@ -35,31 +35,11 @@ public class EnemyLookout : MonoBehaviour
             out RaycastHit hit,
             eyeDistance
         ))
-        // if(Physics.SphereCast(
-        //     playerEyeLevelTransform.position, 
-        //     viewRadius,
-        //     playerEyeLevelTransform.forward,
-        //     out RaycastHit hit,
-        //     eyeDistance
-        //     // LayerMask.GetMask("Player")
-        // ))
         {
-            // Debug.Log($"Player sighted by enemy lookout!, distance: {Vector3.Distance(playerEyeLevelTransform.position, hit.transform.position)}");
             if(hit.collider.CompareTag("Player"))
             {
-                // Debug.Log($"Player sighted by enemy lookout!, distance: {Vector3.Distance(playerEyeLevelTransform.position, hit.transform.position)}");
-                canSeePlayer = true;
-                // Debug.Log("Player sighted by enemy lookout!");
-                // if(gameObject.GetComponent<EnemyAttack>().canAttack){
-                    // only set the player position if the enemy can attack so the enemy doesn't chase the player
-                    // while in the middle of an attack animation
-                    canAttackPlayer = true;
-                    gameObject.GetComponent<EnemyController>().SetPlayerTransform(hit.transform.position);
-                // }
-                // else
-                // {
-                //     canAttackPlayer = false;
-                // }
+                canAttackPlayer = true;
+                gameObject.GetComponent<EnemyController>().SetPlayerTransform(hit.transform.position);
             }
             else
             {
@@ -67,14 +47,12 @@ public class EnemyLookout : MonoBehaviour
                 canAttackPlayer = false;
             }
             DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * hit.distance, Color.green);
-            // DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.green);
         }
         else
         {
             canSeePlayer = false;
             canAttackPlayer = false;
             DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * eyeDistance, Color.red);
-            // DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, eyeDistance, Color.red);
         }
     }
 
