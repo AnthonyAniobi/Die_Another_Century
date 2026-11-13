@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
     {
         System.Collections.IEnumerator DieCoroutine()
         {
-            animator.SetTrigger("Die");
+            animator.SetTrigger("IsDead");
             yield return new WaitForSeconds(2f); // Wait for the death animation to finish
             Destroy(transform.parent.gameObject); // Destroy the enemy GameObject
         }

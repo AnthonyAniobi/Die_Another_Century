@@ -31,8 +31,8 @@ public class ProjectileManager : MonoBehaviour
                     collision.contacts[0].point
                 ); // Apply damage to the enemy
             }
-            Detonate();
         }
+        Detonate();
     }
 
     IEnumerator DeactivateAfterDelay(float delay)
