@@ -41,6 +41,7 @@ public class EnemyHealth : MonoBehaviour
             animator.SetBool("IsDead", true);
             Debug.Log("Enemy has died.");
             GetComponent<Collider>().enabled = false; // Disable the collider to prevent further interactions
+            
             yield return new WaitForSeconds(5f); // Wait for the death animation to finish
             Destroy(transform.parent.gameObject); // Destroy the enemy GameObject
         }
