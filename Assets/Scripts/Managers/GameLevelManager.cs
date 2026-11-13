@@ -42,6 +42,8 @@ public class GameLevelManager : MonoBehaviour
 
     private GameObject currentPlayer = null;
 
+    private bool playerIsRescuingNPC = false;
+
     
     public bool RescueInProgress {get => currentRescuedNPC != null;}
     private float rescuedCount = 0;

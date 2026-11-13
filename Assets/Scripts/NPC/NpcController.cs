@@ -6,7 +6,7 @@ public class NpcController : MonoBehaviour
     [SerializeField] private float npcRunDistance = 1.5f; // The distance from the player at which the NPC will start running towards the player
     
     [SerializeField] private float npcLaggingDistance = 0.2f; // The distance the NPC will lag behind the player when following
-    [SerializeField] private float npcFollowTime = 0.5f; // The time it takes for the NPC to follow a player after they are detected
+    [SerializeField] private float npcLostDistance = 5.0f; // The distance at which the NPC will stop following the player
     
     bool isRescuing = false;
     bool isRescued = false;
@@ -14,47 +14,60 @@ public class NpcController : MonoBehaviour
     internal Vector2 move = Vector2.zero; // The direction the NPC is moving in
     internal bool sprinting = false; // Whether the NPC is sprinting or not
     internal NpcStateEnum npcState = NpcStateEnum.InCaptivity; // The current state of the NPC
-    float followTimer = 0.0f;
-    Vector3 playerPosition = Vector3.zero; // The position of the player the NPC is following
+    
+    
+    private Transform playerTransform;
+
     //
     void Start()
     {
-        followTimer = npcFollowTime; // Initialize the follow timer
+        
     }
 
     void Update()
     {
+        if(playerTransform == null)
+        {
+            return; // No player to follow
+        }
+
+        
+
         if(IsPlayerInCloseRange())
         {
             StopMoving();
             npcState = NpcStateEnum.Rescuing;
-        }
-        else if(followTimer > 0)
-        {
-            followTimer -= Time.deltaTime;
+            isRescuing = true;
         }
         else
         {
-            // if the enemy has been chasing for too long, reset to patrol
-            StopMoving();
-            npcState = NpcStateEnum.Lost;
+            if(Vector3.Distance(transform.position, playerTransform.position) > npcLostDistance)
+            {
+                StopMoving();
+                npcState = NpcStateEnum.Lost;
+                isRescuing = false;
+            }
+            else
+            {
+                move = new Vector2(
+                    playerTransform.position.x - transform.position.x, 
+                    playerTransform.position.z - transform.position.z).normalized;
+                sprinting = Vector3.Distance(transform.position, playerTransform.position) > npcRunDistance;
+                npcState = NpcStateEnum.Rescuing;
+                isRescuing = true;
+            }
         }
     }
     
-    public void SetPlayerTransform(Vector3 player)
+    public void SetPlayerTransform(Transform player)
     {
-        playerPosition = new Vector3(player.x, player.y, player.z);
-        move = new Vector2(
-            playerPosition.x - transform.position.x, 
-            playerPosition.z - transform.position.z).normalized;
-        sprinting = true;
-        followTimer = npcFollowTime; // reset the follow timer if the player is still in view
+        playerTransform = player;
         npcState = NpcStateEnum.Rescuing;
     }
 
     private bool IsPlayerInCloseRange()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, playerPosition);
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
         return distanceToPlayer <= npcLaggingDistance;
     }
     
@@ -62,6 +75,5 @@ public class NpcController : MonoBehaviour
     {
         move = Vector2.zero;
         sprinting = false;
-        followTimer = npcFollowTime; // reset the follow timer when stopping movement
     }
 }

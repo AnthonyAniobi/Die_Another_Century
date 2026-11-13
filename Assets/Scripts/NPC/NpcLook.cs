@@ -8,6 +8,7 @@ public class NpcLook : MonoBehaviour
     [SerializeField] private GameObject womanEyeTransform;
 
     private Transform npcEyeTransform;
+
     public void Initialize(NpcTypeEnum npcType)
     {
         switch (npcType)
@@ -27,6 +28,8 @@ public class NpcLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if(GameManager.Instance != null && GameManager.Instance.)
+        // later check if the player is already rescuing another npc and if so, don't allow this npc to be rescued
         if(Physics.SphereCast(
             npcEyeTransform.position, 
             lookRadius,
@@ -38,7 +41,7 @@ public class NpcLook : MonoBehaviour
             if(hit.collider.CompareTag("Player"))
             {
                 // Debug.Log("Player sighted by enemy lookout!");
-                gameObject.GetComponent<NpcController>().SetPlayerTransform(hit.transform.position);
+                gameObject.GetComponent<NpcController>().SetPlayerTransform(hit.transform);
             } 
             DebugExtension.DrawSphereCast(npcEyeTransform.position, lookRadius, npcEyeTransform.forward, hit.distance, Color.green);
         }
