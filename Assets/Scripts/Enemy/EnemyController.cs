@@ -7,8 +7,10 @@ public class EnemyController : MonoBehaviour
     public bool Patroll = true; // whether the enemy is patrolling or idle / chasing
     
     [Tooltip("Distance to walk before turning")]
-    [SerializeField] private float patroltime = 2f; // time to walk before turning 
+    [SerializeField] private float patroltimeX = 2f; // time to walk horizontally before turning 
+    [SerializeField] private float patroltimeZ = 2f; // time to walk vertically before turning
     [Tooltip("Distance to walk when hit by player")]
+    [SerializeField] private float chaseTime = 2f;
     [SerializeField] private float hitReactionTime = 1.5f; // time to move to direction of hit
     [SerializeField] private float chaseLostCooldown = 3f; // time to wait before returning to patrol after losing sight of player
     [SerializeField] private float attackRange = 1.5f; // range at which enemy can attack
@@ -29,15 +31,16 @@ public class EnemyController : MonoBehaviour
     private bool isPatrolling = true; // whether the enemy is patrolling or idle / chasing
     private float chaseLostTimer = 0f; // timer for how long the enemy has been chasing the player
 
-    public void Initialize(bool isPatrolling, float patrolTime = 2f)
+    public void Initialize(bool isPatrolling, float patrolTimeX = 2f, float patrolTimeZ = 2f)
     {
         this.Patroll = isPatrolling; // set wether the enemy is patrolling by default or not
         this.isPatrolling = isPatrolling;
-        this.patroltime = patrolTime;
+        this.patroltimeX = patrolTimeX;
+        this.patroltimeZ = patrolTimeZ;
     }
     void Start()
     {
-        chaseTimer = patroltime;
+        chaseTimer = chaseTime; // initialize the chase timer to the chase time
     }
 
     void Update()
@@ -80,7 +83,7 @@ public class EnemyController : MonoBehaviour
             playerPosition.x - transform.position.x, 
             playerPosition.z - transform.position.z).normalized;
         sprinting = true;
-        chaseTimer = patroltime; // reset the chase timer if the player is still in view
+        chaseTimer = chaseTime; // reset the chase timer if the player is still in view
         isPatrolling = false; // stop patrolling when chasing the player
         chaseLostTimer = chaseLostCooldown; // reset the chase lost timer for patrolling enemies
     }
@@ -104,7 +107,7 @@ public class EnemyController : MonoBehaviour
 
         if (resetChaseTimer)
         {
-            chaseTimer = patroltime;
+            chaseTimer = chaseTime;
         }
     }
 
@@ -121,16 +124,32 @@ public class EnemyController : MonoBehaviour
     {
         // turn 90 degrees to the right and move forward with the patrol length and walk speed
         patrolAngle = (patrolAngle + 1) % 4;
-        moveDirection = patrolAngle switch
+        // moveDirection = patrolAngle 
+        switch(patrolAngle)
         {
-            0 => Vector2.up,    // North
-            1 => Vector2.right, // East
-            2 => Vector2.down,  // South
-            3 => Vector2.left,  // West
-            _ => Vector2.zero
-        };
+            case 0:
+                moveDirection = Vector2.up;    // North
+                chaseTimer = patroltimeZ; // set the chase timer to the patrol time for vertical movement
+                break;
+            case 1:
+                moveDirection = Vector2.right; // East
+                chaseTimer = patroltimeX; // set the chase timer to the patrol time for horizontal movement
+                break;
+            case 2:
+                moveDirection = Vector2.down;  // South
+                chaseTimer = patroltimeZ; // set the chase timer to the patrol time for vertical movement
+                break;
+            case 3:
+                moveDirection = Vector2.left;  // West
+                chaseTimer = patroltimeX; // set the chase timer to the patrol time for horizontal movement
+                break;
+            default: 
+                moveDirection = Vector2.zero;
+                Debug.LogWarning("Invalid patrol angle: " + patrolAngle);
+                break;
+        }
         sprinting = false;
-        chaseTimer = patroltime; // reset the chase timer if the player is still in view
+         // reset the chase timer if the player is still in view
         
     }
 }
