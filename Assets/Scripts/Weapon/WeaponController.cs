@@ -74,6 +74,7 @@ public class WeaponController : MonoBehaviour
                 spawnPoint.transform
             );
             fixedAmmo.transform.localPosition = Vector3.zero;
+            fixedAmmo.transform.parent = spawnPoint;
             fixedAmmo.SetActive(true);
             fixedAmmo.GetComponent<Rigidbody>().freezeRotation = true; // Freeze rotation to prevent it from falling over
             fixedAmmo.GetComponent<Rigidbody>().isKinematic = true; // Make it kinematic so it doesn't respond to physics until fired

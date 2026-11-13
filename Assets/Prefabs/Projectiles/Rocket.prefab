@@ -34337,7 +34337,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 48
+  m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!96 &-8385595868810152177
 TrailRenderer:
@@ -34475,6 +34475,7 @@ MonoBehaviour:
   isExplosive: 1
   explosionEffects: []
   fireEffectObject: {fileID: 4376689492311819324}
+  explosionRadius: 5.5
 --- !u!1 &9159962313469956350
 GameObject:
   m_ObjectHideFlags: 0
