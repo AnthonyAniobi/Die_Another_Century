@@ -29,20 +29,22 @@ public class EnemyLookout : MonoBehaviour
 
     void Update()
     {
-        // if(Physics.Raycast(
-        //     playerEyeLevelTransform.position, 
-        //     playerEyeLevelTransform.forward,
-        //     out RaycastHit hit,
-        //     eyeDistance
-        // ))
-        if(Physics.SphereCast(
+        if(Physics.Raycast(
             playerEyeLevelTransform.position, 
-            viewRadius,
             playerEyeLevelTransform.forward,
             out RaycastHit hit,
             eyeDistance
         ))
+        // if(Physics.SphereCast(
+        //     playerEyeLevelTransform.position, 
+        //     viewRadius,
+        //     playerEyeLevelTransform.forward,
+        //     out RaycastHit hit,
+        //     eyeDistance
+        //     // LayerMask.GetMask("Player")
+        // ))
         {
+            // Debug.Log($"Player sighted by enemy lookout!, distance: {Vector3.Distance(playerEyeLevelTransform.position, hit.transform.position)}");
             if(hit.collider.CompareTag("Player"))
             {
                 // Debug.Log($"Player sighted by enemy lookout!, distance: {Vector3.Distance(playerEyeLevelTransform.position, hit.transform.position)}");
@@ -64,15 +66,15 @@ public class EnemyLookout : MonoBehaviour
                 canSeePlayer = false;
                 canAttackPlayer = false;
             }
-            // DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * hit.distance, Color.green);
-            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.green);
+            DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * hit.distance, Color.green);
+            // DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, hit.distance, Color.green);
         }
         else
         {
             canSeePlayer = false;
             canAttackPlayer = false;
-            // DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * eyeDistance, Color.red);
-            DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, eyeDistance, Color.red);
+            DebugExtension.DrawRay(playerEyeLevelTransform.position, playerEyeLevelTransform.forward * eyeDistance, Color.red);
+            // DebugExtension.DrawSphereCast(playerEyeLevelTransform.position, viewRadius, playerEyeLevelTransform.forward, eyeDistance, Color.red);
         }
     }
 
