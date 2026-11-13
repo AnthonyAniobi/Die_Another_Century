@@ -67,17 +67,25 @@ public class WeaponController : MonoBehaviour
     {
         if(weaponType == WeaponType.RPG || weaponType == WeaponType.Grenade)
         {
+            if (fixedAmmo != null && fixedAmmo.transform.parent == spawnPoint)
+            {
+                Destroy(fixedAmmo);
+            }
+
             fixedAmmo = Instantiate(
                 projectilePrefab, 
                 spawnPoint.position, 
                 spawnPoint.rotation,
-                spawnPoint.transform
+                spawnPoint
             );
-            fixedAmmo.transform.localPosition = Vector3.zero;
-            fixedAmmo.transform.parent = spawnPoint;
+            fixedAmmo.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             fixedAmmo.SetActive(true);
-            fixedAmmo.GetComponent<Rigidbody>().freezeRotation = true; // Freeze rotation to prevent it from falling over
-            fixedAmmo.GetComponent<Rigidbody>().isKinematic = true; // Make it kinematic so it doesn't respond to physics until fired
+            Rigidbody rigidbody = fixedAmmo.GetComponent<Rigidbody>();
+            // rigidbody.freezeRotation = true;
+            rigidbody.isKinematic = true;
+            // rigidbody.useGravity = false;
+            rigidbody.detectCollisions = false;
+            fixedAmmo.GetComponent<Collider>().enabled = false;
             fixedAmmo.GetComponent<TrailRenderer>().enabled = false; // Disable trail renderer until fired
         }
     }
@@ -111,8 +119,11 @@ public class WeaponController : MonoBehaviour
             rb = fixedAmmo.GetComponent<Rigidbody>();
             projectileManager = fixedAmmo.GetComponent<ProjectileManager>();
             fixedAmmo.GetComponent<TrailRenderer>().enabled = true; // Enable trail renderer when fired
-            fixedAmmo.transform.parent = null; // Detach the projectile from the spawn point
-            rb.isKinematic = false; // Make it respond to physics
+            fixedAmmo.transform.SetParent(null, true);
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.detectCollisions = true;
+            fixedAmmo.GetComponent<Collider>().enabled = true;
         }
         else
         {   
