@@ -5561,11 +5561,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3334403040048954905, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.302
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3334403040048954905, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529898823399559106, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3958385856688675130, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: m_Name
@@ -5573,7 +5577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3958385856688675130, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6192738318383345939, guid: ea493c592e758464b800f7e7e7688dd1, type: 3}
       propertyPath: viewRadius

@@ -77,6 +77,7 @@ public class WeaponController : MonoBehaviour
             fixedAmmo.SetActive(true);
             fixedAmmo.GetComponent<Rigidbody>().freezeRotation = true; // Freeze rotation to prevent it from falling over
             fixedAmmo.GetComponent<Rigidbody>().isKinematic = true; // Make it kinematic so it doesn't respond to physics until fired
+            fixedAmmo.GetComponent<TrailRenderer>().enabled = false; // Disable trail renderer until fired
         }
     }
 
@@ -108,6 +109,7 @@ public class WeaponController : MonoBehaviour
         {
             rb = fixedAmmo.GetComponent<Rigidbody>();
             projectileManager = fixedAmmo.GetComponent<ProjectileManager>();
+            fixedAmmo.GetComponent<TrailRenderer>().enabled = true; // Enable trail renderer when fired
             fixedAmmo.transform.parent = null; // Detach the projectile from the spawn point
             rb.isKinematic = false; // Make it respond to physics
         }
