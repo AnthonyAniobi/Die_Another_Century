@@ -118,6 +118,7 @@ public class WeaponController : MonoBehaviour
             rb.isKinematic = false;
             rb.useGravity = true;
             rb.detectCollisions = true;
+            rb.freezeRotation = true;
             fixedAmmo.GetComponent<Collider>().enabled = true;
         }
         else
