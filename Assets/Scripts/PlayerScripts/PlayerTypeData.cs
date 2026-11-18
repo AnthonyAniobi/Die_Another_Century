@@ -6,11 +6,11 @@ namespace PlayerData
 
     public enum PlayerTypeEnum
     {
-        WarSoldier,
-        Swat,
-        GasMaskSoldier,
-        SpecialForces,
-        FuturisticSoldier,
+        WarSoldier = 0,
+        Swat = 1,
+        GasMaskSoldier = 2,
+        SpecialForces = 3,
+        FuturisticSoldier = 4,
     }
 
     public static class PlayerTypeDataExtensions

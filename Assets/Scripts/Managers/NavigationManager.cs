@@ -29,5 +29,6 @@ public enum GameScene
 {
     WelcomeScene = 0,
     PlayerOptionsScene = 1,
-    GameScene = 2,
+    GameScene = 3,
+    WoodTownScene = 2,
 }

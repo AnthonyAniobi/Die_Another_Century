@@ -8,20 +8,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    internal PlayerTypeEnum selectedPlayerType;
+    internal PlayerTypeEnum selectedPlayerType = 0;
     internal GameWorld selectedGameWorld = 0;
     internal int currentLevelIndex = 0;
 
 
-    void Start()
+    void Awake()
     {
         if(Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 

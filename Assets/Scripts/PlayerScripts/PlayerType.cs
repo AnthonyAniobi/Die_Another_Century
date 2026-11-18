@@ -36,7 +36,7 @@ public class PlayerType : MonoBehaviour
         animator = GetComponent<Animator>();
         InitializePlayerType(playerType);
     }
-    void InitializePlayerType(PlayerTypeEnum type)
+    public void InitializePlayerType(PlayerTypeEnum type)
     {
         playerType = type;
         ActivatePlayerType(type);
