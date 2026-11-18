@@ -46,10 +46,15 @@ public class PlayerType : MonoBehaviour
         playerNameText.text = playerName;
         image.sprite = sprite;
         GetComponent<PlayerAttackController>().Initialize(
-            type,
-            new List<int> { 0, 1, 2, 3, 4, 5, 6 }
+            type
         );
         GetComponent<PlayerHealth>().Initialize(type.GetHealth());
+        GetComponent<PlayerAmmoManager>().Initialize({
+            { WeaponType.punch, 0 },
+            { WeaponType.Shotgun, 5 },
+            { WeaponType.rifle, type.GetRifleAmmo() },
+            { WeaponType.shotgun, type.GetShotgunAmmo() }
+        });
     }
 
     void ActivatePlayerType(PlayerTypeEnum type)

@@ -27,7 +27,8 @@ public class PlayerAttackController : MonoBehaviour
     public WeaponType currentWeaponType;
     private PlayerTypeEnum currentPlayerType;
     private GameObject weapon;
-    public List<int> weaponTypes; // List of weapon types as integers
+    private PlayerAmmoManager ammoManager;
+    
     private bool isAttacking = false;
     void Start()
     {
@@ -38,14 +39,11 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (CustomInput.Instance.nextWeapon)
         {
-            int currentIndex = weaponTypes.IndexOf((int)currentWeaponType);
-            int nextIndex = (currentIndex + 1) % weaponTypes.Count;
-            ChangeWeapon((WeaponType)weaponTypes[nextIndex]);
+            GetComponent<PlayerAmmoManager>().NextWeapon(currentWeaponType);
+            
         }else if (CustomInput.Instance.prevWeapon)
         {
-            int currentIndex = weaponTypes.IndexOf((int)currentWeaponType);
-            int prevIndex = (currentIndex - 1 + weaponTypes.Count) % weaponTypes.Count;
-            ChangeWeapon((WeaponType)weaponTypes[prevIndex]);
+            GetComponent<PlayerAmmoManager>().PreviousWeapon(currentWeaponType);
         }
         //attack
         if (CustomInput.Instance.attackSingle)
@@ -55,26 +53,18 @@ public class PlayerAttackController : MonoBehaviour
     }
 
     public void Initialize(
-        PlayerTypeEnum playerType, 
-        List<int> availableWeapons)
+        PlayerTypeEnum playerType)
     {
         currentPlayerType = playerType;
-        if (availableWeapons.Contains(0))
-        {
-            weaponTypes = availableWeapons; // Use the provided list of available weapons
-        }
-        else
-        {
-            weaponTypes = new List<int>(availableWeapons);
-            weaponTypes.Insert(0, 0); // Ensure punch is always available
-        }
         currentWeaponType = WeaponType.punch; // Set the initial weapon type to punch
         SetWeaponAnimation(WeaponType.punch); // Set the initial weapon animation to punch
         EquipWeapon(WeaponType.punch); // Equip the initial weapon (punch)
         aimUI.SetActive(false);
+        ammoManager = GetComponent<PlayerAmmoManager>();
     }
 
-    public void ChangeWeapon(WeaponType newWeaponType)
+    // this method is only called by the ammo manager
+    internal void ChangeWeapon(WeaponType newWeaponType)
     {
         currentWeaponType = newWeaponType;
         SetWeaponAnimation(newWeaponType);
@@ -209,14 +199,22 @@ public class PlayerAttackController : MonoBehaviour
     private void Attack()
     {
         if(currentWeaponType == WeaponType.punch) return;
-        if(isAttacking) return; // Prevent starting a new attack if already attacking
-        isAttacking = true;
-        if(IsAimedWeapon){ // only face camera for aimed weapons
-            gameObject.GetComponent<PlayerController>().FaceCamera();
+        // Check if the player has enough ammo for the current weapon
+        if(ammoManager.DecreaseAmmo(currentWeaponType, 1))
+        {
+            if(isAttacking) return; // Prevent starting a new attack if already attacking
+            isAttacking = true;
+            if(IsAimedWeapon){ // only face camera for aimed weapons
+                gameObject.GetComponent<PlayerController>().FaceCamera();
+            }
+            animator.SetTrigger("Attack");
+            weapon.GetComponent<WeaponController>().StartAttack(IsAimedWeapon);
+            EndAttack();
         }
-        animator.SetTrigger("Attack");
-        weapon.GetComponent<WeaponController>().StartAttack(IsAimedWeapon);
-        EndAttack();
+        else
+        {
+            Debug.Log("Not enough ammo for " + currentWeaponType.GetWeaponName());
+        }
     }
 
     private void EndAttack()

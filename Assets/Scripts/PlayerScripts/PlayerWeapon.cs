@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerWeapon : MonoBehaviour
 {
-[SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private float bulletSpeed = 500f;
 
