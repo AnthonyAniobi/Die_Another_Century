@@ -9,11 +9,29 @@ public class PlayerAmmoManager : MonoBehaviour
     [Space(10)]
     [Header("this script is responsible for managing the player's ammo and reloading.")]
     public Dictionary<WeaponType, int> availableWeapons;
+    
+    public GameObject AmmoIndicatorPrefab;
+    public Transform AmmoIndicatorRowParent;
+
+    //
+    private Dictionary<WeaponType, AmmoIndicatorController> ammoIndicators = new Dictionary<WeaponType, AmmoIndicatorController>();
 
     public void Initialize(Dictionary<WeaponType, int> initialAmmo)
     {
         availableWeapons = new Dictionary<WeaponType, int>(initialAmmo);
         availableWeapons[WeaponType.None] = 0; // Ensure no weapon is always available
+        // Create ammo indicators for each weapon type
+        // make sure empty weapon is first in the list so that it is always available
+        List<WeaponType> weaponTypes = new List<WeaponType>(availableWeapons.Keys);
+        weaponTypes.Sort((a, b) => a == WeaponType.None ? -1 : (b == WeaponType.None ? 1 : 0));
+        foreach (var weapon in weaponTypes)
+        {
+            GameObject indicatorObject = Instantiate(AmmoIndicatorPrefab);
+            indicatorObject.transform.SetParent(AmmoIndicatorRowParent, false);
+            AmmoIndicatorController indicator = indicatorObject.GetComponent<AmmoIndicatorController>();
+            indicator.Initialize(weapon, availableWeapons[weapon]);
+            ammoIndicators[weapon] = indicator;
+        }
     }
 
     public void NextWeapon(WeaponType currentWeapon)
