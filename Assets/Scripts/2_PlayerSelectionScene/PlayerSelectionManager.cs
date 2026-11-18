@@ -26,6 +26,13 @@ public class PlayerSelectionManager : MonoBehaviour
     public GameObject popupPanel;
     public TextMeshProUGUI popupText;
 
+    [Header("Player Prefabs")]
+    public GameObject swatPrefab;
+    public GameObject specialForcesPrefab;
+    public GameObject warSoldierPrefab;
+    public GameObject gasMaskSoldierPrefab;
+    public GameObject futuristicTrooperPrefab;
+
     //
     private readonly List<Transform> playerInstances = new List<Transform>();
     private int selectedPlayerIndex;
@@ -55,7 +62,7 @@ public class PlayerSelectionManager : MonoBehaviour
         List<GameObject> playerPrefabs = new List<GameObject>();
         for (int i = 0; i < playerTypes.Length; i++)
         {
-            GameObject playerPrefab = playerTypes[i].GetGameObject();
+            GameObject playerPrefab = GetPrefabForPlayerType(playerTypes[i]);
             if (playerPrefab == null)
                 continue;
             playerPrefabs.Add(playerPrefab);
@@ -165,5 +172,25 @@ public class PlayerSelectionManager : MonoBehaviour
         popupPanel.SetActive(true);
         yield return new WaitForSeconds(duration);
         popupPanel.SetActive(false);
+    }
+
+    private GameObject GetPrefabForPlayerType(PlayerTypeEnum playerType)
+    {
+        switch (playerType)
+        {
+            case PlayerTypeEnum.Swat:
+                return swatPrefab;
+            case PlayerTypeEnum.SpecialForces:
+                return specialForcesPrefab;
+            case PlayerTypeEnum.WarSoldier:
+                return warSoldierPrefab;
+            case PlayerTypeEnum.GasMaskSoldier:
+                return gasMaskSoldierPrefab;
+            case PlayerTypeEnum.FuturisticSoldier:
+                return futuristicTrooperPrefab;
+            default:
+                Debug.LogWarning($"No prefab found for player type: {playerType}");
+                return null;
+        }
     }
 }

@@ -6221,6 +6221,11 @@ MonoBehaviour:
   playerResistanceText: {fileID: 235201736}
   popupPanel: {fileID: 1463888423}
   popupText: {fileID: 419526761}
+  swatPrefab: {fileID: 6180016025802857019, guid: ceb954d4f01ed47f888025488ac5405f, type: 3}
+  specialForcesPrefab: {fileID: 3883129066423215151, guid: 1bbad9490b4eb401a90a23429c8b2383, type: 3}
+  warSoldierPrefab: {fileID: 3736352464394310859, guid: 2b9eba1cf7f514657965f47008fcfc8c, type: 3}
+  gasMaskSoldierPrefab: {fileID: 339107226744560415, guid: 7b20d8c0c74d74a58b782c5866bd48b1, type: 3}
+  futuristicTrooperPrefab: {fileID: 6167907369029927468, guid: 7e931d2de40ac4b73ad33fb1ab57a9e6, type: 3}
 --- !u!4 &1632182513
 Transform:
   m_ObjectHideFlags: 0

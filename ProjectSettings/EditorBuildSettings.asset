@@ -14,8 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerSelectionScene.unity
     guid: 422a94ad91ee74437a660a591f9f528c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameScene.unity
     guid: a62f34669fa404021af198636e61e240
+  - enabled: 1
+    path: Assets/Scenes/Worlds/Forest.unity
+    guid: 4c24990a497874f958857d5e9ce2a212
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
