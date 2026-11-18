@@ -32,7 +32,7 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         // Initialize ammo counts for each weapon type
-        ammoCounts[WeaponType.punch] = 0; // Punch has no ammo
+        ammoCounts[WeaponType.None] = 0; // No weapon has no ammo
         ammoCounts[WeaponType.knife] = 0; // Knife has no ammo
         ammoCounts[WeaponType.Pistol] = 15; // Example initial ammo count for Pistol
         ammoCounts[WeaponType.Rifle] = 30; // Example initial ammo count for Rifle
@@ -45,8 +45,8 @@ public class WeaponManager : MonoBehaviour
     {
         switch (weaponType)
         {
-            case WeaponType.punch:
-                return null; // Punch doesn't have a prefab
+            case WeaponType.None:
+                return null; // No weapon has a prefab
             case WeaponType.knife:
                 return knifePrefab;
             case WeaponType.Pistol:

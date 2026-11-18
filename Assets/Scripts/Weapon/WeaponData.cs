@@ -5,7 +5,7 @@ public class WeaponData{}
 
 public enum WeaponType
 {
-    punch = 0,
+    None = 0,
     knife = 1,
     Pistol = 2,
     Rifle = 3,
@@ -20,8 +20,8 @@ public static class WeaponDataExtensions
     {
         switch (weaponType)
         {
-            case WeaponType.punch:
-                return "Punch";
+            case WeaponType.None:
+                return "None";
             case WeaponType.knife:
                 return "Knife";
             case WeaponType.Pistol:
@@ -43,8 +43,8 @@ public static class WeaponDataExtensions
     {
         switch (weaponType)
         {
-            case WeaponType.punch:
-                return 10;
+            case WeaponType.None:
+                return 0;
             case WeaponType.knife:
                 return 25;
             case WeaponType.Pistol:

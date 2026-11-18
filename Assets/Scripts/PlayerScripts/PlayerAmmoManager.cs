@@ -13,7 +13,7 @@ public class PlayerAmmoManager : MonoBehaviour
     public void Initialize(Dictionary<WeaponType, int> initialAmmo)
     {
         availableWeapons = new Dictionary<WeaponType, int>(initialAmmo);
-        availableWeapons[WeaponType.punch] = 0; // Ensure punch is always available
+        availableWeapons[WeaponType.None] = 0; // Ensure no weapon is always available
     }
 
     public void NextWeapon(WeaponType currentWeapon)
@@ -37,6 +37,10 @@ public class PlayerAmmoManager : MonoBehaviour
     {
         if (availableWeapons.ContainsKey(weaponType))
         {
+            if(weaponType == WeaponType.None || weaponType == WeaponType.knife)
+            {
+                return true; // None and knife don't consume ammo
+            }
             int currentAmmo = availableWeapons[weaponType];
             if (currentAmmo >= amount)
             {
@@ -63,5 +67,14 @@ public class PlayerAmmoManager : MonoBehaviour
         {
             availableWeapons[weaponType] = ammoAmount;
         }
+    }
+
+    public bool HasAmmo(WeaponType weaponType)
+    {
+        if (availableWeapons.ContainsKey(weaponType))
+        {
+            return availableWeapons[weaponType] > 0;
+        }
+        return false;
     }
 }

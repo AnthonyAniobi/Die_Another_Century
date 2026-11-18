@@ -40,13 +40,16 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void StopAttack()
+    public void StopAttack(bool resetAmmo)
     {
         if(weaponCollider != null)
         {
             GetComponent<Collider>().enabled = false;
         }
-        ResetAmmo();
+        if(resetAmmo)
+        {
+            ResetAmmo();
+        }
     }
 
     void OnTriggerEnter(Collider other)

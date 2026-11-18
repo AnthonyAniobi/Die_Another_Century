@@ -49,11 +49,15 @@ public class PlayerType : MonoBehaviour
             type
         );
         GetComponent<PlayerHealth>().Initialize(type.GetHealth());
-        GetComponent<PlayerAmmoManager>().Initialize({
-            { WeaponType.punch, 0 },
-            { WeaponType.Shotgun, 5 },
-            { WeaponType.rifle, type.GetRifleAmmo() },
-            { WeaponType.shotgun, type.GetShotgunAmmo() }
+        GetComponent<PlayerAmmoManager>().Initialize(new Dictionary<WeaponType, int>
+        {
+            { WeaponType.None, 0 },
+            {WeaponType.knife, 1},
+            { WeaponType.Pistol, 5 },
+            { WeaponType.Rifle, 15},
+            { WeaponType.Shotgun, 12 },
+            { WeaponType.Grenade, 5 },
+            {WeaponType.RPG, 10 },
         });
     }
 

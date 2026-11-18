@@ -56,9 +56,9 @@ public class PlayerAttackController : MonoBehaviour
         PlayerTypeEnum playerType)
     {
         currentPlayerType = playerType;
-        currentWeaponType = WeaponType.punch; // Set the initial weapon type to punch
-        SetWeaponAnimation(WeaponType.punch); // Set the initial weapon animation to punch
-        EquipWeapon(WeaponType.punch); // Equip the initial weapon (punch)
+        currentWeaponType = WeaponType.None; // Set the initial weapon type to none
+        SetWeaponAnimation(WeaponType.None); // Set the initial weapon animation to none
+        EquipWeapon(WeaponType.None); // Equip no weapon
         aimUI.SetActive(false);
         ammoManager = GetComponent<PlayerAmmoManager>();
     }
@@ -70,7 +70,7 @@ public class PlayerAttackController : MonoBehaviour
         SetWeaponAnimation(newWeaponType);
         EquipWeapon(newWeaponType);
         isAttacking = false; // Reset the attacking state when changing weapons
-        if(newWeaponType != WeaponType.punch)
+        if(newWeaponType != WeaponType.None)
         {
             EndAttack();
         }
@@ -109,10 +109,10 @@ public class PlayerAttackController : MonoBehaviour
         leftArmSpecialForces.RemoveAllChildren();
         rightArmFuturistic.RemoveAllChildren();
         leftArmFuturistic.RemoveAllChildren();
-        if (weaponType == WeaponType.punch)
+        if (weaponType == WeaponType.None)
         {
             weapon = null;
-            return; // No weapon to equip for punch
+            return; // No weapon to equip
         }
         
         // then add the new weapon to the correct arm based on the player type
@@ -198,7 +198,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private void Attack()
     {
-        if(currentWeaponType == WeaponType.punch) return;
+        if(currentWeaponType == WeaponType.None) return;
         // Check if the player has enough ammo for the current weapon
         if(ammoManager.DecreaseAmmo(currentWeaponType, 1))
         {
@@ -224,7 +224,9 @@ public class PlayerAttackController : MonoBehaviour
         {
             yield return new WaitForSeconds(delay);
             isAttacking = false;
-            weapon.GetComponent<WeaponController>().StopAttack();
+            weapon.GetComponent<WeaponController>().StopAttack(
+                ammoManager.HasAmmo(currentWeaponType)
+            );
         }
         StartCoroutine(_EndAttack());
     }
