@@ -48,7 +48,7 @@ public class AmmoIndicatorController : MonoBehaviour
     {
         if (isSelected)
         {
-            indicatorImage.color = Color.yellow; // Change to the desired selected color
+            indicatorImage.color = Color.green; // Change to the desired selected color
         }
         else
         {

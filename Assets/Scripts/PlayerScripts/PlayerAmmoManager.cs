@@ -32,6 +32,7 @@ public class PlayerAmmoManager : MonoBehaviour
             indicator.Initialize(weapon, availableWeapons[weapon]);
             ammoIndicators[weapon] = indicator;
         }
+        ammoIndicators[WeaponType.None].SetSelected(true);
     }
 
     public void NextWeapon(WeaponType currentWeapon)
@@ -67,6 +68,7 @@ public class PlayerAmmoManager : MonoBehaviour
             if (currentAmmo >= amount)
             {
                 availableWeapons[weaponType] -= amount;
+                ammoIndicators[weaponType].UpdateAmmoCount(availableWeapons[weaponType]);
                 return true;
             }
             else
@@ -86,8 +88,10 @@ public class PlayerAmmoManager : MonoBehaviour
             availableWeapons[weaponType] += ammoAmount;
         }
         else
-        {
+        { // if weapon not in dictionary add it and crate an indicator for it
             availableWeapons[weaponType] = ammoAmount;
+            ammoIndicators[weaponType] = Instantiate(AmmoIndicatorPrefab, AmmoIndicatorRowParent).GetComponent<AmmoIndicatorController>();
+            ammoIndicators[weaponType].Initialize(weaponType, availableWeapons[weaponType]);
         }
     }
 
