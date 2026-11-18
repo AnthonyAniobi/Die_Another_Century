@@ -34,7 +34,7 @@ public class PlayerType : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        InitializePlayerType(playerType);
+        // InitializePlayerType(playerType);
     }
     public void InitializePlayerType(PlayerTypeEnum type)
     {

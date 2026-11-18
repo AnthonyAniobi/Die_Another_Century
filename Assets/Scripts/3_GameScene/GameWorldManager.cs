@@ -11,10 +11,27 @@ public class GameWorldManager : MonoBehaviour
 
     void Start()
     {
+        if (playerPrefab == null)
+        {
+            Debug.LogError("GameWorldManager: playerPrefab is not assigned.");
+            return;
+        }
+
         playerInstance = Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
-        playerInstance.GetComponent<PlayerType>().InitializePlayerType(
-            GameManager.Instance.selectedPlayerType
-        ); // Initialize the player with the Swat type
+        PlayerType playerType = playerInstance.GetComponentInChildren<PlayerType>(true);
+        if (playerType == null)
+        {
+            Debug.LogError("GameWorldManager: the instantiated player prefab has no PlayerType component.");
+            return;
+        }
+
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("GameWorldManager: GameManager.Instance is not available.");
+            return;
+        }
+
+        playerType.InitializePlayerType(GameManager.Instance.selectedPlayerType);
     }
 
     // Update is called once per frame
