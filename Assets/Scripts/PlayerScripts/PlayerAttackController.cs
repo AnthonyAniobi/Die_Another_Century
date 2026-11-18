@@ -27,7 +27,7 @@ public class PlayerAttackController : MonoBehaviour
     public WeaponType currentWeaponType;
     private PlayerTypeEnum currentPlayerType;
     private GameObject weapon;
-    public List<int> weaponTypes = new List<int> { 0, 1, 2, 3, 4, 5, 6 }; // List of weapon types as integers
+    public List<int> weaponTypes; // List of weapon types as integers
     private bool isAttacking = false;
     void Start()
     {
@@ -54,12 +54,23 @@ public class PlayerAttackController : MonoBehaviour
         }
     }
 
-    public void Initialize(PlayerTypeEnum playerType, WeaponType startingWeapon = WeaponType.punch)
+    public void Initialize(
+        PlayerTypeEnum playerType, 
+        List<int> availableWeapons)
     {
         currentPlayerType = playerType;
-        currentWeaponType = startingWeapon;
-        SetWeaponAnimation(startingWeapon);
-        EquipWeapon(startingWeapon);
+        if (availableWeapons.Contains(0))
+        {
+            weaponTypes = availableWeapons; // Use the provided list of available weapons
+        }
+        else
+        {
+            weaponTypes = new List<int>(availableWeapons);
+            weaponTypes.Insert(0, 0); // Ensure punch is always available
+        }
+        currentWeaponType = WeaponType.punch; // Set the initial weapon type to punch
+        SetWeaponAnimation(WeaponType.punch); // Set the initial weapon animation to punch
+        EquipWeapon(WeaponType.punch); // Equip the initial weapon (punch)
         aimUI.SetActive(false);
     }
 
@@ -69,7 +80,10 @@ public class PlayerAttackController : MonoBehaviour
         SetWeaponAnimation(newWeaponType);
         EquipWeapon(newWeaponType);
         isAttacking = false; // Reset the attacking state when changing weapons
-        EndAttack();
+        if(newWeaponType != WeaponType.punch)
+        {
+            EndAttack();
+        }
     }
 
 

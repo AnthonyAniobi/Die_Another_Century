@@ -2,6 +2,7 @@ using UnityEngine;
 using PlayerData;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PlayerType : MonoBehaviour
 {
@@ -44,7 +45,10 @@ public class PlayerType : MonoBehaviour
         playerName = type.GetDisplayName();
         playerNameText.text = playerName;
         image.sprite = sprite;
-        GetComponent<PlayerAttackController>().Initialize(type);
+        GetComponent<PlayerAttackController>().Initialize(
+            type,
+            new List<int> { 0, 1, 2, 3, 4, 5, 6 }
+        );
         GetComponent<PlayerHealth>().Initialize(type.GetHealth());
     }
 
