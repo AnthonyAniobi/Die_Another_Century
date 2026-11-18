@@ -41,6 +41,8 @@ public class PlayerAmmoManager : MonoBehaviour
         int nextIndex = (currentIndex + 1) % weaponTypes.Count;
         WeaponType nextWeapon = weaponTypes[nextIndex];
         GetComponent<PlayerAttackController>().ChangeWeapon(nextWeapon);
+        ammoIndicators[currentWeapon].SetSelected(false);
+        ammoIndicators[nextWeapon].SetSelected(true);
     }
     public void PreviousWeapon(WeaponType currentWeapon)
     {
@@ -49,6 +51,8 @@ public class PlayerAmmoManager : MonoBehaviour
         int previousIndex = (currentIndex - 1 + weaponTypes.Count) % weaponTypes.Count;
         WeaponType previousWeapon = weaponTypes[previousIndex];
         GetComponent<PlayerAttackController>().ChangeWeapon(previousWeapon);
+        ammoIndicators[currentWeapon].SetSelected(false);
+        ammoIndicators[previousWeapon].SetSelected(true);
     }
 
     public bool DecreaseAmmo(WeaponType weaponType, int amount)
