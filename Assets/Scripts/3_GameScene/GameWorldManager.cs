@@ -11,6 +11,11 @@ public class GameWorldManager : MonoBehaviour
 
     void Start()
     {
+        // InitializePlayer();
+    }
+
+    private void InitializePlayer()
+    {
         if (playerPrefab == null)
         {
             Debug.LogError("GameWorldManager: playerPrefab is not assigned.");
@@ -32,11 +37,5 @@ public class GameWorldManager : MonoBehaviour
         }
 
         playerType.InitializePlayerType(GameManager.Instance.selectedPlayerType);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
