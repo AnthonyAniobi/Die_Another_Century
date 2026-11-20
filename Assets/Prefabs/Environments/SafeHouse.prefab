@@ -25425,6 +25425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7538697478564732386}
   - component: {fileID: 2890287416022665735}
+  - component: {fileID: 3063752162716769950}
   m_Layer: 0
   m_Name: SafeHouse
   m_TagString: Untagged
@@ -25490,6 +25491,19 @@ LODGroup:
     - renderer: {fileID: 7883697452656747741}
   m_Enabled: 1
   m_GlobalIlluminationLOD: 0
+--- !u!114 &3063752162716769950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370687983071835231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a0a58a2bf0b42348764ff5fed01871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafeHouseManager
+  doorAnimator: {fileID: 2669844065775596896}
 --- !u!1 &3826773476421413684
 GameObject:
   m_ObjectHideFlags: 0
@@ -45729,13 +45743,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6485332807564150849}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.86602545, z: 0, w: 0.49999994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.7189989, y: 1.8319092, z: -4.8790154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4459665014330754697}
-  m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4461753691113938155
 MeshFilter:
   m_ObjectHideFlags: 0
