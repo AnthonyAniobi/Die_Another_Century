@@ -1324,7 +1324,7 @@ GameObject:
   - component: {fileID: 4459665014330754697}
   - component: {fileID: 4002057223748926025}
   - component: {fileID: 2669844065775596896}
-  - component: {fileID: 3063752162716769950}
+  - component: {fileID: 5123414853945199667}
   m_Layer: 0
   m_Name: Entrance
   m_TagString: Untagged
@@ -1391,7 +1391,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3063752162716769950
+--- !u!114 &5123414853945199667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1400,10 +1400,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4452250414642689028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a0a58a2bf0b42348764ff5fed01871, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f447c92f784e44ffa28f56f09122cd7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SafeHouseManager
-  doorAnimator: {fileID: 2669844065775596896}
+  m_EditorClassIdentifier: Assembly-CSharp::SafeHouseEntry
+  doorAnimator: {fileID: 0}
 --- !u!1 &4943004757307571384
 GameObject:
   m_ObjectHideFlags: 0

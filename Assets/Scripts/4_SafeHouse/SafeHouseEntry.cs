@@ -7,10 +7,11 @@ public class SafeHouseEntry : MonoBehaviour
     // and upgrade their abilities. It is responsible for managing the 
     // safe house environment, player interactions, and any relevant game mechanics related to the safe house.
 
-    [SerializeField] private Animator doorAnimator;
+    private Animator doorAnimator;
     
     void Start()
     {
+        doorAnimator = GetComponent<Animator>();
         // Initialize(transform.position);
     }
 

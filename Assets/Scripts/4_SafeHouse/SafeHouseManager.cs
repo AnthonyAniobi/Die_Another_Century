@@ -5,6 +5,17 @@ public class SafeHouseManager : MonoBehaviour
 {
     [SerializeField] private GameObject popupUI;
     bool isPlayerInSafeHouse = false;
+
+    
+
+    void Update()
+    {
+        if (isPlayerInSafeHouse)
+        {
+            
+        }
+    }
+
     void OnTrigger(Collider other)
     {
         isPlayerInSafeHouse = other.CompareTag("Player");
