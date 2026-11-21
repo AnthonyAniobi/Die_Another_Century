@@ -14,7 +14,7 @@ public class GameWorldManager : MonoBehaviour
         // InitializePlayer();
     }
 
-    private void InitializePlayer()
+    private void InitializePlayer(Vector3 spawnPosition)
     {
         if (playerPrefab == null)
         {
@@ -22,7 +22,7 @@ public class GameWorldManager : MonoBehaviour
             return;
         }
 
-        playerInstance = Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity);
+        playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
         PlayerType playerType = playerInstance.GetComponentInChildren<PlayerType>(true);
         if (playerType == null)
         {

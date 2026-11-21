@@ -34,7 +34,7 @@ public class PlayerType : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        // InitializePlayerType(playerType);
+        InitializePlayerType(playerType);
     }
     public void InitializePlayerType(PlayerTypeEnum type)
     {
@@ -45,9 +45,7 @@ public class PlayerType : MonoBehaviour
         playerName = type.GetDisplayName();
         playerNameText.text = playerName;
         image.sprite = sprite;
-        GetComponent<PlayerAttackController>().Initialize(
-            type
-        );
+        GetComponent<PlayerAttackController>().Initialize(type);
         GetComponent<PlayerHealth>().Initialize(type.GetHealth());
         GetComponent<PlayerAmmoManager>().Initialize(new Dictionary<WeaponType, int>
         {
