@@ -931,6 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1507d561d2d4c4890b88fe912d8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSelector
+  weaponType: 6
 --- !u!33 &5621072977734595020
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1035,6 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1507d561d2d4c4890b88fe912d8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSelector
+  weaponType: 1
 --- !u!33 &4356414398549672648
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1463,6 +1465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1507d561d2d4c4890b88fe912d8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSelector
+  weaponType: 4
 --- !u!33 &5278718932443067158
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1918,6 +1921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1507d561d2d4c4890b88fe912d8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSelector
+  weaponType: 3
 --- !u!33 &7330555517010460227
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2293,6 +2297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1507d561d2d4c4890b88fe912d8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSelector
+  weaponType: 5
 --- !u!33 &7842862651176236683
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2684,6 +2689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1507d561d2d4c4890b88fe912d8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSelector
+  weaponType: 2
 --- !u!1 &8872191200886105237
 GameObject:
   m_ObjectHideFlags: 0
