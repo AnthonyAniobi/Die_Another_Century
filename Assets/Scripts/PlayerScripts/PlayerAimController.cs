@@ -1,18 +1,37 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAimController : MonoBehaviour
 {
     private const int ActiveCameraPriority = 10;
     private const int InactiveCameraPriority = 0;
 
+    [Header("Cameras")]
     public CinemachineCamera thirdPersonCamera;
     public CinemachineCamera firstPersonCamera;
+
+    [Header("Aim UI")]
+    public Image aimImage;
+
+    public Sprite AimImageSprite;
+    public Sprite selectImageSprite;
+
     private bool isFirstPerson = false;
+
+    private bool isAiming = false;
+    private bool isInSafeHouse = false;
+
+    
 
     void Start()
     {
         SetCameraPriorities();
+        // Ensure the aim image is initially inactive
+        if (aimImage != null)
+        {
+            aimImage.gameObject.SetActive(false);
+        }
     }
 
     void Update()
@@ -21,6 +40,26 @@ public class PlayerAimController : MonoBehaviour
         {
             ToggleCamera();
         }
+    }
+
+    public void SetInSafeHouse(bool inSafeHouse)
+    {
+        isInSafeHouse = inSafeHouse;
+        if (isInSafeHouse)
+        {
+            aimImage.sprite = selectImageSprite;
+            aimImage.gameObject.SetActive(true);
+        }else
+        {
+            aimImage.sprite = AimImageSprite;
+            aimImage.gameObject.SetActive(isAiming);
+        }
+    }
+
+    public void SetWeaponAim(bool isAiming)
+    {
+        this.isAiming = isAiming;
+        aimImage.gameObject.SetActive(isAiming);
     }
 
     void ToggleCamera()

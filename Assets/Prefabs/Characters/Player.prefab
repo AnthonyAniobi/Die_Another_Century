@@ -2069,8 +2069,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857735310227334623}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19999695, y: 2.37, z: -4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2000122, y: 2.3700027, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4566,6 +4566,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAimController
   thirdPersonCamera: {fileID: 5618077958754371806}
   firstPersonCamera: {fileID: 8926791615050523055}
+  aimImage: {fileID: 3025887819905017479}
+  AimImageSprite: {fileID: 21300000, guid: 070c0d82612764c99b74ab9e346787e9, type: 3}
+  selectImageSprite: {fileID: 21300000, guid: 84487d73ca4b791498332d8f6858417f, type: 3}
 --- !u!114 &3516895734559947281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4578,7 +4581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8046a727d7b9849a8b0d329464f77a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackController
-  aimUI: {fileID: 7536972643554814766}
   rightArmSwat: {fileID: 1656316909800147352}
   rightArmSpecialForces: {fileID: 8696753677416341262}
   rightArmWarSoldier: {fileID: 7322762268258979982}
@@ -5313,7 +5315,7 @@ Transform:
   m_GameObject: {fileID: 3680308482186551849}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19999695, y: 2.37, z: -4}
+  m_LocalPosition: {x: 0.2000122, y: 2.3700027, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

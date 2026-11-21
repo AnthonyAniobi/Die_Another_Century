@@ -5,8 +5,8 @@ public class PlayerAttackController : MonoBehaviour
 {
     [Header("Player Attack Controller")]
     [Space(10)]
-    [Header("Aim UI")]
-    [SerializeField] private GameObject aimUI;
+    // [Header("Aim UI")]
+    // [SerializeField] private GameObject aimUI;
 
     [Header("Player Right Arm")]
     [SerializeField] private GameObject rightArmSwat;
@@ -59,7 +59,6 @@ public class PlayerAttackController : MonoBehaviour
         currentWeaponType = WeaponType.None; // Set the initial weapon type to none
         SetWeaponAnimation(WeaponType.None); // Set the initial weapon animation to none
         EquipWeapon(WeaponType.None); // Equip no weapon
-        aimUI.SetActive(false);
         ammoManager = GetComponent<PlayerAmmoManager>();
     }
 
@@ -92,11 +91,11 @@ public class PlayerAttackController : MonoBehaviour
         // checks for aim ui for the weapon type
         if(IsAimedWeapon)
         {
-            aimUI.SetActive(true);
+            GetComponent<PlayerAimController>().SetWeaponAim(true);
         }
         else
         {
-            aimUI.SetActive(false);
+            GetComponent<PlayerAimController>().SetWeaponAim(true);
         }
         // look at all the arm and remove the children
         rightArmWarSoldier.RemoveAllChildren();

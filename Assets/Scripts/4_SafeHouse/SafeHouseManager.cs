@@ -19,21 +19,24 @@ public class SafeHouseManager : MonoBehaviour
         }
     }
 
-    void OnTrigger(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        isPlayerInSafeHouse = other.CompareTag("Player");
+        
         if (other.CompareTag("Player"))
         {
             popupUI.SetActive(true);
+            other.GetComponent<PlayerAimController>().SetInSafeHouse(true);
+            isPlayerInSafeHouse = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        isPlayerInSafeHouse = false;
         if (other.CompareTag("Player"))
         {
             popupUI.SetActive(false);
+            isPlayerInSafeHouse = false;
+            other.GetComponent<PlayerAimController>().SetInSafeHouse(false);
         }
     }
 }
