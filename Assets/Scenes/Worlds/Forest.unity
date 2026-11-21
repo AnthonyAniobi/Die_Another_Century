@@ -106062,6 +106062,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SafeHouse
       objectReference: {fileID: 0}
+    - target: {fileID: 6519623981721345575, guid: 6947d6a93dde34b5994a7569403f95f6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7538697478564732386, guid: 6947d6a93dde34b5994a7569403f95f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 643.06

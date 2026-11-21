@@ -957,6 +957,7 @@ GameObject:
   - component: {fileID: 7538697478564732386}
   - component: {fileID: 2890287416022665735}
   - component: {fileID: 1190641731437692285}
+  - component: {fileID: 2300276695247317537}
   m_Layer: 0
   m_Name: SafeHouse
   m_TagString: Untagged
@@ -1044,6 +1045,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.802898, y: 4.9230604, z: 9.60947}
   m_Center: {x: -0.078335434, y: 3.1189423, z: -0.2405731}
+--- !u!114 &2300276695247317537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370687983071835231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a0a58a2bf0b42348764ff5fed01871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafeHouseManager
+  popupUI: {fileID: 8499937264603117605}
 --- !u!1 &3826773476421413684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f447c92f784e44ffa28f56f09122cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SafeHouseEntry
-  doorAnimator: {fileID: 0}
 --- !u!1 &4943004757307571384
 GameObject:
   m_ObjectHideFlags: 0

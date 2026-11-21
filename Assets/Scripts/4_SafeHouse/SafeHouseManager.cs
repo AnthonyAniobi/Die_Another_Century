@@ -6,7 +6,10 @@ public class SafeHouseManager : MonoBehaviour
     [SerializeField] private GameObject popupUI;
     bool isPlayerInSafeHouse = false;
 
-    
+    void Start()
+    {
+        popupUI.SetActive(false);
+    }
 
     void Update()
     {
