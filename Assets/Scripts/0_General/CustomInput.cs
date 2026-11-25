@@ -19,8 +19,13 @@ public class CustomInput : MonoBehaviour
     internal bool jump;
     internal bool nextWeapon;
     internal bool prevWeapon;
+    // dialog inputs
+    internal bool dialogNext;
+    internal bool dialogPrev;
     
     private InputActionMap inputActions;
+
+    private InputMap inputMap = InputMap.Player;
 
     void Awake()
     {
@@ -32,7 +37,7 @@ public class CustomInput : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
-            inputActions = InputSystem.actions.FindActionMap("Player");
+            inputActions = InputSystem.actions.FindActionMap(InputMapToString(inputMap));
             inputActions.Enable();
         }
     }
@@ -41,17 +46,39 @@ public class CustomInput : MonoBehaviour
     {
         if(!screenInputEnabled)
         {
-            move = inputActions.FindAction("Move").ReadValue<Vector2>();
-            look = inputActions.FindAction("Look").ReadValue<Vector2>();
-            attackSingle = inputActions.FindAction("Attack").WasPerformedThisFrame();
-            attackContinuous = inputActions.FindAction("Attack").IsPressed();
-            reload = inputActions.FindAction("Reload").WasPerformedThisFrame();
-            cameraSwitch = inputActions.FindAction("SwitchCamera").WasPerformedThisFrame();
-            sprint = inputActions.FindAction("Sprint").IsPressed();
-            jump = inputActions.FindAction("Jump").WasPerformedThisFrame();
-            nextWeapon = inputActions.FindAction("Next").WasPerformedThisFrame();
-            prevWeapon = inputActions.FindAction("Previous").WasPerformedThisFrame();
+            if(inputMap == InputMap.Player){
+                move = inputActions.FindAction("Move").ReadValue<Vector2>();
+                look = inputActions.FindAction("Look").ReadValue<Vector2>();
+                attackSingle = inputActions.FindAction("Attack").WasPerformedThisFrame();
+                attackContinuous = inputActions.FindAction("Attack").IsPressed();
+                reload = inputActions.FindAction("Reload").WasPerformedThisFrame();
+                cameraSwitch = inputActions.FindAction("SwitchCamera").WasPerformedThisFrame();
+                sprint = inputActions.FindAction("Sprint").IsPressed();
+                jump = inputActions.FindAction("Jump").WasPerformedThisFrame();
+                nextWeapon = inputActions.FindAction("Next").WasPerformedThisFrame();
+                prevWeapon = inputActions.FindAction("Previous").WasPerformedThisFrame();
+            }else if(inputMap == InputMap.Dialog){
+                dialogNext = inputActions.FindAction("Next").WasPerformedThisFrame();
+                dialogPrev = inputActions.FindAction("Previous").WasPerformedThisFrame();
+            }
         }
+    }
+
+
+    void SetPlayerInputMap()
+    {
+        inputActions.Disable();
+        inputMap = InputMap.Player;
+        inputActions = InputSystem.actions.FindActionMap(InputMapToString(inputMap));
+        inputActions.Enable();
+    }
+
+    void SetDialogInputMap()
+    {
+        inputActions.Disable();
+        inputMap = InputMap.Dialog;
+        inputActions = InputSystem.actions.FindActionMap(InputMapToString(inputMap));
+        inputActions.Enable();
     }
 
     public void HideCursor()
@@ -65,4 +92,26 @@ public class CustomInput : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    private enum InputMap
+    {
+        Player,
+        Dialog
+    }
+
+    private string InputMapToString(InputMap map)
+    {
+        switch(map)
+        {
+            case InputMap.Player:
+                return "Player";
+            case InputMap.Dialog:
+                return "Dialog";
+            default:
+                return "";
+        }
+    }
+
+    
 }
+
